@@ -1,0 +1,33 @@
+stogramRunOptions.txt
+1. Start Date 
+2. End Date 
+3. Sample Size
+4. Checking Start Value
+5. Savings Start Value
+6. Annual Salary 
+7. Pay Frequency (weekly, bi-weekly, bi-monthly, monthly)
+8. First re-occuring paycheck date
+9. Hist Start Date
+10. Hist end date
+
+Pay_Deductions.csv
+1. Deductions column
+2. Dedcution name column
+3. Type column (percentage or absolute)
+
+Bills.csv
+1. Description column
+2. Total amount column
+3. Date column
+
+Expenses.csv
+1. Description column
+2. Addition Column
+3. Subtraction Column 
+4. Date Column
+
+Histogram.csv
+1. Date column (DD-MM-YY)
+2. Checking Value
+3. Savings Value
+

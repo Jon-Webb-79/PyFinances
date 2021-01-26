@@ -1,0 +1,384 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PyFinances &#8212; Project_Name 0.1.0 documentation</title>
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="read_files" href="read_files.html" />
+    <link rel="prev" title="Welcome to Core Utilities’s documentation!" href="index.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="read_files.html" title="read_files"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to Core Utilities’s documentation!"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Project_Name 0.1.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">PyFinances</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pyfinances">
+<h1>PyFinances<a class="headerlink" href="#pyfinances" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>The PyFinances software suite is written to analyze a users historical spending trends
+and then to use that information to preduct the date-dependent future value of a
+users checking and savings account.  The software package is predicated on the user
+being a salaried employee that has a single checking and savings account.</p>
+</div>
+<div class="section" id="daily-expenses-file">
+<h2>Daily Expenses File<a class="headerlink" href="#daily-expenses-file" title="Permalink to this headline">¶</a></h2>
+<p>In addition, the user will need to maintain a .csv file that tracks their daily spending by
+the categories of <em>Bills</em>, <em>Misc</em>, <em>Bar</em>, <em>Groceries</em>, <em>Gas</em>, <em>Restaurant</em> and
+<em>Planned Expense</em>.  The user may also want to track spending by <em>Fed Taxes</em>,
+and <em>State Taxes</em>.  In my case I have titled the file <cite>Daily_Expenses.csv</cite>.
+An example of a <cite>Daily_Expenses.csv</cite> is profided below.</p>
+<table class="colwidths-given docutils align-default" id="id1">
+<caption><span class="caption-text">Daily_Expenses.csv</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 13%" />
+<col style="width: 13%" />
+<col style="width: 13%" />
+<col style="width: 13%" />
+<col style="width: 13%" />
+<col style="width: 13%" />
+<col style="width: 13%" />
+<col style="width: 13%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Date</p></th>
+<th class="head"><p>Checking_Debit</p></th>
+<th class="head"><p>Checking_Addition</p></th>
+<th class="head"><p>Savings_Debit</p></th>
+<th class="head"><p>Savings_Addition</p></th>
+<th class="head"><p>Expense_Type</p></th>
+<th class="head"><p>Vendor</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>01/25/2021</p></td>
+<td><p>64.90</p></td>
+<td><p>0.0</p></td>
+<td><p>0.0</p></td>
+<td><p>0.0</p></td>
+<td><p>Misc</p></td>
+<td><p>Target</p></td>
+<td><p>Blankets</p></td>
+</tr>
+<tr class="row-odd"><td><p>01/25/2021</p></td>
+<td><p>32.18</p></td>
+<td><p>0.0</p></td>
+<td><p>0.0</p></td>
+<td><p>0.0</p></td>
+<td><p>Bills</p></td>
+<td><p>Century Link</p></td>
+<td><p>Internet Bill</p></td>
+</tr>
+<tr class="row-even"><td><p>01/24/2021</p></td>
+<td><p>0.0</p></td>
+<td><p>1000.0</p></td>
+<td><p>0.0</p></td>
+<td><p>0.0</p></td>
+<td><p>Paycheck</p></td>
+<td><p>Company</p></td>
+<td><p>None</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="runoptions-file">
+<h2>RunOptions File<a class="headerlink" href="#runoptions-file" title="Permalink to this headline">¶</a></h2>
+<p>The RunOptions file controls the behavior of the entire PyFinances software and is
+the users interface to the program.  The RunOptions.txt file must first be configured
+by the user to develop the appropriate histogram files, which will be read by
+the program later when executed in Monte Carlo mode.  A RunOptions.txt file must
+contain a specific key word or phrase followed by the information that the program
+will read.  For example, in order to configure the program to develop a set of
+histogram files, the RunOptions.txt might look something like the example below.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Run Histogram: True
+Bins: 60
+Hist Start Date: 03/01/2020
+Hist End Date: 02/28/2021
+Daily Expense File ../data/Daily_Expense.csv
+</pre></div>
+</div>
+<p>In the example shown above, the term <cite>Run Histogram:</cite> is a key word.  The PyFinances software
+will open the <cite>RunOptions.txt</cite> file and look for this keyword.  If it finds the keyword, it
+will read the text string immediately to the right, which in this case is <cite>True</cite>.  Since the
+response to the keyword <cite>Run Histogram:</cite> is <cite>True</cite> it means that the code will create
+histogram files, which are necessary for a later execution of the Monte Carlo calculation.  The
+keywords in this version of the <cite>RunOptions.txt</cite> file have the following meaning.</p>
+<ul>
+<li><p><strong>Run Histogram:</strong> <cite>True</cite> if the code is to develop histograms or <cite>False</cite> if the code will complete a Monte Carlo calculation.</p></li>
+<li><p><strong>Bins:</strong> The number of bins to be used in the probability and cumulative distribution functions that are sampled for the Monte Carlo calculation.</p></li>
+<li><p><strong>Hist Start Date:</strong> The start date for the development of PDFs and CDFs. This date must exist within the <cite>Daily_Expenses.csv</cite> file.</p></li>
+<li><p><strong>Hist End Date:</strong> THe end date for the development of PDFs and CDFs.  This date must exist within the <cite>Daily_Expenses.csv</cite> file.</p></li>
+<li><p><strong>Daily Expense File:</strong> The location and name of the daily expense file.  In this example I have named it the <cite>Daily_Expenses.csv</cite> file.</p>
+<p>Once you have developed Histogram files, then you must reconfigure the <cite>RunOptions.txt</cite> file to execute the Monte Carlo
+calculations with the histogram files.  In order to do this you can reconfigure the file to look like the example
+below.</p>
+</li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Sample Size: 1000
+Start Date: 03/01/2021
+End Date: 02/28/2022
+Checking Start Value: 38000.0
+Savings Start Value: 4500.0
+Annual Salary: 95000.0
+Pay Frequency: bi-weekly
+First Pay Date: 03/05/2021
+Total Expense File: ../data/total_expenses.csv
+Planned Expense File: ../data/planned_expenses.csv
+Bills File: ../data/bills.csv
+Deductions File ../data/deductions.csv
+Run Histogram: False
+Bins: 60
+Hist Start Date: 03/01/2020
+Hist End Date: 02/28/2021
+Daily Expense File ../data/Daily_Expense.csv
+</pre></div>
+</div>
+<p>The file above has the same keywords as the first example, with addtion of the following key wordsz</p>
+<ul class="simple">
+<li><p><strong>Sample Size:</strong> The number of Monte Carlo samples to use in the calculation.  The fidelity increases with sample size.</p></li>
+<li><p><strong>Start Date:</strong> The Start date for the predictions of financial values</p></li>
+<li><p><strong>End Date</strong> The End date for the prediction of financial values</p></li>
+<li><p><strong>Checking Start Value:</strong> The initial value of the checking account on the start date</p></li>
+<li><p><strong>Savings Start Value:</strong> The initial value of the savings account on the start date</p></li>
+<li><p><strong>Annual Salary:</strong> The users annual salary before taxes and deductions</p></li>
+<li><p><strong>Pay Frequency:</strong> The frequency at which the user recievs pay checks.  The input must be weekly, bi-weekly, bi-monthly, or monhly</p></li>
+<li><p><strong>First Pay Date:</strong> The date the first paycheck is recieved.  If Pay Frequency is bi-monthly or monthly, the first pay date must be the 15th of hte last day of the month</p></li>
+<li><p><strong>Total Expense File:</strong> A .csv file that contains the day by day breakdown of spending for all categories.  The user will not create this file, but must
+specify the name and location of this file.</p></li>
+<li><p><strong>Planned Expense File:</strong> A .csv file containing the planned expenses for the calculated time frame that are not covered as random espenses, bills
+or pay deductions.</p></li>
+<li><p><strong>Bills File:</strong> The name and location of the .csv file containing bill information.</p></li>
+<li><p><strong>Deductions File:</strong> The name and location of the .csv file containing paycheck deduction information</p></li>
+<li><p><strong>Run Histogram:</strong> <cite>False</cite> if the user is executing a Monte Carlo calculation, or it can be neglected from the <cite>RunOptions.txt</cite> file as
+it is defaulted to <cite>False</cite>.  If the files do not exist, the Monte Carlo code will recreate them based on the following inputs.</p></li>
+<li><p><strong>Bins:</strong> The number of bins to be used in the probability and cumulative distribution functions that are sampled for the Monte Carlo calculation.</p></li>
+<li><p><strong>Hist Start Date:</strong> The start date for the development of PDFs and CDFs. This date must exist within the <cite>Daily_Expenses.csv</cite> file.</p></li>
+<li><p><strong>Hist End Date:</strong> THe end date for the development of PDFs and CDFs.  This date must exist within the <cite>Daily_Expenses.csv</cite> file.</p></li>
+<li><p><strong>Daily Expense File:</strong> The location and name of the daily expense file.  In this example I have named it the <cite>Daily_Expenses.csv</cite> file.</p></li>
+</ul>
+</div>
+<div class="section" id="planned-expense-file">
+<h2>Planned Expense File<a class="headerlink" href="#planned-expense-file" title="Permalink to this headline">¶</a></h2>
+<p>The User must create a planned expense file at the location and name assigned in the <cite>RunOptions.txt</cite> file.  It is best just
+to use the name <cite>Planned_Expenses.csv</cite>.  The file should have the following format.</p>
+<table class="colwidths-given docutils align-default" id="id2">
+<caption><span class="caption-text">Planned_Expense.csv</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 13%" />
+<col style="width: 19%" />
+<col style="width: 19%" />
+<col style="width: 19%" />
+<col style="width: 19%" />
+<col style="width: 13%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Date</p></th>
+<th class="head"><p>Checking_Debit</p></th>
+<th class="head"><p>Checking_Addition</p></th>
+<th class="head"><p>Savings_Debit</p></th>
+<th class="head"><p>Savings_Addition</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>01/25/2021</p></td>
+<td><p>640.90</p></td>
+<td><p>0.0</p></td>
+<td><p>0.0</p></td>
+<td><p>0.0</p></td>
+<td><p>Vacation</p></td>
+</tr>
+<tr class="row-odd"><td><p>01/25/2021</p></td>
+<td><p>250.18</p></td>
+<td><p>0.0</p></td>
+<td><p>0.0</p></td>
+<td><p>0.0</p></td>
+<td><p>New Camera</p></td>
+</tr>
+<tr class="row-even"><td><p>01/24/2021</p></td>
+<td><p>0.0</p></td>
+<td><p>1000.0</p></td>
+<td><p>0.0</p></td>
+<td><p>0.0</p></td>
+<td><p>Medical Visit</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="bills-file">
+<h2>Bills File<a class="headerlink" href="#bills-file" title="Permalink to this headline">¶</a></h2>
+<p>The bills file has a format similar to the Planned Expense File, but assumes that bills re-occur at the same
+time of each month, so the date is replaced with day, and looks similar to the example below.</p>
+<table class="colwidths-given docutils align-default" id="id3">
+<caption><span class="caption-text">Bills.csv</span><a class="headerlink" href="#id3" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 13%" />
+<col style="width: 19%" />
+<col style="width: 19%" />
+<col style="width: 19%" />
+<col style="width: 19%" />
+<col style="width: 13%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Day</p></th>
+<th class="head"><p>Checking_Debit</p></th>
+<th class="head"><p>Checking_Addition</p></th>
+<th class="head"><p>Savings_Debit</p></th>
+<th class="head"><p>Savings_Addition</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>01</p></td>
+<td><p>1200.90</p></td>
+<td><p>0.0</p></td>
+<td><p>0.0</p></td>
+<td><p>0.0</p></td>
+<td><p>Rent</p></td>
+</tr>
+<tr class="row-odd"><td><p>22</p></td>
+<td><p>120.00</p></td>
+<td><p>0.0</p></td>
+<td><p>0.0</p></td>
+<td><p>0.0</p></td>
+<td><p>Phone Bill</p></td>
+</tr>
+<tr class="row-even"><td><p>28</p></td>
+<td><p>0.0</p></td>
+<td><p>420.0</p></td>
+<td><p>0.0</p></td>
+<td><p>0.0</p></td>
+<td><p>Car Payment</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="deductions-file">
+<h2>Deductions File<a class="headerlink" href="#deductions-file" title="Permalink to this headline">¶</a></h2>
+<p>The deductions file can be named and placed whever the user wants it; however, it is recommended that the
+user of hte software titles the file the <cite>Deductions.csv</cite> file.  The file should have the following
+format.</p>
+<table class="colwidths-given docutils align-default" id="id4">
+<caption><span class="caption-text">Deductions.csv</span><a class="headerlink" href="#id4" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Amount</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>84.50</p></td>
+<td><p>Medical Deductions</p></td>
+</tr>
+<tr class="row-odd"><td><p>150.0</p></td>
+<td><p>401k</p></td>
+</tr>
+<tr class="row-even"><td><p>1840.0</p></td>
+<td><p>Federal Income Taxes</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">PyFinances</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+<li><a class="reference internal" href="#daily-expenses-file">Daily Expenses File</a></li>
+<li><a class="reference internal" href="#runoptions-file">RunOptions File</a></li>
+<li><a class="reference internal" href="#planned-expense-file">Planned Expense File</a></li>
+<li><a class="reference internal" href="#bills-file">Bills File</a></li>
+<li><a class="reference internal" href="#deductions-file">Deductions File</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Welcome to Core Utilities’s documentation!</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="read_files.html"
+                        title="next chapter">read_files</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/Introduction.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="read_files.html" title="read_files"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to Core Utilities’s documentation!"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Project_Name 0.1.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">PyFinances</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Jonathan A. Webb.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.2.1.
+    </div>
+  </body>
+</html>

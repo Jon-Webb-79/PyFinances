@@ -1,0 +1,16 @@
+Sample Size: 1000
+Start Date: 03/01/2021
+End Date: 02/28/2022
+Checking Start Value: 54000.0
+Savings Start Value: 4800.0
+Annual Salary: 145000.0
+Pay Frequency: Bi-Monthly
+First Pay Date: 03/05/2021
+Total Expense File: ../data/test/total_expenses.csv
+Planned Expense File: ../data/test/planned_expenses.csv
+Bills File: ../data/test/bills.csv
+Deductions File: ../data/test/deductions.csv
+Bins: 60
+Hist Start Date: 03/01/2020
+Hist End Date: 02/28/2021
+Daily Expense File: ../data/test/expense_file_one.csv

@@ -1,0 +1,143 @@
+\chapter{Capability Requirements}
+
+This chapter describes the high-level capability (Level-I) requirements that guide the 
+development and use of the PyFinances software suite.  This doducment is divided into
+Key Performance Parameters, Key Software Atributes, and Additional Performance Parameters.
+Each term is defined below.
+% ================================================================================ 
+% ================================================================================ 
+
+\begin{itemize}
+    \item {\textbf{Key Performance Parameter (KPP)}} - A KPP is an software attribute 
+that is considered critical to the development or use of the software capability.  If 
+the final code does not adequately address KPPs then it will not be accepted by the 
+end-user
+    \item {\textbf{Key Software Attribute (KSA)}} - A KSA is a software capability 
+considered crucial in achieving a balanced sokution to KPPs.  KSAs generaly cover
+system maintainability or evolvability and are considered critical to end-user
+acceptance of the software suite.
+    \item {\textbf{Additional Performance Parameter (APP)}} - APAs are software
+attributes that are deemed desirable, but not necessary for the development of,
+or use of a software-suite. 
+\end{itemize}
+
+\section{Key Performance Parameters}
+The following items are considered necessary capabilities that must be codified in the 
+PyFinances software suite.
+% ================================================================================ 
+% ================================================================================ 
+
+\subsection{KPP 1. Develop Spending Breakdown}
+The PyFinances software suite {\textit{shall}} be capable of determining a day
+by day spending profile for historical spending divided into categories of
+{\textbf{gas}}, {\textbf{miscellaneous}}, {\textbf{groceries}}, 
+{\textbf{restaurant}}, and {\textbf{bar}}.
+% ================================================================================ 
+
+\subsection{KPP 2. Analyze Historical Spending Trends}
+The PyFinances software suite {\textit{shall}} be capable of analyzing historical
+spending trends by the categories of {\textbf{gas}}, {\textbf{miscellaneous}}, 
+{\textbf{groceries}}, {\texttt{restaurant}}, and {\textbf{bar}} spending.
+% -------------------------------------------------------------------------------- 
+
+\subsubsection{KPP 2.1. Develop Probability Distribution Functions}
+The software {\textit{shall}} develop Probability Distribution Functions (PDF) for each 
+spending category as well as total spending, subtracting the effects of bills, 
+and planned expenses, as well as expected pay deductions.  
+% -------------------------------------------------------------------------------- 
+
+\subsubsection{KPP 2.2. Develop Cumulative Distribution Functions}
+The software {\textit{shall}} develop Cumulative Distribution Functions (CDF) for
+each spending category as well as total spending, subtracting the effects of bills, 
+and planned expenses, as well as pay deductions.  
+% ================================================================================
+% ================================================================================ 
+
+\subsection{KPP 3. Allocate Checking and Savings Accounts}
+The software suite {\textit{shall}} allocate time dependent values for personal
+wealth assuming a direct and predictable income.
+% -------------------------------------------------------------------------------- 
+
+\subsubsection{KPP 3.1. Checking Account}
+The software {\textit{shall}} predict the day by day value of an individual 
+checking account over the user defined time frame.
+% -------------------------------------------------------------------------------- 
+
+\subsubsection{KPP 3.2. Savings Account}
+The software suite {\textit{shall}} predict the day by day value of an individual
+savings account over the user defined time frame.
+% ================================================================================ 
+% ================================================================================ 
+
+\subsection{KPP 4. Allocate Paycheck Info}
+The software suite {\textit{shall}} determine all pay information necessary to
+predict the day by day value of checking and savings accounts.
+% -------------------------------------------------------------------------------- 
+
+\subsubsection{KPP 4.1. Determine Pay Dates}
+The software suite {\textit{shall}} be able to determine the date on which
+paycheks are released for all reasonable pay allocation schemes.
+% -------------------------------------------------------------------------------- 
+
+\subsubsection{KPP 4.2. Determine Pay Deductions}
+The software suite {\textit{shall}} be able to deduction salary from each paycheck
+to account for medical and dental insurance, life insurance, taxes, 401k, and legal
+support fees, as well as any other necessary deduction.
+% ================================================================================ 
+% ================================================================================ 
+
+\subsection{KPP 5. Deduct Planned Expenses}
+The software suite {\textit{shall}} be capable of deducting planned expenses
+from the users portfolio on the user defined dates in order to support predictions
+for the value of checking and savings account.
+% ================================================================================ 
+% ================================================================================ 
+
+\subsection{KPP 6. Deduct Bills}
+The software suite {\textit{shall}} be capable of deducting known bills from the
+users checking and savings account on the desired dates in order to support
+predictions for the value of each account. 
+% ================================================================================ 
+% ================================================================================ 
+
+\subsection{KPP 7. Monte Carlo Method}
+The software suite {\textit{shall}} calculate the mean values for checking and 
+savings account as well as the plus and minus 2 standard deviation (2$\sigma$) 
+using a Monte Carlo technique.
+% ================================================================================
+% ================================================================================ 
+\section{Key Software Attributes}
+The requirements in this section are focused on maintainability and 
+evolvability.
+% -------------------------------------------------------------------------------- 
+
+\subsection{KSA 1. Testing}
+The software {\textit{shall}} be built with unit tests and regression testing
+for all primary functions, classes, and components.  Unit and regression
+testing {\textit{shall}} be used to validate performance requirements, which
+will validate all capability requirements that map to those performance requirements.
+% -------------------------------------------------------------------------------- 
+
+\subsection{KSA 2. Evolvability}
+The software {\textit{shall}} be developed with object oriented and component
+oriented practices for the purpose of ensuring that the software can be evolved
+in the future to account for multiple bank accounts.
+% ================================================================================ 
+% ================================================================================ 
+
+\section{Additional Performance Parameters}
+The following attributes can increase the information that the user can extract
+for their spending portfolios.  These attributes are considered advantageous but
+not necessary.
+% -------------------------------------------------------------------------------- 
+
+\subsection{APP 1. Graphical Probability Distribution Functions}
+The software suite {\textit{should}} allow a user to view their spending 
+PDFs as .png documents
+% -------------------------------------------------------------------------------- 
+
+\subsection{APP 2. Graphical Cumulative Distribution Functions}
+The software suire {\textit{should}} allow a user to view thei spending PDFs
+% ================================================================================ 
+% ================================================================================ 
+% eof

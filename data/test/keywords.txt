@@ -1,0 +1,8 @@
+sentence: This is a short sentence!
+float: 3.1415 # this is a float comment
+double: 3.141596235941 # this is a double comment
+String: test # this is a string comment
+Integer Value: 3 # This is an integer comment
+float list: 1.2 3.4 4.5 5.6 6.7
+double list: 1.12321 344.3454453 21.434553
+integer list: 1 2 3 4 5 6 7

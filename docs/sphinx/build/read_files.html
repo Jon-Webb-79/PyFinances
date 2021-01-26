@@ -1,0 +1,392 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>read_files &#8212; Project_Name 0.1.0 documentation</title>
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Introduction" href="Introduction.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="Introduction.html" title="Introduction"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Project_Name 0.1.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">read_files</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="read-files">
+<h1>read_files<a class="headerlink" href="#read-files" title="Permalink to this headline">¶</a></h1>
+<p>This section describes the functions and classes in the <cite>read_files.py</cite> file.</p>
+<dl class="py class">
+<dt id="read_files.ReadTextFileKeywords">
+<em class="property">class </em><code class="sig-prename descclassname">read_files.</code><code class="sig-name descname">ReadTextFileKeywords</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file_name</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/read_files.html#ReadTextFileKeywords"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#read_files.ReadTextFileKeywords" title="Permalink to this definition">¶</a></dt>
+<dd><p>A class to find keywords in a text file and the the variable(s)
+to the right of the key word.  This class must inherit the
+<code class="docutils literal notranslate"><span class="pre">FileUtilities</span></code> class</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>file_name</strong> – The name of the file being read to include the
+path-link</p>
+</dd>
+</dl>
+<p>For the purposes of demonstrating the use of this class, assume
+a text file titled <code class="docutils literal notranslate"><span class="pre">test_file.txt</span></code> with the following contents.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sentence: This is a short sentence!
+float: 3.1415 # this is a float comment
+double: 3.141596235941 # this is a double comment
+String: test # this is a string comment
+Integer Value: 3 # This is an integer comment
+float list: 1.2 3.4 4.5 5.6 6.7
+double list: 1.12321 344.3454453 21.434553
+integer list: 1 2 3 4 5 6 7
+</pre></div>
+</div>
+<dl class="py method">
+<dt id="read_files.ReadTextFileKeywords.read_double">
+<code class="sig-name descname">read_double</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key_words</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> &#x2192; numpy.float64<a class="reference internal" href="_modules/read_files.html#ReadTextFileKeywords.read_double"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#read_files.ReadTextFileKeywords.read_double" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>key_words</strong> – The key word that proceeds the data to be
+read</p>
+</dd>
+<dt class="field-even">Return data</dt>
+<dd class="field-even"><p>The float value following the <strong>key_word</strong> on the
+text file.  This variable is returned as a
+np.float64 data type</p>
+</dd>
+</dl>
+<p>This function reads a text file and searches for a key word which
+can be a single word or a string of words.  This function will read
+the first data point following the key word(s) on the text file as a
+float value.  The text file can also contain a comment line
+following the variable being read.  For example we could use this
+class to read the double value 3.141596235941 in the following manner.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">dat</span> <span class="o">=</span> <span class="n">ReadTextFileKeywords</span><span class="p">(</span><span class="s1">&#39;test_file.txt&#39;</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="n">double_data</span> <span class="o">=</span> <span class="n">dat</span><span class="o">.</span><span class="n">read_double</span><span class="p">(</span><span class="s1">&#39;double:&#39;</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">double_data</span><span class="p">)</span>
+<span class="mf">3.141596235941</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="read_files.ReadTextFileKeywords.read_double_list">
+<code class="sig-name descname">read_double_list</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key_words</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> &#x2192; List<span class="p">[</span>numpy.float64<span class="p">]</span><a class="reference internal" href="_modules/read_files.html#ReadTextFileKeywords.read_double_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#read_files.ReadTextFileKeywords.read_double_list" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>key_words</strong> – The key word that proceeds the data to be
+read</p>
+</dd>
+<dt class="field-even">Return data</dt>
+<dd class="field-even"><p>The string values following the <strong>key_word</strong> on the
+text file.  This variable is returned as a List of
+string values</p>
+</dd>
+</dl>
+<p>This function reads a text file and searches for a key word which
+can be a single word or a string of words.  This function will read
+the the data points following the key word(s) on the text file as a
+numpy.float64 value. The text file can also contain a comment
+line following the variable being read.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">dat</span> <span class="o">=</span> <span class="n">ReadTextFileKeywords</span><span class="p">(</span><span class="s1">&#39;test_file.txt&#39;</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="n">str_data</span> <span class="o">=</span> <span class="n">dat</span><span class="o">.</span><span class="n">read_double_list</span><span class="p">(</span><span class="s1">&#39;double list:&#39;</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">str_data</span><span class="p">)</span>
+<span class="p">[</span><span class="mf">1.12321</span><span class="p">,</span> <span class="mf">344.3454453</span><span class="p">,</span> <span class="mf">21.434553</span><span class="p">]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="read_files.ReadTextFileKeywords.read_float">
+<code class="sig-name descname">read_float</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key_words</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> &#x2192; numpy.float32<a class="reference internal" href="_modules/read_files.html#ReadTextFileKeywords.read_float"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#read_files.ReadTextFileKeywords.read_float" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>key_words</strong> – The key word that proceeds the data to be
+read</p>
+</dd>
+<dt class="field-even">Return data</dt>
+<dd class="field-even"><p>The float value following the <strong>key_word</strong> on the
+text file.  This variable is returned as a
+np.float32 data type</p>
+</dd>
+</dl>
+<p>This function reads a text file and searches for a key word which
+can be a single word or a string of words.  This function will read
+the first data point following the key word(s) on the text file as
+a float value. The text file can also contain a comment line
+following the variable being read.  For example we could use this
+class to read the float value 3.1415 in the following manner.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">dat</span> <span class="o">=</span> <span class="n">ReadTextFileKeywords</span><span class="p">(</span><span class="s1">&#39;test_file.txt&#39;</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="n">float_data</span> <span class="o">=</span> <span class="n">dat</span><span class="o">.</span><span class="n">read_float</span><span class="p">(</span><span class="s1">&#39;float data:&#39;</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">float_data</span><span class="p">)</span>
+<span class="mf">3.1415</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="read_files.ReadTextFileKeywords.read_float_list">
+<code class="sig-name descname">read_float_list</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key_words</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> &#x2192; List<span class="p">[</span>numpy.float32<span class="p">]</span><a class="reference internal" href="_modules/read_files.html#ReadTextFileKeywords.read_float_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#read_files.ReadTextFileKeywords.read_float_list" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>key_words</strong> – The key word that proceeds the data to be
+read</p>
+</dd>
+<dt class="field-even">Return data</dt>
+<dd class="field-even"><p>The string values following the <strong>key_word</strong> on the
+text file.  This variable is returned as a List of
+numpy.float32 values</p>
+</dd>
+</dl>
+<p>This function reads a text file and searches for a key word which
+can be a single word or a string of words.  This function will read
+the the data points following the key word(s) on the text file as a
+float value. The text file can also contain a comment line following
+the variable being read.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">dat</span> <span class="o">=</span> <span class="n">ReadTextFileKeywords</span><span class="p">(</span><span class="s1">&#39;test_file.txt&#39;</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="n">float_data</span> <span class="o">=</span> <span class="n">dat</span><span class="o">.</span><span class="n">read_float_list</span><span class="p">(</span><span class="s1">&#39;float list&#39;</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">float_data</span><span class="p">)</span>
+<span class="p">[</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">3.4</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">,</span> <span class="mf">5.6</span><span class="p">,</span> <span class="mf">6.7</span><span class="p">]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="read_files.ReadTextFileKeywords.read_integer">
+<code class="sig-name descname">read_integer</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key_words</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> &#x2192; numpy.int32<a class="reference internal" href="_modules/read_files.html#ReadTextFileKeywords.read_integer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#read_files.ReadTextFileKeywords.read_integer" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>key_words</strong> – The key word that proceeds the data to be
+read</p>
+</dd>
+<dt class="field-even">Return data</dt>
+<dd class="field-even"><p>The integer value following the <strong>key_word</strong> on the
+text file.  This variable is returned as a np.int32
+data type</p>
+</dd>
+</dl>
+<p>This function reads a text file and searches for a key word which
+can be a single word or a string of words.  This function will read
+the the first data point following the key word(s) on the text file as
+a integer value. The text file can also contain a comment line
+following the variable being read.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">dat</span> <span class="o">=</span> <span class="n">ReadTextFileKeywords</span><span class="p">(</span><span class="s1">&#39;test_file.txt&#39;</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="n">int_data</span> <span class="o">=</span> <span class="n">dat</span><span class="o">.</span><span class="n">read_float</span><span class="p">(</span><span class="s1">&#39;Integer Value&#39;</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">int_data</span><span class="p">)</span>
+<span class="mi">3</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="read_files.ReadTextFileKeywords.read_integer_list">
+<code class="sig-name descname">read_integer_list</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key_words</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> &#x2192; List<span class="p">[</span>numpy.int32<span class="p">]</span><a class="reference internal" href="_modules/read_files.html#ReadTextFileKeywords.read_integer_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#read_files.ReadTextFileKeywords.read_integer_list" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>key_words</strong> – The key word that proceeds the data to be
+read</p>
+</dd>
+<dt class="field-even">Return data</dt>
+<dd class="field-even"><p>The string values following the <strong>key_word</strong> on the
+text file.  This variable is returned as a List of
+numpy.float32 values</p>
+</dd>
+</dl>
+<p>This function reads a text file and searches for a key word which
+can be a single word or a string of words.  This function will read
+the the data points following the key word(s) on the text file as an
+integer value. The text file can also contain a comment line following
+the variable being read.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">dat</span> <span class="o">=</span> <span class="n">ReadTextFileKeywords</span><span class="p">(</span><span class="s1">&#39;test_file.txt&#39;</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="n">float_data</span> <span class="o">=</span> <span class="n">dat</span><span class="o">.</span><span class="n">read_integer_list</span><span class="p">(</span><span class="s1">&#39;integer list:&#39;</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">float_data</span><span class="p">)</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="read_files.ReadTextFileKeywords.read_sentence">
+<code class="sig-name descname">read_sentence</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key_words</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="_modules/read_files.html#ReadTextFileKeywords.read_sentence"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#read_files.ReadTextFileKeywords.read_sentence" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>key_words</strong> – The key word that proceeds the data to be
+read</p>
+</dd>
+<dt class="field-even">Return data</dt>
+<dd class="field-even"><p>The data following the <strong>key_word</strong> on the text file.
+The data is returned as a continuous string value</p>
+</dd>
+</dl>
+<p>This function reads a text file and searches for a key word which
+can be a single word or a string of words.  This function will read
+the data following the key word(s) on the text file as a continuous
+string. The text file can also contain a comment line following the
+variable being read.  For example we could use this class to read
+the integer value <cite>This is a short sentence!</cite> in the following manner.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">dat</span> <span class="o">=</span> <span class="n">ReadTextFileKeywords</span><span class="p">(</span><span class="s1">&#39;test_file.txt&#39;</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="n">str_data</span> <span class="o">=</span> <span class="n">dat</span><span class="o">.</span><span class="n">read_float</span><span class="p">(</span><span class="s1">&#39;sentence:&#39;</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">str_data</span><span class="p">)</span>
+<span class="s1">&#39;This is a short sentence!&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="read_files.ReadTextFileKeywords.read_string">
+<code class="sig-name descname">read_string</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key_words</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="_modules/read_files.html#ReadTextFileKeywords.read_string"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#read_files.ReadTextFileKeywords.read_string" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>key_words</strong> – The key word that proceeds the data to be
+read</p>
+</dd>
+<dt class="field-even">Return data</dt>
+<dd class="field-even"><p>The string value following the <strong>key_word</strong> on the
+text file.  This variable is returned as a str
+data type</p>
+</dd>
+</dl>
+<p>This function reads a text file and searches for a key word which
+can be a single word or a string of words.  This function will read
+the the first data point following the key word(s) on the text file
+as a string value. The text file can also contain a comment line
+following the variable being read.  For example we could use this
+class to read the string value <cite>test</cite> in the following manner.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">dat</span> <span class="o">=</span> <span class="n">ReadTextFileKeywords</span><span class="p">(</span><span class="s1">&#39;test_file.txt&#39;</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="n">str_data</span> <span class="o">=</span> <span class="n">dat</span><span class="o">.</span><span class="n">read_float</span><span class="p">(</span><span class="s1">&#39;String:&#39;</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">str_data</span><span class="p">)</span>
+<span class="s1">&#39;test&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="read_files.ReadTextFileKeywords.read_string_list">
+<code class="sig-name descname">read_string_list</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key_words</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> &#x2192; List<span class="p">[</span>str<span class="p">]</span><a class="reference internal" href="_modules/read_files.html#ReadTextFileKeywords.read_string_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#read_files.ReadTextFileKeywords.read_string_list" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>key_words</strong> – The key word that proceeds the data to be
+read</p>
+</dd>
+<dt class="field-even">Return data</dt>
+<dd class="field-even"><p>The string values following the <strong>key_word</strong> on the
+text file.  This variable is returned as a List of
+string values</p>
+</dd>
+</dl>
+<p>This function reads a text file and searches for a key word which
+can be a single word or a string of words.  This function will read
+the the data points following the key word(s) on the text file as a
+string value. The text file can also contain a comment line following
+the variable being read.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">dat</span> <span class="o">=</span> <span class="n">ReadTextFileKeywords</span><span class="p">(</span><span class="s1">&#39;test_file.txt&#39;</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="n">str_data</span> <span class="o">=</span> <span class="n">dat</span><span class="o">.</span><span class="n">read_string_list</span><span class="p">(</span><span class="s1">&#39;sentence:&#39;</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">str_data</span><span class="p">)</span>
+<span class="p">[</span><span class="s1">&#39;This&#39;</span><span class="p">,</span> <span class="s1">&#39;is&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;short&#39;</span><span class="p">,</span> <span class="s1">&#39;sentence!&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="read_files.ReadRunOptionsFile">
+<em class="property">class </em><code class="sig-prename descclassname">read_files.</code><code class="sig-name descname">ReadRunOptionsFile</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file_name</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/read_files.html#ReadRunOptionsFile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#read_files.ReadRunOptionsFile" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>file_name</strong> – The name of the file containing keywords that will
+be read by this class.  The file_name must be input
+with the path length to the file.</p>
+</dd>
+</dl>
+<p>This class will read a RunOptions.txt file containing all information
+describing how the PyFinances software package should run.</p>
+<dl class="py method">
+<dt id="read_files.ReadRunOptionsFile.read_file">
+<code class="sig-name descname">read_file</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; Dict<a class="reference internal" href="_modules/read_files.html#ReadRunOptionsFile.read_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#read_files.ReadRunOptionsFile.read_file" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return input_dict</dt>
+<dd class="field-odd"><p>A dictionary containing all information necessary
+to run the PyFinances software package.</p>
+</dd>
+</dl>
+<p>This function reads the RunOptions.txt file to determine
+how the software package fill function.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="Introduction.html"
+                        title="previous chapter">Introduction</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/read_files.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="Introduction.html" title="Introduction"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Project_Name 0.1.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">read_files</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Jonathan A. Webb.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.2.1.
+    </div>
+  </body>
+</html>

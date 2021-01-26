@@ -1,0 +1,351 @@
+\chapter{Performance Requirements}
+
+This chapter describes the level-II requirements that provide detail to 
+how the software suite will meet the intent of the level-I requirements.
+The verification of these level-II requirements will validate all level-I
+requirements that they map to.
+% ================================================================================ 
+% ================================================================================ 
+
+\section{Input Files}
+The following input files are required for the operation of the PyFinances 
+software suite.
+% ================================================================================ 
+
+\subsection{RunOptions File}
+The program {\textit{shall}} use a file titled {\texttt{RunOptions.txt}} that
+guides the exection of the software suite.  This file contains all information
+necessary to guide the execution of the PyFinances computer program.
+The file {\textit{shall}} contain the following user inputted variables;
+
+\begin{enumerate}
+\item {\textbf{Run Monte Carlo:}} True or False
+\item {\textbf{Sample Size:}} Describes the number of Monte Carlo iterations 
+used to determine a stochastic estimate of account values
+\item {\textbf{Start Date:}} Describes the date where financial estimates should
+beggin.
+\item {\textbf{End Date:}} Describes the date after which financial estimates should
+cease.
+\item {\textbf{Checking Start Value:}}  The initial value of the checking account on
+the {\textbf{Start Date}}.
+\item {\textbf{Savings Start Value:}} The initial value of the savings account on
+the {\textbf{Start Date}}.
+\item {\textbf{Annual Salary:}} The expected annual salary, assuming a constant
+pay stream.
+\item{\textbf{Pay Frequency:}} The frequency that pay allocations are made.  The 
+options {\textit{shall}} be 'weekly', 'two weeks', 'bi-monthly', and 'monthly'.
+\item {\textbf{First Pay Date:}} The first date when a pay allocation is made.  This
+date must be align with the 15th and the last day of the month  if 'bi-monthly' is
+chosen, and the end of the month if 'monthly' is chosen.
+\item {\textbf{Run Histogram:}} True or False
+\item {\textbf{Bins:}} The number of bins used in the probability and cumulative
+	               distribution functions.
+\item {\textbf{Hist Start Date:}} The date within the historical spending trend 
+that should be used as the start point for the development of a histoggram.
+\item {\textbf{Hist End Date:}} The date within the historical spending trend
+that should be used as the end point for the development of a histogram.
+\item {\textbf{Daily Expense File:}} The name of the expense history file that will be 
+used to generate a daily spending file to include the path-length to the file.
+\item {\textbf{Deductions File:}} The name of the file .csv file containing pay
+deduction information.
+\item {\textbf{Expenses File:}} The name of the .csv file containing expected
+expenses and account additions to include the path length.
+\item {\textbf{Bills File:}} The name of the .csv file containing expected bill
+information, to include the path length.
+\end{enumerate}
+
+If {\textbf{Run Monte Carlo}} is False, then {\textbf{Run Histogram}} must be 
+True.  In this case, the {\textbf{bins}}, {\textbf{Hist Start Date}}, 
+{\textbf{Hist End Date}} and {\textbf{Daily Expense File}} attributes must be 
+populated.  If {\textbf{Run monte Carlo}} is True, then all fields must be 
+populated.
+% -------------------------------------------------------------------------------- 
+
+\subsection{Daily Expenses File}
+\label{sec:dailyexpenses}
+The PyFinances software suite {\textit{shall} be capable of reading a 
+file titled {\texttt{Daily\_Expenses.csv}}.  The {\texttt{Daily\_Expenses.csv}} file
+contains a list of all expenses used to create a statistical spending profiles.  
+The {\texttt{Daily\_Expenses.csv}} file has the following column headers.
+
+\begin{enumerate}
+    \item {\textbf{Date}} - The date of the transaction in the MM/DD/YY format
+    \item {\textbf{Checking\_Debit}} - The amount subtracted from the checking account.
+    \item {\textbf{Checking\_Addition}} - The amount added from the checking account.
+    \item {\textbf{Savings\_Debit}} - The ammount subtracted from the savings account.
+    \item {\textbf{Savings\_Addtion}} - The ammount added to the savings account.
+    \item {\textbf{Expense\_Type}} - The type of expense, which can be one of the following
+	                             entries, Bills, Misc, Groceries, Gas, Bar, 
+				     Restaurant, Paycheck, Fed Taxes, State Taxes, 
+				     Planned Expense.
+    \item {\textbf{Vendor}} - The vendor from which the item was purchased or a 
+	                      credit was given.
+    \item {\textbf{Description}} - A description of the purchase or credit.
+\end{enumerate}i
+
+\noindent The {\texttt{Daily\_Expenses.csv}} file can contain multiple entries for 
+the same day.
+% -------------------------------------------------------------------------------- 
+
+\subsection{Total Expenses File}
+\label{sec:totalexpenses}
+The PyFinances software {\textit{shall}} be capable of reading and writing a 
+file titled the {\texttt{Total\_Expenses.csv}} file.  The {\texttt{Total\_Expenses.csv}}
+file contains a breakdown for the total amount of money spend on each day for the 
+following categories, which also act as colum headers.
+
+\begin{enumerate}
+    \item {\textbf{Date}} - The expense or credit date in the MM/DD/YY format
+    \item {\textbf{Misc}} - Miscellaneous expenses not covered in other topics, 
+	                    excluding taxes
+    \item {\textbf{Bills}} - Money spend on bills
+    \item {\textbf{Groceries}} - Montey spent on groceries
+    \item {\textbf{Gas}} - Money spent on automative gasoline
+    \item {\textbf{Bar}} - Any money spent specifically on alcohol
+    \item {\textbf{Restaurant}} - Any money spent eating at restaurants
+    \item {\textbf{Planned Expense}} - Any money spent on a topic that was planned.
+	                               Christmas gifts are a good example.
+\end{enumerate}
+% --------------------------------------------------------------------------------
+
+\subsection{Deductions File}
+The PyFinances program {\textit{shall}} read a deductions file that contains 
+all deductions from a paycheck, which can include federal and state taxes, 
+401k, medical benefits and other information.
+This file can be named whatever the user wishes it to be, but it must be defined
+in the {\texttt{RunOptions.txt}} file under the name {\textbf{Deductions File}} and 
+it must be a .csv file.  This file will contain the following headers.  The 
+assumption made for these requirements is that the total paycheck allocation
+will be allocated to the checking account, and any amount that should be 
+placed in the savings account will be deducted as a bill.  In addition, it
+is assumed that the money is deducted on the dates of pay allocation.
+
+\begin{enumerate}
+    \item {\textbf{Deduction}} - The financial amount to be deducted from the
+	                         paycheck
+    \item {\textbf{Description}} - A description of the deduction
+\end{enumerate}
+% --------------------------------------------------------------------------------
+
+\subsection{Bills File}
+The PyFinances program {\textit{shall}} read a bills file, which contains all
+annual, usually monthly bills to be deduction from a checking and savings
+account.
+This file can be named whatever the user wishes it to be, but it must be defined
+in the {\texttt{RunOptions.txt}} file under the name {\textbf{Bills File}} and
+it must be a .csv file.  This file will contain the following headers.
+
+\begin{enumerate}
+    \item {\textbf{Date}} - The Date that bills will be deducted in the 
+	                    format MM/DD/YYY.
+    \item {\textbf{Checking\_Debit}} - The amount to be deducted from the 
+	                               checking account.
+    \item {\textbf{Checking\_Addition}} - The amount to be added to the 
+	                                  checking account.
+    \item {\textbf{Savings\_Debit}} - The amount to be deducted from the savings
+	                              account
+    \item {\textbf{Savings\_Addition}} - The amount to be added to the savings 
+	                                 account 
+    \item {\textbf{Description}} - A description of the transaction
+\end{enumerate}
+% --------------------------------------------------------------------------------
+
+\subsection{Planned Expenses File}
+The PyFinances program {\textit{shall}} read a Planned Expenses file, which 
+contains all planned expenses that are not a paycheck deduction or a bill.
+This file can be titled whatever the user wishes, but it must be defined in the
+{\texttt{RunOptions}} file under the name {\textbf{Expenses File}} and it must be
+a .csv file with the following headers.
+
+\begin{enumerate}
+    \item {\textbf{Date}} - The Date that bills will be deducted in the 
+	                    format MM/DD/YYY.
+    \item {\textbf{Checking\_Debit}} - The amount to be deducted from the 
+	                               checking account.
+    \item {\textbf{Checking\_Addition}} - The amount to be added to the 
+	                                  checking account.
+    \item {\textbf{Savings\_Debit}} - The amount to be deducted from the savings
+	                              account
+    \item {\textbf{Savings\_Addition}} - The amount to be added to the savings 
+	                                 account 
+    \item {\textbf{Description}} - A description of the transaction
+\end{enumerate}
+% --------------------------------------------------------------------------------
+
+\subsection{PDF Files}
+The PyFinances program {\textit{shall}} be capable of creating and reading a file
+titled {\texttt{pdf\_data.csv}}, which contains the values of each probability 
+distribution bin for each expense type.  The file should have a number of rows 
+equal to the number of bins and the following header structure;
+
+\begin{enumerate}
+    \item {\textbf{bins}} - The bin number 
+    \item {\textbf{groceries}} - The bin value for groceries
+    \item {\textbf{misc}} - The bin value for miscellaneous
+    \item {\textbf{bar}} - The bin value for bar
+    \item {\textbf{restaurant}} - The bin value for restaurants
+    \item {\textbf{gas}} - The bin value for gas
+\end{enumerate}
+% --------------------------------------------------------------------------------
+
+\subsection{CDF Files}
+The PyFinances program {\textit{shall}} be capable of creating and reading a file
+titled {\texttt{cdf\_data.csv}}, which contains the values of each cumulative
+distribution bin for each expense type.  The file should have a number of rows 
+equal to the number of bins and the following header structure;
+
+\begin{enumerate}
+    \item {\textbf{bins}} - The bin number 
+    \item {\textbf{groceries}} - The bin value for groceries
+    \item {\textbf{misc}} - The bin value for miscellaneous
+    \item {\textbf{bar}} - The bin value for bar
+    \item {\textbf{restaurant}} - The bin value for restaurants
+    \item {\textbf{gas}} - The bin value for gas
+\end{enumerate}
+% ================================================================================ 
+% ================================================================================ 
+
+\section{Pre-processor}
+s section describes the requirments for the pre-processor and its subsequent
+components
+% ================================================================================ 
+
+\subsection{Distributions Pre-processor}
+The Distributions pre-processor shall read in the users historical spending
+data and transform it into .csv files containing PDF and CDF information.  This
+pre-processor {\textit{shall}} be invoked if the {\textbf{Run Histogram:}} option
+is listed as True in the {\texttt{RunOptions.txt}} file.
+% --------------------------------------------------------------------------------
+
+\subsubsection{Read Daily\_Expenses.csv}
+The distributions pre-processor {\textit{shall}} read
+the {\texttt{Daily\_Expenses}} file described in Section 2.1.2.
+This pre-processor.
+% --------------------------------------------------------------------------------
+
+\subsubsection{Create Total\_Expenses.csv}
+The distributions pre-processor {\textit{shall}} transform the information 
+within the {\texttt{Daily\_Expenses.csv}} file into the {\texttt{Total\_Expenses.csv}}
+file described in Section 2.1.3.  This file should contain a day
+by day account of how much money is spent in total for each of the categories to 
+include {\texttt{bar}}, {\texttt{groceries}}, {\texttt{misc}}, {\texttt{gas}}, 
+and {\texttt{restaurant}} as well as {\texttt{planned}}.
+% --------------------------------------------------------------------------------
+
+\subsubsection{Create pdf file}
+The distributions pre-processor {\textit{shall}} read the data in the 
+{\texttt{Total\_Expenses.csv}} file and transform it into the pdf file
+described in Section 2.1.7.
+% --------------------------------------------------------------------------------
+
+\subsubsection{Create cdf file}
+The distributions pre-processor {\textit{shall}} read the data in the 
+{\texttt{cdf\_data.csv}} file and transform it into the cdf file
+described in Section 2.1.8.
+% --------------------------------------------------------------------------------
+
+\subsubsection{Plot Data}
+The distributions pre-processor {\textit{should}} produce a set of
+pdf and cdf plots based on the data in the {\texttt{pdf\_data.csv}}
+and the {\texttt{cdf\_data.csv}} file.
+% --------------------------------------------------------------------------------
+
+\subsection{Monte Carlo Pre-processor}
+The Monte Carlo pre-processor {\textit{shall}} prepare all data necessary to run the 
+Monte Carlo simluation, not already produced in Section 2.2.1.
+% ================================================================================ 
+
+\subsubsection{Validate Distributions}
+The Monte Carlo pre-processor {\textit{shall}} verify that the {\texttt{cdf\_data.csv}}
+file exists.  If the file does not exist, then the program {\textit{shall}} envoke
+the Distributions Pre-processor to create the correct files.
+% --------------------------------------------------------------------------------
+
+\subsubsection{Create Date List}
+The Monte Carlo pre-processor {\textit{shall}} produce a date list covering
+every day from the {\textbf{Start Date:}} and {\textbf{End Date:}} described
+in the {\texttt{RunOptions.txt}} file.  The dates within the list {\textit{shall}}
+be in the format MM/DD/YYYY.
+% --------------------------------------------------------------------------------
+
+\subsubsection{Create Pay Date List}
+The Monte Carlo pre-procssor {\textit{shall}} produce a list of
+every pay date, where each date {\textit{shall}} be in the format MM/DD/YYYY.
+% --------------------------------------------------------------------------------
+
+\subsubsection{Create Input Containers}
+The Monte Carlo pre-processor {\textit{shall}} produce a, or multiple 
+containers to hold the information read from the {\texttt{bills.csv}}, 
+{\texttt{deductions.csv}}, and {\texttt{planned\_expenses.csv}} files.
+% ================================================================================ 
+% ================================================================================ 
+\section{Requirements Maping}
+Table ~\ref{tab:table1} shows the mapping of level-I to level-II requirements.
+
+\begin{table}[h!]
+  \begin{center}
+   \caption{Level-I to Level-II requirement mapping.}
+    \label{tab:table1}
+    \begin{tabular}{l|l}
+      \textbf{Level-I Requirement} & \textbf{Level-II Requirements} \\
+      \hline
+      \hline
+      \multirow{2}{*}{KPP 1. Develop Spending Breakdown} & 2.1.1. RunOptions file \\ 
+      & 2.1.2. Daily Expense File  \\  & 2.1.3. Total Expenses File 
+      \\ & 2.2.1. Distributions Pre-processor \\ & 2.2.1.1. Read Daily\_Expenses.csv \\
+      & 2.2.1.2. Create Total Expenses.csv \\ & 2.2.1.3. Create pdf file \\ & 2.2.1.4. Create cdf file \\
+      \hline
+      \multirow{2}{*}{KPP 2. Analyze Historical Spending Trends} & 2.1.1. RunOptions file \\ 
+      & 2.1.2. Daily Expense File  \\  & 2.1.3. Total Expenses File \\ & 2.2.1.3. Create pdf file \\
+      & 2.2.1.4. Create cdf file \\
+      \hline
+      \multirow{2}{*}{KPP 2.1. Develop Probability Distribution Functions} & 2.1.1. RunOptions file \\ 
+      & 2.1.7. PDF Files \\ & 2.2.1.3. Create pdf file \\
+      \hline
+      \multirow{2}{*}{KPP 2.2. Develop Cumulative Distribution Functions} & 2.1.1. RunOptions file \\ 
+      & 2.1.7. CDF Files \\ & 2.2.1.4. Create cdf file \\
+      \hline
+      \multirow{2}{*}{KPP 3. Allocate Checking and Savings Accounts} & 2.1.1. RunOptions file \\ 
+      & 2.2.2.4. Create Input Containers \\
+      \hline
+      \multirow{2}{*}{KPP 3.1. Checking Account} & 2.1.1. RunOptions file \\ 
+      & 2.1.5. Bills File \\ & 2.1.6. Planned Expense File \\ & 2.2.4. Create Input Containers \\
+      \hline
+      \multirow{2}{*}{KPP 3.2. Savings Account} & 2.1.1. RunOptions file \\ 
+      & 2.1.5. Bills File \\ & 2.1.6. Planned Expense File \\ & 2.2.4. Create Input Containers \\
+      \hline
+      \multirow{2}{*}{KPP 4. Allocate Paycheck Info} & 2.1.1. RunOptions file \\ 
+      & 2.2.2.3. Create Pay Date List \\ & 2.2.2.4. Create Input Containers \\ 
+      \hline
+      \multirow{2}{*}{KPP 4.1. Determine Pay Dates} & 2.1.1. RunOptions file \\ 
+      & 2.2.2.3. Create Pay Date List \\ 
+      \hline
+      \multirow{2}{*}{KPP 4.2 Determine Pay Deductions} & 2.1.1. RunOptions file \\ 
+      & 2.1.4. Deductions File \\ & 2.2.2.4. Create Input Containers \\
+      \hline
+      \multirow{2}{*}{KPP 5. Deduct Planned Expenses} & 2.1.1. RunOptions file \\ 
+      & 2.1.6. Planned Expenses File \\ & 2.2.2.4. Create Input Containers \\ 
+      \hline
+      \multirow{2}{*}{KPP 6. Deduct Bills} & 2.1.1. RunOptions file \\ 
+      & 2.1.5. Bills File \\ & 2.2.2.4. Create Input Containers \\
+      \hline
+      \multirow{2}{*}{KPP 7. Monte Carlo Method} & 2.1.1. RunOptions file \\ 
+      & 2.1.7. PDF Files \\ & 2.1.8. CDF Files \\
+      \hline 
+      KSA 1. Testing & Fill in \\
+      \hline 
+      KSA 2. Evolvability & Fill in \\
+      \hline 
+      \multirow{2}{*}{APP 1. Graphical Probability Distribution Function} & 2.1.1. RunOptions file \\ 
+      & 2.1.7. PDF Files \\ & 2.2.1.5 Plot Data \\
+      \hline
+      \multirow{2}{*}{APP 2. Graphical Cumulative Distribution Function} & 2.1.1. RunOptions file \\ 
+      & 2.1.7. CDF Files \\ & 2.2.1.5. Plot Data \\
+      \hline
+      \hline
+    \end{tabular}
+  \end{center}
+\end{table}
+% ================================================================================ 
+% ================================================================================ 
+% eof
