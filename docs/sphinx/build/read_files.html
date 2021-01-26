@@ -15,7 +15,7 @@
     <script src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Introduction" href="Introduction.html" /> 
+    <link rel="prev" title="PyFinances" href="Introduction.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -24,7 +24,7 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="Introduction.html" title="Introduction"
+          <a href="Introduction.html" title="PyFinances"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">Project_Name 0.1.0 documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">read_files</a></li> 
@@ -39,6 +39,12 @@
   <div class="section" id="read-files">
 <h1>read_files<a class="headerlink" href="#read-files" title="Permalink to this headline">¶</a></h1>
 <p>This section describes the functions and classes in the <cite>read_files.py</cite> file.</p>
+<div class="section" id="readtextfilekeywords">
+<h2>ReadTextFileKeywords<a class="headerlink" href="#readtextfilekeywords" title="Permalink to this headline">¶</a></h2>
+<p>This class is used to read a text file by its keywords.  The member functions will
+open a file and search it for a user defined keyword.  if the keyword is found,
+the function will read the text string to the right of the keyword into
+memory.  The various functions will control the data type of the keyword.</p>
 <dl class="py class">
 <dt id="read_files.ReadTextFileKeywords">
 <em class="property">class </em><code class="sig-prename descclassname">read_files.</code><code class="sig-name descname">ReadTextFileKeywords</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file_name</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/read_files.html#ReadTextFileKeywords"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#read_files.ReadTextFileKeywords" title="Permalink to this definition">¶</a></dt>
@@ -311,6 +317,14 @@ the variable being read.</p>
 
 </dd></dl>
 
+</div>
+<div class="section" id="readrunoptionsfile">
+<h2>ReadRunOptionsFile<a class="headerlink" href="#readrunoptionsfile" title="Permalink to this headline">¶</a></h2>
+<p>This class is used to read the <cite>RunOptions.txt</cite> file, which controls the
+behavior of the PyFinances computer program.  The <cite>ReadRunOptionsFile class</cite>
+inherits the <cite>ReadTextFiles</cite> class in order to execute its functionality.
+This class is pre-programmed to look for the keywords which are expected
+in the <cite>RunOptions.txt</cite> file.</p>
 <dl class="py class">
 <dt id="read_files.ReadRunOptionsFile">
 <em class="property">class </em><code class="sig-prename descclassname">read_files.</code><code class="sig-name descname">ReadRunOptionsFile</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file_name</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/read_files.html#ReadRunOptionsFile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#read_files.ReadRunOptionsFile" title="Permalink to this definition">¶</a></dt>
@@ -339,6 +353,174 @@ how the software package fill function.</p>
 </dd></dl>
 
 </div>
+<div class="section" id="read-csv-columns-by-headers">
+<h2>read_csv_columns_by_headers<a class="headerlink" href="#read-csv-columns-by-headers" title="Permalink to this headline">¶</a></h2>
+<p>This function is used to read csv files, which have structured and defined
+headers.  The data is read into a numpy dataframe, in order to make it easier
+and faster for a user to access the data read from the csv file.</p>
+<dl class="py function">
+<dt id="read_files.read_csv_columns_by_headers">
+<code class="sig-prename descclassname">read_files.</code><code class="sig-name descname">read_csv_columns_by_headers</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file_name</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">headers</span><span class="p">:</span> <span class="n">List<span class="p">[</span>str<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">data_type</span><span class="p">:</span> <span class="n">List<span class="p">[</span>type<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">skip</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">0</span></em><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="reference internal" href="_modules/read_files.html#read_csv_columns_by_headers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#read_files.read_csv_columns_by_headers" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>file_name</strong> – The file name to include path-link</p></li>
+<li><p><strong>headers</strong> – A list of the names of the headers that contain
+columns which will be read</p></li>
+<li><p><strong>data_type</strong> – A list containing the data type of each column.  Data
+types are limited to <code class="docutils literal notranslate"><span class="pre">numpy.int64</span></code>, <code class="docutils literal notranslate"><span class="pre">numpy.float64</span></code>,
+and <code class="docutils literal notranslate"><span class="pre">str</span></code></p></li>
+<li><p><strong>skip</strong> – The number of lines to be skipped before reading data</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return df</dt>
+<dd class="field-even"><p>A pandas dataframe containing all relevant information</p>
+</dd>
+</dl>
+<p>This function assumes the file has a comma (i.e. ,) delimiter, if
+it does not, then it is not a true .csv file and should be transformed
+to a text function and read by the xx function.  Assume we have a .csv
+file titled <code class="docutils literal notranslate"><span class="pre">test.csv</span></code> with the following format.</p>
+<table class="colwidths-given docutils align-default" id="id1">
+<caption><span class="caption-text">test.csv</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 21%" />
+<col style="width: 36%" />
+<col style="width: 21%" />
+<col style="width: 21%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>ID,</p></th>
+<th class="head"><p>Inventory,</p></th>
+<th class="head"><p>Weight_per,</p></th>
+<th class="head"><p>Number</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1,</p></td>
+<td><p>Shoes,</p></td>
+<td><p>1.5,</p></td>
+<td><p>5</p></td>
+</tr>
+<tr class="row-odd"><td><p>2,</p></td>
+<td><p>t-shirt,</p></td>
+<td><p>1.8,</p></td>
+<td><p>3,</p></td>
+</tr>
+<tr class="row-even"><td><p>3,</p></td>
+<td><p>coffee,</p></td>
+<td><p>2.1,</p></td>
+<td><p>15</p></td>
+</tr>
+<tr class="row-odd"><td><p>4,</p></td>
+<td><p>books,</p></td>
+<td><p>3.2,</p></td>
+<td><p>48</p></td>
+</tr>
+</tbody>
+</table>
+<p>This file can be read via the following command</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">file_name</span> <span class="o">=</span> <span class="s1">&#39;test.csv&#39;</span>
+<span class="o">&gt;</span> <span class="n">headers</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ID&#39;</span><span class="p">,</span> <span class="s1">&#39;Inventory&#39;</span><span class="p">,</span> <span class="s1">&#39;Weight_per&#39;</span><span class="p">,</span> <span class="s1">&#39;Number&#39;</span><span class="p">]</span>
+<span class="o">&gt;</span> <span class="n">dat</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span>
+<span class="o">&gt;</span> <span class="n">df</span> <span class="o">=</span> <span class="n">read_csv_columns_by_headers</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="n">dat</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+    <span class="n">ID</span> <span class="n">Inventory</span> <span class="n">Weight_per</span> <span class="n">Number</span>
+ <span class="mi">0</span>  <span class="mi">1</span>  <span class="n">shoes</span>     <span class="mf">1.5</span>        <span class="mi">5</span>
+ <span class="mi">1</span>  <span class="mi">2</span>  <span class="n">t</span><span class="o">-</span><span class="n">shirt</span>   <span class="mf">1.8</span>        <span class="mi">3</span>
+ <span class="mi">2</span>  <span class="mi">3</span>  <span class="n">coffee</span>    <span class="mf">2.1</span>        <span class="mi">15</span>
+ <span class="mi">3</span>  <span class="mi">4</span>  <span class="n">books</span>     <span class="mf">3.2</span>        <span class="mi">40</span>
+</pre></div>
+</div>
+<p>This function can also use the <cite>skip</cite> attributed read data when the
+headers are not on the first line.  For instance, assume the following csv file;</p>
+<table class="colwidths-given docutils align-default" id="id2">
+<caption><span class="caption-text">test1.csv</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 47%" />
+<col style="width: 24%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>This line is used to provide metadata for the csv file</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>This line is as well</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>ID,</p></td>
+<td><p>Inventory,</p></td>
+<td><p>Weight_per,</p></td>
+<td><p>Number</p></td>
+</tr>
+<tr class="row-even"><td><p>1,</p></td>
+<td><p>Shoes,</p></td>
+<td><p>1.5,</p></td>
+<td><p>5</p></td>
+</tr>
+<tr class="row-odd"><td><p>2,</p></td>
+<td><p>t-shirt,</p></td>
+<td><p>1.8,</p></td>
+<td><p>3,</p></td>
+</tr>
+<tr class="row-even"><td><p>3,</p></td>
+<td><p>coffee,</p></td>
+<td><p>2.1,</p></td>
+<td><p>15</p></td>
+</tr>
+<tr class="row-odd"><td><p>4,</p></td>
+<td><p>books,</p></td>
+<td><p>3.2,</p></td>
+<td><p>48</p></td>
+</tr>
+</tbody>
+</table>
+<p>This file can be read via the following command</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">file_name</span> <span class="o">=</span> <span class="s1">&#39;test1.csv&#39;</span>
+<span class="o">&gt;</span> <span class="n">headers</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ID&#39;</span><span class="p">,</span> <span class="s1">&#39;Inventory&#39;</span><span class="p">,</span> <span class="s1">&#39;Weight_per&#39;</span><span class="p">,</span> <span class="s1">&#39;Number&#39;</span><span class="p">]</span>
+<span class="o">&gt;</span> <span class="n">dat</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span>
+<span class="o">&gt;</span> <span class="n">df</span> <span class="o">=</span> <span class="n">read_csv_columns_by_headers</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="n">dat</span><span class="p">,</span> <span class="n">skip</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+    <span class="n">ID</span> <span class="n">Inventory</span> <span class="n">Weight_per</span> <span class="n">Number</span>
+ <span class="mi">0</span>  <span class="mi">1</span>  <span class="n">shoes</span>     <span class="mf">1.5</span>        <span class="mi">5</span>
+ <span class="mi">1</span>  <span class="mi">2</span>  <span class="n">t</span><span class="o">-</span><span class="n">shirt</span>   <span class="mf">1.8</span>        <span class="mi">3</span>
+ <span class="mi">2</span>  <span class="mi">3</span>  <span class="n">coffee</span>    <span class="mf">2.1</span>        <span class="mi">15</span>
+ <span class="mi">3</span>  <span class="mi">4</span>  <span class="n">books</span>     <span class="mf">3.2</span>        <span class="mi">40</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="read-daily-expenses-csv">
+<h2>read_daily_expenses_csv<a class="headerlink" href="#read-daily-expenses-csv" title="Permalink to this headline">¶</a></h2>
+<p>This function is used to read the <cite>Daily_Expenses.csv</cite> file, which is necessary
+for the creation of the <cite>Total_Expenses.csv</cite> file.  The user only has to pass
+the name and location of the file, the function is pre-programmed to
+understand the structure of the document.</p>
+<dl class="py function">
+<dt id="read_files.read_daily_expenses_csv">
+<code class="sig-prename descclassname">read_files.</code><code class="sig-name descname">read_daily_expenses_csv</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file_name</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="reference internal" href="_modules/read_files.html#read_daily_expenses_csv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#read_files.read_daily_expenses_csv" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>file_name</strong> – The name and path-length of the daily_expenses.csv
+file</p>
+</dd>
+<dt class="field-even">Return df</dt>
+<dd class="field-even"><p>A pandas dataframe containing the relevant information from 
+the daily_expenses.csv file</p>
+</dd>
+</dl>
+<p>This function reads relevant information from the daily_expenses.csv vile into
+memory so it can use it for the creation of the total_expenses.csv file.</p>
+</dd></dl>
+
+</div>
+</div>
 
 
             <div class="clearer"></div>
@@ -347,9 +529,20 @@ how the software package fill function.</p>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">read_files</a><ul>
+<li><a class="reference internal" href="#readtextfilekeywords">ReadTextFileKeywords</a></li>
+<li><a class="reference internal" href="#readrunoptionsfile">ReadRunOptionsFile</a></li>
+<li><a class="reference internal" href="#read-csv-columns-by-headers">read_csv_columns_by_headers</a></li>
+<li><a class="reference internal" href="#read-daily-expenses-csv">read_daily_expenses_csv</a></li>
+</ul>
+</li>
+</ul>
+
   <h4>Previous topic</h4>
   <p class="topless"><a href="Introduction.html"
-                        title="previous chapter">Introduction</a></p>
+                        title="previous chapter">PyFinances</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -378,7 +571,7 @@ how the software package fill function.</p>
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="Introduction.html" title="Introduction"
+          <a href="Introduction.html" title="PyFinances"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">Project_Name 0.1.0 documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">read_files</a></li> 
