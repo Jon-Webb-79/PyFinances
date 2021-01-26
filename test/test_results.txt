@@ -2,21 +2,24 @@
 platform darwin -- Python 3.8.6, pytest-6.0.2, py-1.9.0, pluggy-0.13.1 -- /usr/local/opt/python@3.8/bin/python3.8
 cachedir: .pytest_cache
 rootdir: /Users/jonwebb/Desktop/Code_Dev/Python/PyFinances
-collecting ... collected 14 items
+collecting ... collected 16 items
 
-test_read_files.py::test_file_not_found PASSED
-test_read_files.py::test_read_double_list PASSED
-test_read_files.py::test_read_float PASSED
-test_read_files.py::test_float_list PASSED
-test_read_files.py::test_read_integer PASSED
-test_read_files.py::test_read_integer_list PASSED
-test_read_files.py::test_read_sentence PASSED
-test_read_files.py::test_read_string PASSED
-test_read_files.py::test_read_string_list PASSED
-test_read_files.py::test_read_hist_true_info PASSED
-test_read_files.py::test_read_no_hist_info PASSED
-test_read_files.py::test_read_false_hist_info PASSED
-test_read_files.py::test_read_bad_freq PASSED
-test_read_files.py::test_read_pay_date PASSED
+test_read_files.py::test_file_not_found PASSED                           [  6%]
+test_read_files.py::test_read_double_list PASSED                         [ 12%]
+test_read_files.py::test_read_float PASSED                               [ 18%]
+test_read_files.py::test_float_list PASSED                               [ 25%]
+test_read_files.py::test_read_integer PASSED                             [ 31%]
+test_read_files.py::test_read_integer_list PASSED                        [ 37%]
+test_read_files.py::test_read_sentence PASSED                            [ 43%]
+test_read_files.py::test_read_string PASSED                              [ 50%]
+test_read_files.py::test_read_string_list PASSED                         [ 56%]
+test_read_files.py::test_read_hist_true_info PASSED                      [ 62%]
+test_read_files.py::test_read_no_hist_info PASSED                        [ 68%]
+test_read_files.py::test_read_false_hist_info PASSED                     [ 75%]
+test_read_files.py::test_read_bad_freq PASSED                            [ 81%]
+test_read_files.py::test_read_pay_date PASSED                            [ 87%]
+test_read_files.py::test_read_csv_by_headers PASSED                      [ 93%]
+test_read_files.py::test_read_daily_expenses_csv PASSED                  [100%]
 
-============================== 14 passed in 0.25s ==============================
+============================== 16 passed in 0.45s ==============================
+Tue Jan 26 11:01:45 MST 2021
