@@ -12,12 +12,12 @@ with open('LICENSE') as f:
     license = f.read()
 
 setup(
-        name='project_name',
+        name='PyFinances',
         version='0.1.0',
-        description='give short descritpion of package here',
+        description='develops a statistical estimate for the value of checking and savings account',
         long_description=readme,
         author='Jonathan A. Webb',
         author_email='webbja123@gmail.com',
         license=license,
-        packages=find_packages(excluse('tests', 'docs', 'scripts'))
+        packages=find_packages(exclude('tests', 'docs', 'scripts'))
 )
