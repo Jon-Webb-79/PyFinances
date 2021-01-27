@@ -8,7 +8,7 @@ import platform
 sys.path.insert(0, os.path.abspath('../src'))
 from pre_processor import MakeDistribution
 from pre_processor import ProcessDailyExpenseFile
-from pre_processor import CreateCDF
+from pre_processor import CreateCDF, hist_pre_processor
 from read_files import ReadCSVFile
 # ================================================================================
 # ================================================================================
@@ -295,4 +295,35 @@ def test_create_cdf():
 # ================================================================================
 # ================================================================================
 
+
+def test_hist_pre_processor():
+    start_date = '2015-03-01'
+    end_date = '2016-02-28'
+    plat = platform.system()
+    if plat == 'Darwin':
+        file_name = '../data/test/daily_expenses_one.csv'
+        total_file = '../data/test/total_expense_two.csv'
+        cdf_file = '../data/test/'
+    else:
+        file_name = r'..\data\test\daily_expenses_one.csv'
+        total_file = r'..\data\test\total_expenses_two.csv'
+        cdf_file = r'..\data\test\ '
+    nbins = 60
+    hist_pre_processor(start_date, end_date, nbins,
+                       file_name, total_file, cdf_file)
+    assert os.path.isfile(total_file)
+    assert os.path.isfile(cdf_file + 'barcdf.csv')
+    assert os.path.isfile(cdf_file + 'misccdf.csv')
+    assert os.path.isfile(cdf_file + 'gascdf.csv')
+    assert os.path.isfile(cdf_file + 'groccdf.csv')
+    assert os.path.isfile(cdf_file + 'restcdf.csv')
+
+    os.remove(total_file)
+    os.remove(cdf_file + 'barcdf.csv')
+    os.remove(cdf_file + 'gascdf.csv')
+    os.remove(cdf_file + 'misccdf.csv')
+    os.remove(cdf_file + 'groccdf.csv')
+    os.remove(cdf_file + 'restcdf.csv')
+# ================================================================================
+# ================================================================================
 # eof

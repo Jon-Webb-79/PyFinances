@@ -47,6 +47,22 @@ class ProcessDailyExpenseFile(ReadCSVFile):
         return df
 # --------------------------------------------------------------------------------
 
+    def read_total_expenses_csv(self, total_file: str) -> pd.DataFrame:
+        """
+
+        :param total_file: The name and location of the Total_Expenses.csv
+                           file 
+
+        This function opens the Total_Expenses.csv file and reads it 
+        to a pandas dataframe 
+        """
+        headers = ['Date', 'Bar', 'Groceries', 'Misc', 'Gas', 'Restaurant']
+        dat_type = [str, np.float32, np.float32, np.float32, 
+                    np.float32, np.float32]
+        df = self.read_csv_columns_by_headers(total_file, headers, dat_type)
+        return df
+# --------------------------------------------------------------------------------
+
 
     def group_expenses_by_date(self, start_date: str, end_date: str, 
                                total_expense_file: str) -> None:
@@ -269,77 +285,29 @@ class CreateCDF(MakeDistribution, ReadCSVFile):
 # ================================================================================ 
 
 
-class HistPreProcessor(ProcessDailyExpenseFile):
-    """
+def hist_pre_processor(start_date: str, end_date: str, nbins: int, 
+                       expense_file: str, total_file: str, 
+                       file_path: str):
+    # Create teh Total_Expenses.csv file 
+    proc = ProcessDailyExpenseFile(expense_file)
+    proc.group_expenses_by_date(start_date, end_date, total_file)
 
-    :param file_name: The name and location of the Daily_Expenses.csv file 
+    # Read the Total_Expense.csv file for future processing
+    df = proc.read_total_expenses_csv(total_file)
+    
+    # Instantiate CDF classes  
+    bar = CreateCDF(df['Bar'])
+    misc = CreateCDF(df['Misc'])
+    rest = CreateCDF(df['Restaurant'])
+    groc = CreateCDF(df['Groceries'])
+    gas = CreateCDF(df['Gas'])
 
-    This class pre-processes the Daily_Expenses.csv file and transforms the
-    contents into a Cumulative Dsitribution Function for each spending type
-    that is then written to a .csv file.
-    """
-    def __init__(self, file_name: str):
-        ProcessDailyExpenseFile.__init__(self, file_name)
-# --------------------------------------------------------------------------------
-
-    def hist_pre_process(self, total_expense_file: str, 
-                         start_date: str, end_date: str, bins: int) -> None:
-        # Create the Total_Expenses.csv file
-        self._create_total_expense_file(total_expense_file, 
-                                        start_date, end_date)
-
-        # Write the Total_Expenses.csv file to a dataframe 
-        df = self._read_total_expense_file(total_expense_file)
-
-        # Create a cdf for each expense type 
-        bar_dist = MakeDistribution(df['Bar'])
-        groc_dist = MakeDistribution(df['Groceries'])
-        rest_dist = MakeDistribution(df['Restaurant'])
-        gas_dist = MakeDistribution(df['Gas'])
-        misc_dist = MakeDistribution(df['Misc'])
-
-        bar_bin, bar_cent = bar_dist.continuous_cdf(bins)
-        groc_bin, groc_cent = groc_dist.continuous_cdf(bins)
-        rest_bin, rest_cent = rest_dist.continuous_cdf(bins)
-        gas_bin, gas_cent = gas_dist.continuous_cdf(bins)
-        misc_bin, misc_cent = misc_dist.continuous_cdf(bins)
+    # Create cdf files 
+    bar.create_cdf_file(file_path + 'barcdf.csv', nbins)
+    misc.create_cdf_file(file_path + 'misccdf.csv', nbins)
+    rest.create_cdf_file(file_path + 'restcdf.csv', nbins)
+    groc.create_cdf_file(file_path + 'groccdf.csv', nbins)
+    gas.create_cdf_file(file_path + 'gascdf.csv', nbins)
 # ================================================================================
-# Private-Like functions 
-
-    def _create_total_expense_file(self, total_expense_file: str, 
-                                   start_date: str, end_date: str) -> None:
-        """
-
-        :param total_expense_file: The name and location of the
-                                   Total_Expense.csv file
-        :param start_date: The start date for the development of a cdf
-                           file 
-        :param end_date: The end date for the development of a cdf file 
-        :return None:
-
-        This function will read the Daily_Expenses.csv file and transorm
-        its contents into a day by day cumulative spending for each 
-        spending category.  The information will be written to a new
-        file titled Total_Expenses.csv.
-        """
-        self.group_expenses_by_date(start_date, end_date, total_expense_file)
-# --------------------------------------------------------------------------------
-
-    def _read_total_expense_file(self, total_expense_file) -> pd.DataFrame:
-        """
-
-        :param total_expense_file: The name and location of the 
-                                   Total_Expense.csv file
-        
-        This function reads the Total_Expense.csv file and writes it
-        to a pandas dataframe for further processing.
-        """
-        headers = ['Date', 'Bar', 'Groceries', 'Restaurant', 'Misc', 'Gas']
-        dat_type = [str, np.float32, np.float32, np.float32, 
-                    np.float32, np.float32]
-        df = self.read_csv_columns_by_headers(total_expense_file, 
-                                              headers, dat_type)
-        return df
-# ================================================================================ 
-# ================================================================================ 
+# ================================================================================
 # eof
