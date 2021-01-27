@@ -8,6 +8,8 @@ import platform
 sys.path.insert(0, os.path.abspath('../src'))
 from pre_processor import MakeDistribution
 from pre_processor import ProcessDailyExpenseFile
+from pre_processor import CreateCDF
+from read_files import ReadCSVFile
 # ================================================================================
 # ================================================================================
 # Date:    January 26, 20211
@@ -260,4 +262,37 @@ def test_continuous_cdf_normed():
         assert math.isclose(i, j, rel_tol=1.0e-4)
 # ================================================================================
 # ================================================================================
+
+
+def test_create_cdf():
+    plat = platform.system()
+    if plat == 'Darwin':
+        file_name = '../data/test/daily_expenses_one.csv'
+        total_file = '../data/test/total_expense_two.csv'
+        cdf_file = '../data/test/cdf.csv'
+    else:
+        file_name = r'..\data\test\daily_expenses_one.csv'
+        total_file = r'..\data\test\total_expenses_two.csv'
+        cdf_file = r'..\data\test\cdf.csv'
+    nbins = 60
+    start_date = '2015-03-01'
+    end_date = '2016-02-28'
+    proc = ProcessDailyExpenseFile(file_name)
+    proc.group_expenses_by_date(start_date, end_date, total_file)
+
+    inp = ReadCSVFile()
+    headers = ['Bar', 'Groceries', 'Restaurant', 'Misc', 'Gas']
+    dat_type = [np.float32, np.float32, np.float32, np.float32, np.float32]
+    df = inp.read_csv_columns_by_headers(total_file, headers,
+                                         dat_type)
+    bar = CreateCDF(df['Bar'])
+    bar.create_cdf_file(cdf_file, nbins)
+    assert os.path.isfile(cdf_file)
+    if os.path.isfile(total_file):
+        os.remove(total_file)
+    if os.path.isfile(cdf_file):
+        os.remove(cdf_file)
+# ================================================================================
+# ================================================================================
+
 # eof

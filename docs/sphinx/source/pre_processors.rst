@@ -19,3 +19,23 @@ and placed at the location of the users choice.
 .. autoclass:: pre_processor.ProcessDailyExpenseFile
    :members:
 
+MakeDistribution
+================
+
+The `MakeDistribution` class acceps a data stream at instantiation.  The class
+member functions can transform the data stream into a discrete or cumulative
+probability density function and cumulative distribution function.  In each
+case the calculated distributions can be normalized.
+
+.. autoclass:: pre_processor.MakeDistribution
+   :members:
+
+CreateCDF
+=========
+The `CreateCDF` class inherits the `MakeDistribution` class to execute its
+functionality.  This class specifically reads in column data from the 
+`Total_Expenses.csv` file, that is transformed into a cdf and then
+written to a file.
+
+.. autoclass:: pre_processor.CreateCDF
+   :members:

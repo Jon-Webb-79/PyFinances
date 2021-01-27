@@ -1,0 +1,6 @@
+Run Histogram: True
+Bins: 60
+Hist Start Date: 2015-03-01
+Hist End Date: 2016-02-28
+Daily Expense File: ../data/test/daily_expenses_one.csv
+Total Expense File: ../data/test/total_expenses.csv

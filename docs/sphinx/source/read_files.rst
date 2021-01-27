@@ -4,7 +4,7 @@ read_files
 The functions and classes described in this section are used to read
 ASCII based text files, to include `.txt` files and `.csv` files.  All of
 the code described in this section is maintained in the `read_files.py` file.
-
+
 ReadTextFileKeywords
 =====================
 This class is used to read a text file by its keywords.  The member functions will

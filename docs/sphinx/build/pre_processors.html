@@ -14,7 +14,8 @@
     <script src="_static/doctools.js"></script>
     <script src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="read_files" href="read_files.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -22,6 +23,9 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="read_files.html" title="read_files"
+             accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">Project_Name 0.1.0 documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Pre-Processors</a></li> 
       </ul>
@@ -95,6 +99,134 @@ memory so it can use it for the creation of the total_expenses.csv file.</p>
 </dd></dl>
 
 </div>
+<div class="section" id="makedistribution">
+<h2>MakeDistribution<a class="headerlink" href="#makedistribution" title="Permalink to this headline">¶</a></h2>
+<p>The <cite>MakeDistribution</cite> class acceps a data stream at instantiation.  The class
+member functions can transform the data stream into a discrete or cumulative
+probability density function and cumulative distribution function.  In each
+case the calculated distributions can be normalized.</p>
+<dl class="py class">
+<dt id="pre_processor.MakeDistribution">
+<em class="property">class </em><code class="sig-prename descclassname">pre_processor.</code><code class="sig-name descname">MakeDistribution</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data_array</span><span class="p">:</span> <span class="n">numpy.ndarray</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pre_processor.html#MakeDistribution"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pre_processor.MakeDistribution" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class transforms a data array into discrete and continuous probability
+density functions and cumulative density functions</p>
+<dl class="py method">
+<dt id="pre_processor.MakeDistribution.continuous_cdf">
+<code class="sig-name descname">continuous_cdf</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_bins</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">norm</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Tuple<span class="p">[</span>numpy.ndarray<span class="p">, </span>numpy.ndarray<span class="p">]</span><a class="reference internal" href="_modules/pre_processor.html#MakeDistribution.continuous_cdf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pre_processor.MakeDistribution.continuous_cdf" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n_bins</strong> – The number of histogram bins</p></li>
+<li><p><strong>norm</strong> – True if the data is to be normalized</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return cum_bins, middle</dt>
+<dd class="field-even"><p>A tuple containing the probability of finding a
+value in a given bin as an array and the edges of
+each bin as an array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pre_processor.MakeDistribution.continuous_pdf">
+<code class="sig-name descname">continuous_pdf</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_bins</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">norm</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Tuple<span class="p">[</span>numpy.ndarray<span class="p">, </span>numpy.ndarray<span class="p">]</span><a class="reference internal" href="_modules/pre_processor.html#MakeDistribution.continuous_pdf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pre_processor.MakeDistribution.continuous_pdf" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n_bins</strong> – The number of histogram bins</p></li>
+<li><p><strong>norm</strong> – True if the data is to be normalized</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return bin_val, middle</dt>
+<dd class="field-even"><p>A tuple containing the probability of finding a
+value at a given point as an array and teh
+point where the value is found as an array.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pre_processor.MakeDistribution.discrete_cdf">
+<code class="sig-name descname">discrete_cdf</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_bins</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">norm</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Tuple<span class="p">[</span>numpy.ndarray<span class="p">, </span>numpy.ndarray<span class="p">]</span><a class="reference internal" href="_modules/pre_processor.html#MakeDistribution.discrete_cdf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pre_processor.MakeDistribution.discrete_cdf" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n_bins</strong> – The number of histogram bins</p></li>
+<li><p><strong>norm</strong> – True if the data is to be normalized</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return cum_bins, edges</dt>
+<dd class="field-even"><p>A tuple containing the probability of finding a
+value in a given bin as an array and the edges of
+each bin as an array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pre_processor.MakeDistribution.discrete_pdf">
+<code class="sig-name descname">discrete_pdf</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_bins</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">normed</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Tuple<span class="p">[</span>numpy.ndarray<span class="p">, </span>numpy.ndarray<span class="p">]</span><a class="reference internal" href="_modules/pre_processor.html#MakeDistribution.discrete_pdf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pre_processor.MakeDistribution.discrete_pdf" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n_bins</strong> – The number of histogram bins</p></li>
+<li><p><strong>normed</strong> – True if the data is to be normalized</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return bin_val, edges</dt>
+<dd class="field-even"><p>A tuple containing the probability of finding a
+value within a bin as an array of values and
+the value of bin edges as an array of values</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="createcdf">
+<h2>CreateCDF<a class="headerlink" href="#createcdf" title="Permalink to this headline">¶</a></h2>
+<p>The <cite>CreateCDF</cite> class inherits the <cite>MakeDistribution</cite> class to execute its
+functionality.  This class specifically reads in column data from the
+<cite>Total_Expenses.csv</cite> file, that is transformed into a cdf and then
+written to a file.</p>
+<dl class="py class">
+<dt id="pre_processor.CreateCDF">
+<em class="property">class </em><code class="sig-prename descclassname">pre_processor.</code><code class="sig-name descname">CreateCDF</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data_array</span><span class="p">:</span> <span class="n">numpy.ndarray</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pre_processor.html#CreateCDF"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pre_processor.CreateCDF" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data_array</strong> – An array of pandas series containing numbers that
+will be organized into a cdf for random sampling</p>
+</dd>
+</dl>
+<p>This class is tailered to accepr data from the Total_Expenses.csv
+class so it can transform the information into cdfs for sampling.  
+Future versions will also allow for the development of pdfs for
+plotting.</p>
+<dl class="py method">
+<dt id="pre_processor.CreateCDF.create_cdf_file">
+<code class="sig-name descname">create_cdf_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">hist_file_name</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">nbins</span><span class="p">:</span> <span class="n">int</span></em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/pre_processor.html#CreateCDF.create_cdf_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pre_processor.CreateCDF.create_cdf_file" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>hist_file_name</strong> – The name of the histogram file that data
+will be written to</p></li>
+<li><p><strong>nbins</strong> – The number of bins to be used when creating a
+cdf</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return None</dt>
+<dd class="field-even"><p></p></dd>
+</dl>
+<p>This function will create a cumulative dsitribution file (cdf)
+with the information passed to the class and will write the
+data to a csv file</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
 </div>
 
 
@@ -108,10 +240,15 @@ memory so it can use it for the creation of the total_expenses.csv file.</p>
   <ul>
 <li><a class="reference internal" href="#">Pre-Processors</a><ul>
 <li><a class="reference internal" href="#processdailyexpensefile">ProcessDailyExpenseFile</a></li>
+<li><a class="reference internal" href="#makedistribution">MakeDistribution</a></li>
+<li><a class="reference internal" href="#createcdf">CreateCDF</a></li>
 </ul>
 </li>
 </ul>
 
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="read_files.html"
+                        title="previous chapter">read_files</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -139,6 +276,9 @@ memory so it can use it for the creation of the total_expenses.csv file.</p>
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              >index</a></li>
+        <li class="right" >
+          <a href="read_files.html" title="read_files"
+             >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">Project_Name 0.1.0 documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Pre-Processors</a></li> 
       </ul>

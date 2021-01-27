@@ -208,6 +208,138 @@ class MakeDistribution:
         bins, middle = self.continuous_pdf(n_bins, norm=norm)
         cum_bins = np.cumsum(bins)
         return cum_bins, middle
+# ================================================================================
+# ================================================================================
+
+
+class CreateCDF(MakeDistribution, ReadCSVFile):
+    """
+
+    :param data_array: An array of pandas series containing numbers that
+                       will be organized into a cdf for random sampling
+
+    This class is tailered to accepr data from the Total_Expenses.csv
+    class so it can transform the information into cdfs for sampling.  
+    Future versions will also allow for the development of pdfs for
+    plotting.
+    """
+    def __init__(self, data_array: np.ndarray):
+        MakeDistribution.__init__(self, data_array)
+# --------------------------------------------------------------------------------
+
+    def create_cdf_file(self, hist_file_name: str, nbins: int) -> None:
+        """
+
+        :param hist_file_name: The name of the histogram file that data
+                               will be written to 
+        :param nbins: The number of bins to be used when creating a
+                      cdf 
+        :return None:
+
+        This function will create a cumulative dsitribution file (cdf)
+        with the information passed to the class and will write the
+        data to a csv file
+        """
+        # Create the cdf
+        bins, center = self.continuous_cdf(nbins, norm=True)
+        # Write cdf to a pandas dataframe
+        self._write_to_file(bins, center, hist_file_name)
+# ================================================================================
+# Private-Like Functions
+
+    def _write_to_file(self, bins: np.float32, center: np.float32, 
+                       hist_file_name: str) -> None:
+        """
+
+        :param bins: The probability associated with a bin 
+        :param center: The center of each probability bin 
+        :param hist_file_name: The name of the file that will be 
+                               written to contain the cdf
+        :return None:
+
+        This function creates the csv file with the histogram data
+        """
+        headers = ['probability', 'center']
+        dat_type = [np.float32, np.float32]
+        information = {'probability': bins, 'center': center}
+        df = pd.DataFrame(data=information)
+        df = df.set_index("probability")
+        df.to_csv(hist_file_name)
+# ================================================================================ 
+# ================================================================================ 
+
+
+class HistPreProcessor(ProcessDailyExpenseFile):
+    """
+
+    :param file_name: The name and location of the Daily_Expenses.csv file 
+
+    This class pre-processes the Daily_Expenses.csv file and transforms the
+    contents into a Cumulative Dsitribution Function for each spending type
+    that is then written to a .csv file.
+    """
+    def __init__(self, file_name: str):
+        ProcessDailyExpenseFile.__init__(self, file_name)
+# --------------------------------------------------------------------------------
+
+    def hist_pre_process(self, total_expense_file: str, 
+                         start_date: str, end_date: str, bins: int) -> None:
+        # Create the Total_Expenses.csv file
+        self._create_total_expense_file(total_expense_file, 
+                                        start_date, end_date)
+
+        # Write the Total_Expenses.csv file to a dataframe 
+        df = self._read_total_expense_file(total_expense_file)
+
+        # Create a cdf for each expense type 
+        bar_dist = MakeDistribution(df['Bar'])
+        groc_dist = MakeDistribution(df['Groceries'])
+        rest_dist = MakeDistribution(df['Restaurant'])
+        gas_dist = MakeDistribution(df['Gas'])
+        misc_dist = MakeDistribution(df['Misc'])
+
+        bar_bin, bar_cent = bar_dist.continuous_cdf(bins)
+        groc_bin, groc_cent = groc_dist.continuous_cdf(bins)
+        rest_bin, rest_cent = rest_dist.continuous_cdf(bins)
+        gas_bin, gas_cent = gas_dist.continuous_cdf(bins)
+        misc_bin, misc_cent = misc_dist.continuous_cdf(bins)
+# ================================================================================
+# Private-Like functions 
+
+    def _create_total_expense_file(self, total_expense_file: str, 
+                                   start_date: str, end_date: str) -> None:
+        """
+
+        :param total_expense_file: The name and location of the
+                                   Total_Expense.csv file
+        :param start_date: The start date for the development of a cdf
+                           file 
+        :param end_date: The end date for the development of a cdf file 
+        :return None:
+
+        This function will read the Daily_Expenses.csv file and transorm
+        its contents into a day by day cumulative spending for each 
+        spending category.  The information will be written to a new
+        file titled Total_Expenses.csv.
+        """
+        self.group_expenses_by_date(start_date, end_date, total_expense_file)
+# --------------------------------------------------------------------------------
+
+    def _read_total_expense_file(self, total_expense_file) -> pd.DataFrame:
+        """
+
+        :param total_expense_file: The name and location of the 
+                                   Total_Expense.csv file
+        
+        This function reads the Total_Expense.csv file and writes it
+        to a pandas dataframe for further processing.
+        """
+        headers = ['Date', 'Bar', 'Groceries', 'Restaurant', 'Misc', 'Gas']
+        dat_type = [str, np.float32, np.float32, np.float32, 
+                    np.float32, np.float32]
+        df = self.read_csv_columns_by_headers(total_expense_file, 
+                                              headers, dat_type)
+        return df
 # ================================================================================ 
 # ================================================================================ 
 # eof
