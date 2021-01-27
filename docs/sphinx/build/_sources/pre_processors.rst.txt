@@ -39,3 +39,13 @@ written to a file.
 
 .. autoclass:: pre_processor.CreateCDF
    :members:
+
+Histogram Pre-Processor
+=======================
+The `hist_pre_processor` function integrates all necessary functions into 
+a histogram pre-processor.  If the user selects **Hist Run** as True, then
+the program will initiate this function to create the cdf files.  In addition,
+if the users selects False for **Hist Run**, but the cdf files do not exist, 
+the software will still run this function.
+
+.. autofunction:: pre_processor.hist_pre_processor

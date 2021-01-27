@@ -1,0 +1,6 @@
+Run Histogram: True
+Bins: 60
+Hist Start Date: 2019-03-01
+Hist End Date: 2020-02-28
+Daily Expense File: ../../Finances/Data/Daily_Expenses.csv
+Total Expense File: ../data/hist/Total_Expenses.csv

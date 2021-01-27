@@ -83,6 +83,22 @@
         <span class="k">return</span> <span class="n">df</span></div>
 <span class="c1"># --------------------------------------------------------------------------------</span>
 
+<div class="viewcode-block" id="ProcessDailyExpenseFile.read_total_expenses_csv"><a class="viewcode-back" href="../pre_processors.html#pre_processor.ProcessDailyExpenseFile.read_total_expenses_csv">[docs]</a>    <span class="k">def</span> <span class="nf">read_total_expenses_csv</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">total_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        :param total_file: The name and location of the Total_Expenses.csv</span>
+<span class="sd">                           file </span>
+
+<span class="sd">        This function opens the Total_Expenses.csv file and reads it </span>
+<span class="sd">        to a pandas dataframe </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">headers</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">,</span> <span class="s1">&#39;Bar&#39;</span><span class="p">,</span> <span class="s1">&#39;Groceries&#39;</span><span class="p">,</span> <span class="s1">&#39;Misc&#39;</span><span class="p">,</span> <span class="s1">&#39;Gas&#39;</span><span class="p">,</span> <span class="s1">&#39;Restaurant&#39;</span><span class="p">]</span>
+        <span class="n">dat_type</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> 
+                    <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">]</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_csv_columns_by_headers</span><span class="p">(</span><span class="n">total_file</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="n">dat_type</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">df</span></div>
+<span class="c1"># --------------------------------------------------------------------------------</span>
+
 
 <div class="viewcode-block" id="ProcessDailyExpenseFile.group_expenses_by_date"><a class="viewcode-back" href="../pre_processors.html#pre_processor.ProcessDailyExpenseFile.group_expenses_by_date">[docs]</a>    <span class="k">def</span> <span class="nf">group_expenses_by_date</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start_date</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">end_date</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
                                <span class="n">total_expense_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -305,79 +321,31 @@
 <span class="c1"># ================================================================================ </span>
 
 
-<span class="k">class</span> <span class="nc">HistPreProcessor</span><span class="p">(</span><span class="n">ProcessDailyExpenseFile</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="hist_pre_processor"><a class="viewcode-back" href="../pre_processors.html#pre_processor.hist_pre_processor">[docs]</a><span class="k">def</span> <span class="nf">hist_pre_processor</span><span class="p">(</span><span class="n">start_date</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">end_date</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">nbins</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> 
+                       <span class="n">expense_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">total_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
+                       <span class="n">file_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="c1"># Create teh Total_Expenses.csv file </span>
+    <span class="n">proc</span> <span class="o">=</span> <span class="n">ProcessDailyExpenseFile</span><span class="p">(</span><span class="n">expense_file</span><span class="p">)</span>
+    <span class="n">proc</span><span class="o">.</span><span class="n">group_expenses_by_date</span><span class="p">(</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">,</span> <span class="n">total_file</span><span class="p">)</span>
 
-<span class="sd">    :param file_name: The name and location of the Daily_Expenses.csv file </span>
+    <span class="c1"># Read the Total_Expense.csv file for future processing</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">proc</span><span class="o">.</span><span class="n">read_total_expenses_csv</span><span class="p">(</span><span class="n">total_file</span><span class="p">)</span>
+    
+    <span class="c1"># Instantiate CDF classes  </span>
+    <span class="n">bar</span> <span class="o">=</span> <span class="n">CreateCDF</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Bar&#39;</span><span class="p">])</span>
+    <span class="n">misc</span> <span class="o">=</span> <span class="n">CreateCDF</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Misc&#39;</span><span class="p">])</span>
+    <span class="n">rest</span> <span class="o">=</span> <span class="n">CreateCDF</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Restaurant&#39;</span><span class="p">])</span>
+    <span class="n">groc</span> <span class="o">=</span> <span class="n">CreateCDF</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Groceries&#39;</span><span class="p">])</span>
+    <span class="n">gas</span> <span class="o">=</span> <span class="n">CreateCDF</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Gas&#39;</span><span class="p">])</span>
 
-<span class="sd">    This class pre-processes the Daily_Expenses.csv file and transforms the</span>
-<span class="sd">    contents into a Cumulative Dsitribution Function for each spending type</span>
-<span class="sd">    that is then written to a .csv file.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-        <span class="n">ProcessDailyExpenseFile</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="p">)</span>
-<span class="c1"># --------------------------------------------------------------------------------</span>
-
-    <span class="k">def</span> <span class="nf">hist_pre_process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">total_expense_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
-                         <span class="n">start_date</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">end_date</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">bins</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="c1"># Create the Total_Expenses.csv file</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_create_total_expense_file</span><span class="p">(</span><span class="n">total_expense_file</span><span class="p">,</span> 
-                                        <span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">)</span>
-
-        <span class="c1"># Write the Total_Expenses.csv file to a dataframe </span>
-        <span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_read_total_expense_file</span><span class="p">(</span><span class="n">total_expense_file</span><span class="p">)</span>
-
-        <span class="c1"># Create a cdf for each expense type </span>
-        <span class="n">bar_dist</span> <span class="o">=</span> <span class="n">MakeDistribution</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Bar&#39;</span><span class="p">])</span>
-        <span class="n">groc_dist</span> <span class="o">=</span> <span class="n">MakeDistribution</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Groceries&#39;</span><span class="p">])</span>
-        <span class="n">rest_dist</span> <span class="o">=</span> <span class="n">MakeDistribution</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Restaurant&#39;</span><span class="p">])</span>
-        <span class="n">gas_dist</span> <span class="o">=</span> <span class="n">MakeDistribution</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Gas&#39;</span><span class="p">])</span>
-        <span class="n">misc_dist</span> <span class="o">=</span> <span class="n">MakeDistribution</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Misc&#39;</span><span class="p">])</span>
-
-        <span class="n">bar_bin</span><span class="p">,</span> <span class="n">bar_cent</span> <span class="o">=</span> <span class="n">bar_dist</span><span class="o">.</span><span class="n">continuous_cdf</span><span class="p">(</span><span class="n">bins</span><span class="p">)</span>
-        <span class="n">groc_bin</span><span class="p">,</span> <span class="n">groc_cent</span> <span class="o">=</span> <span class="n">groc_dist</span><span class="o">.</span><span class="n">continuous_cdf</span><span class="p">(</span><span class="n">bins</span><span class="p">)</span>
-        <span class="n">rest_bin</span><span class="p">,</span> <span class="n">rest_cent</span> <span class="o">=</span> <span class="n">rest_dist</span><span class="o">.</span><span class="n">continuous_cdf</span><span class="p">(</span><span class="n">bins</span><span class="p">)</span>
-        <span class="n">gas_bin</span><span class="p">,</span> <span class="n">gas_cent</span> <span class="o">=</span> <span class="n">gas_dist</span><span class="o">.</span><span class="n">continuous_cdf</span><span class="p">(</span><span class="n">bins</span><span class="p">)</span>
-        <span class="n">misc_bin</span><span class="p">,</span> <span class="n">misc_cent</span> <span class="o">=</span> <span class="n">misc_dist</span><span class="o">.</span><span class="n">continuous_cdf</span><span class="p">(</span><span class="n">bins</span><span class="p">)</span>
+    <span class="c1"># Create cdf files </span>
+    <span class="n">bar</span><span class="o">.</span><span class="n">create_cdf_file</span><span class="p">(</span><span class="n">file_path</span> <span class="o">+</span> <span class="s1">&#39;barcdf.csv&#39;</span><span class="p">,</span> <span class="n">nbins</span><span class="p">)</span>
+    <span class="n">misc</span><span class="o">.</span><span class="n">create_cdf_file</span><span class="p">(</span><span class="n">file_path</span> <span class="o">+</span> <span class="s1">&#39;misccdf.csv&#39;</span><span class="p">,</span> <span class="n">nbins</span><span class="p">)</span>
+    <span class="n">rest</span><span class="o">.</span><span class="n">create_cdf_file</span><span class="p">(</span><span class="n">file_path</span> <span class="o">+</span> <span class="s1">&#39;restcdf.csv&#39;</span><span class="p">,</span> <span class="n">nbins</span><span class="p">)</span>
+    <span class="n">groc</span><span class="o">.</span><span class="n">create_cdf_file</span><span class="p">(</span><span class="n">file_path</span> <span class="o">+</span> <span class="s1">&#39;groccdf.csv&#39;</span><span class="p">,</span> <span class="n">nbins</span><span class="p">)</span>
+    <span class="n">gas</span><span class="o">.</span><span class="n">create_cdf_file</span><span class="p">(</span><span class="n">file_path</span> <span class="o">+</span> <span class="s1">&#39;gascdf.csv&#39;</span><span class="p">,</span> <span class="n">nbins</span><span class="p">)</span></div>
 <span class="c1"># ================================================================================</span>
-<span class="c1"># Private-Like functions </span>
-
-    <span class="k">def</span> <span class="nf">_create_total_expense_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">total_expense_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
-                                   <span class="n">start_date</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">end_date</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-
-<span class="sd">        :param total_expense_file: The name and location of the</span>
-<span class="sd">                                   Total_Expense.csv file</span>
-<span class="sd">        :param start_date: The start date for the development of a cdf</span>
-<span class="sd">                           file </span>
-<span class="sd">        :param end_date: The end date for the development of a cdf file </span>
-<span class="sd">        :return None:</span>
-
-<span class="sd">        This function will read the Daily_Expenses.csv file and transorm</span>
-<span class="sd">        its contents into a day by day cumulative spending for each </span>
-<span class="sd">        spending category.  The information will be written to a new</span>
-<span class="sd">        file titled Total_Expenses.csv.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">group_expenses_by_date</span><span class="p">(</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">,</span> <span class="n">total_expense_file</span><span class="p">)</span>
-<span class="c1"># --------------------------------------------------------------------------------</span>
-
-    <span class="k">def</span> <span class="nf">_read_total_expense_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">total_expense_file</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-
-<span class="sd">        :param total_expense_file: The name and location of the </span>
-<span class="sd">                                   Total_Expense.csv file</span>
-<span class="sd">        </span>
-<span class="sd">        This function reads the Total_Expense.csv file and writes it</span>
-<span class="sd">        to a pandas dataframe for further processing.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">headers</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">,</span> <span class="s1">&#39;Bar&#39;</span><span class="p">,</span> <span class="s1">&#39;Groceries&#39;</span><span class="p">,</span> <span class="s1">&#39;Restaurant&#39;</span><span class="p">,</span> <span class="s1">&#39;Misc&#39;</span><span class="p">,</span> <span class="s1">&#39;Gas&#39;</span><span class="p">]</span>
-        <span class="n">dat_type</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> 
-                    <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">]</span>
-        <span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_csv_columns_by_headers</span><span class="p">(</span><span class="n">total_expense_file</span><span class="p">,</span> 
-                                              <span class="n">headers</span><span class="p">,</span> <span class="n">dat_type</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">df</span>
-<span class="c1"># ================================================================================ </span>
-<span class="c1"># ================================================================================ </span>
+<span class="c1"># ================================================================================</span>
 <span class="c1"># eof</span>
 </pre></div>
 
