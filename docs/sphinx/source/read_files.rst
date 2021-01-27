@@ -1,7 +1,9 @@
 ##########
 read_files
 ##########
-This section describes the functions and classes in the `read_files.py` file.
+The functions and classes described in this section are used to read
+ASCII based text files, to include `.txt` files and `.csv` files.  All of
+the code described in this section is maintained in the `read_files.py` file.
 
 ReadTextFileKeywords
 =====================
@@ -29,12 +31,4 @@ ReadCSVFile
 This class is used to read csv files as relevant to the PyFinances software suite.
 
 .. autoclass:: read_files.ReadCSVFile
-   :members:
-
-ProcessDailyExpenseFile
-=======================
-This class containes member functions that are used to read and process the 
-`Daily_Expenses.csv` file.
-
-.. autoclass:: read_files.ProcessDailyExpenseFile
    :members:

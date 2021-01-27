@@ -1,0 +1,151 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pre-Processors &#8212; Project_Name 0.1.0 documentation</title>
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="index.html">Project_Name 0.1.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Pre-Processors</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pre-processors">
+<h1>Pre-Processors<a class="headerlink" href="#pre-processors" title="Permalink to this headline">¶</a></h1>
+<p>These functions and classes are used to pre-process information prior
+to entering the Monte Carlo calculation to estimate the values of the
+checking and savings accounts.  All of the software described in this
+section is maintained in the <cite>pre_processors.py</cite> file.</p>
+<div class="section" id="processdailyexpensefile">
+<h2>ProcessDailyExpenseFile<a class="headerlink" href="#processdailyexpensefile" title="Permalink to this headline">¶</a></h2>
+<p>The <cite>ProcessDailyExpenseFile</cite> class is encoded with the functionality that
+allows it to open and read the <cite>Daily_Expenses.csv</cite> file.  This class
+also has the functionality that allows it to transform the contents of
+the <cite>Daily_Expenses.csv</cite> file into a day by day accounting of the cumulative
+spending for each category, which is written to the <cite>Total_Expenses.csv</cite> file
+and placed at the location of the users choice.</p>
+<dl class="py class">
+<dt id="pre_processor.ProcessDailyExpenseFile">
+<em class="property">class </em><code class="sig-prename descclassname">pre_processor.</code><code class="sig-name descname">ProcessDailyExpenseFile</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file_name</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pre_processor.html#ProcessDailyExpenseFile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pre_processor.ProcessDailyExpenseFile" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>file_name</strong> – The name and path-length of the Daily_Expenses.csv
+file</p>
+</dd>
+</dl>
+<p>This class contains functions that process the Daily_Expenses.csv 
+file in different ways.</p>
+<dl class="py method">
+<dt id="pre_processor.ProcessDailyExpenseFile.group_expenses_by_date">
+<code class="sig-name descname">group_expenses_by_date</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">start_date</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">end_date</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">total_expense_file</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/pre_processor.html#ProcessDailyExpenseFile.group_expenses_by_date"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pre_processor.ProcessDailyExpenseFile.group_expenses_by_date" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>start_date</strong> – The initial day over which time a histogram
+file is desired.</p></li>
+<li><p><strong>end_date</strong> – The last day over which time a histogram file
+is desired</p></li>
+<li><p><strong>total_expense_file</strong> – The name and location which the histogram
+data is to be written</p></li>
+</ul>
+</dd>
+</dl>
+<p>This function reads the Daily_Expenses.csv file and transforms 
+its contents into a day by day breakdown for the total expendetures
+in each spending category.  The data is then written to a user
+defined csv file.  This file is necessary for creating a 
+pdf and cdf for monte carlo sampling.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pre_processor.ProcessDailyExpenseFile.read_daily_expenses_csv">
+<code class="sig-name descname">read_daily_expenses_csv</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="reference internal" href="_modules/pre_processor.html#ProcessDailyExpenseFile.read_daily_expenses_csv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pre_processor.ProcessDailyExpenseFile.read_daily_expenses_csv" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return df</dt>
+<dd class="field-odd"><p>A pandas dataframe containing the relevant information from 
+the daily_expenses.csv file</p>
+</dd>
+</dl>
+<p>This function reads relevant information from the daily_expenses.csv vile into
+memory so it can use it for the creation of the total_expenses.csv file.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Pre-Processors</a><ul>
+<li><a class="reference internal" href="#processdailyexpensefile">ProcessDailyExpenseFile</a></li>
+</ul>
+</li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/pre_processors.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="index.html">Project_Name 0.1.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Pre-Processors</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Jonathan A. Webb.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.2.1.
+    </div>
+  </body>
+</html>

@@ -38,7 +38,9 @@
             
   <div class="section" id="read-files">
 <h1>read_files<a class="headerlink" href="#read-files" title="Permalink to this headline">¶</a></h1>
-<p>This section describes the functions and classes in the <cite>read_files.py</cite> file.</p>
+<p>The functions and classes described in this section are used to read
+ASCII based text files, to include <cite>.txt</cite> files and <cite>.csv</cite> files.  All of
+the code described in this section is maintained in the <cite>read_files.py</cite> file.</p>
 <div class="section" id="readtextfilekeywords">
 <h2>ReadTextFileKeywords<a class="headerlink" href="#readtextfilekeywords" title="Permalink to this headline">¶</a></h2>
 <p>This class is used to read a text file by its keywords.  The member functions will
@@ -503,59 +505,6 @@ headers are not on the first line.  For instance, assume the following csv file;
 </dd></dl>
 
 </div>
-<div class="section" id="processdailyexpensefile">
-<h2>ProcessDailyExpenseFile<a class="headerlink" href="#processdailyexpensefile" title="Permalink to this headline">¶</a></h2>
-<p>This class containes member functions that are used to read and process the
-<cite>Daily_Expenses.csv</cite> file.</p>
-<dl class="py class">
-<dt id="read_files.ProcessDailyExpenseFile">
-<em class="property">class </em><code class="sig-prename descclassname">read_files.</code><code class="sig-name descname">ProcessDailyExpenseFile</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file_name</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/read_files.html#ProcessDailyExpenseFile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#read_files.ProcessDailyExpenseFile" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>file_name</strong> – The name and path-length of the Daily_Expenses.csv
-file</p>
-</dd>
-</dl>
-<p>This class contains functions that process the Daily_Expenses.csv 
-file in different ways.</p>
-<dl class="py method">
-<dt id="read_files.ProcessDailyExpenseFile.group_expenses_by_date">
-<code class="sig-name descname">group_expenses_by_date</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">start_date</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">end_date</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">total_expense_file</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/read_files.html#ProcessDailyExpenseFile.group_expenses_by_date"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#read_files.ProcessDailyExpenseFile.group_expenses_by_date" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>start_date</strong> – The initial day over which time a histogram
-file is desired.</p></li>
-<li><p><strong>end_date</strong> – The last day over which time a histogram file
-is desired</p></li>
-<li><p><strong>total_expense_file</strong> – The name and location which the histogram
-data is to be written</p></li>
-</ul>
-</dd>
-</dl>
-<p>This function reads the Daily_Expenses.csv file and transforms 
-its contents into a day by day breakdown for the total expendetures
-in each spending category.  The data is then written to a user
-defined csv file.  This file is necessary for creating a 
-pdf and cdf for monte carlo sampling.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="read_files.ProcessDailyExpenseFile.read_daily_expenses_csv">
-<code class="sig-name descname">read_daily_expenses_csv</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="reference internal" href="_modules/read_files.html#ProcessDailyExpenseFile.read_daily_expenses_csv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#read_files.ProcessDailyExpenseFile.read_daily_expenses_csv" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Return df</dt>
-<dd class="field-odd"><p>A pandas dataframe containing the relevant information from 
-the daily_expenses.csv file</p>
-</dd>
-</dl>
-<p>This function reads relevant information from the daily_expenses.csv vile into
-memory so it can use it for the creation of the total_expenses.csv file.</p>
-</dd></dl>
-
-</dd></dl>
-
-</div>
 </div>
 
 
@@ -571,7 +520,6 @@ memory so it can use it for the creation of the total_expenses.csv file.</p>
 <li><a class="reference internal" href="#readtextfilekeywords">ReadTextFileKeywords</a></li>
 <li><a class="reference internal" href="#readrunoptionsfile">ReadRunOptionsFile</a></li>
 <li><a class="reference internal" href="#readcsvfile">ReadCSVFile</a></li>
-<li><a class="reference internal" href="#processdailyexpensefile">ProcessDailyExpenseFile</a></li>
 </ul>
 </li>
 </ul>
