@@ -353,14 +353,17 @@ how the software package fill function.</p>
 </dd></dl>
 
 </div>
-<div class="section" id="read-csv-columns-by-headers">
-<h2>read_csv_columns_by_headers<a class="headerlink" href="#read-csv-columns-by-headers" title="Permalink to this headline">¶</a></h2>
-<p>This function is used to read csv files, which have structured and defined
-headers.  The data is read into a numpy dataframe, in order to make it easier
-and faster for a user to access the data read from the csv file.</p>
-<dl class="py function">
-<dt id="read_files.read_csv_columns_by_headers">
-<code class="sig-prename descclassname">read_files.</code><code class="sig-name descname">read_csv_columns_by_headers</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file_name</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">headers</span><span class="p">:</span> <span class="n">List<span class="p">[</span>str<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">data_type</span><span class="p">:</span> <span class="n">List<span class="p">[</span>type<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">skip</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">0</span></em><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="reference internal" href="_modules/read_files.html#read_csv_columns_by_headers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#read_files.read_csv_columns_by_headers" title="Permalink to this definition">¶</a></dt>
+<div class="section" id="readcsvfile">
+<h2>ReadCSVFile<a class="headerlink" href="#readcsvfile" title="Permalink to this headline">¶</a></h2>
+<p>This class is used to read csv files as relevant to the PyFinances software suite.</p>
+<dl class="py class">
+<dt id="read_files.ReadCSVFile">
+<em class="property">class </em><code class="sig-prename descclassname">read_files.</code><code class="sig-name descname">ReadCSVFile</code><a class="reference internal" href="_modules/read_files.html#ReadCSVFile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#read_files.ReadCSVFile" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class contains functions that read csv files as relevant to
+the PyFinances software suite.</p>
+<dl class="py method">
+<dt id="read_files.ReadCSVFile.read_csv_columns_by_headers">
+<em class="property">classmethod </em><code class="sig-name descname">read_csv_columns_by_headers</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file_name</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">headers</span><span class="p">:</span> <span class="n">List<span class="p">[</span>str<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">data_type</span><span class="p">:</span> <span class="n">List<span class="p">[</span>type<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">skip</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">0</span></em><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="reference internal" href="_modules/read_files.html#ReadCSVFile.read_csv_columns_by_headers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#read_files.ReadCSVFile.read_csv_columns_by_headers" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -423,7 +426,8 @@ file titled <code class="docutils literal notranslate"><span class="pre">test.cs
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">file_name</span> <span class="o">=</span> <span class="s1">&#39;test.csv&#39;</span>
 <span class="o">&gt;</span> <span class="n">headers</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ID&#39;</span><span class="p">,</span> <span class="s1">&#39;Inventory&#39;</span><span class="p">,</span> <span class="s1">&#39;Weight_per&#39;</span><span class="p">,</span> <span class="s1">&#39;Number&#39;</span><span class="p">]</span>
 <span class="o">&gt;</span> <span class="n">dat</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span>
-<span class="o">&gt;</span> <span class="n">df</span> <span class="o">=</span> <span class="n">read_csv_columns_by_headers</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="n">dat</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="n">obj</span> <span class="o">=</span> <span class="n">ReadCSVFile</span><span class="p">()</span>
+<span class="o">&gt;</span> <span class="n">df</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">read_csv_columns_by_headers</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="n">dat</span><span class="p">)</span>
 <span class="o">&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
     <span class="n">ID</span> <span class="n">Inventory</span> <span class="n">Weight_per</span> <span class="n">Number</span>
  <span class="mi">0</span>  <span class="mi">1</span>  <span class="n">shoes</span>     <span class="mf">1.5</span>        <span class="mi">5</span>
@@ -484,7 +488,8 @@ headers are not on the first line.  For instance, assume the following csv file;
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">file_name</span> <span class="o">=</span> <span class="s1">&#39;test1.csv&#39;</span>
 <span class="o">&gt;</span> <span class="n">headers</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ID&#39;</span><span class="p">,</span> <span class="s1">&#39;Inventory&#39;</span><span class="p">,</span> <span class="s1">&#39;Weight_per&#39;</span><span class="p">,</span> <span class="s1">&#39;Number&#39;</span><span class="p">]</span>
 <span class="o">&gt;</span> <span class="n">dat</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span>
-<span class="o">&gt;</span> <span class="n">df</span> <span class="o">=</span> <span class="n">read_csv_columns_by_headers</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="n">dat</span><span class="p">,</span> <span class="n">skip</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="n">obj</span> <span class="o">=</span> <span class="n">ReadCSVFile</span><span class="p">()</span>
+<span class="o">&gt;</span> <span class="n">df</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">read_csv_columns_by_headers</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="n">dat</span><span class="p">,</span> <span class="n">skip</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="o">&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
     <span class="n">ID</span> <span class="n">Inventory</span> <span class="n">Weight_per</span> <span class="n">Number</span>
  <span class="mi">0</span>  <span class="mi">1</span>  <span class="n">shoes</span>     <span class="mf">1.5</span>        <span class="mi">5</span>
@@ -495,28 +500,59 @@ headers are not on the first line.  For instance, assume the following csv file;
 </div>
 </dd></dl>
 
+</dd></dl>
+
 </div>
-<div class="section" id="read-daily-expenses-csv">
-<h2>read_daily_expenses_csv<a class="headerlink" href="#read-daily-expenses-csv" title="Permalink to this headline">¶</a></h2>
-<p>This function is used to read the <cite>Daily_Expenses.csv</cite> file, which is necessary
-for the creation of the <cite>Total_Expenses.csv</cite> file.  The user only has to pass
-the name and location of the file, the function is pre-programmed to
-understand the structure of the document.</p>
-<dl class="py function">
-<dt id="read_files.read_daily_expenses_csv">
-<code class="sig-prename descclassname">read_files.</code><code class="sig-name descname">read_daily_expenses_csv</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file_name</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="reference internal" href="_modules/read_files.html#read_daily_expenses_csv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#read_files.read_daily_expenses_csv" title="Permalink to this definition">¶</a></dt>
+<div class="section" id="processdailyexpensefile">
+<h2>ProcessDailyExpenseFile<a class="headerlink" href="#processdailyexpensefile" title="Permalink to this headline">¶</a></h2>
+<p>This class containes member functions that are used to read and process the
+<cite>Daily_Expenses.csv</cite> file.</p>
+<dl class="py class">
+<dt id="read_files.ProcessDailyExpenseFile">
+<em class="property">class </em><code class="sig-prename descclassname">read_files.</code><code class="sig-name descname">ProcessDailyExpenseFile</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file_name</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/read_files.html#ProcessDailyExpenseFile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#read_files.ProcessDailyExpenseFile" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>file_name</strong> – The name and path-length of the daily_expenses.csv
+<dd class="field-odd"><p><strong>file_name</strong> – The name and path-length of the Daily_Expenses.csv
 file</p>
 </dd>
-<dt class="field-even">Return df</dt>
-<dd class="field-even"><p>A pandas dataframe containing the relevant information from 
+</dl>
+<p>This class contains functions that process the Daily_Expenses.csv 
+file in different ways.</p>
+<dl class="py method">
+<dt id="read_files.ProcessDailyExpenseFile.group_expenses_by_date">
+<code class="sig-name descname">group_expenses_by_date</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">start_date</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">end_date</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">total_expense_file</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/read_files.html#ProcessDailyExpenseFile.group_expenses_by_date"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#read_files.ProcessDailyExpenseFile.group_expenses_by_date" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>start_date</strong> – The initial day over which time a histogram
+file is desired.</p></li>
+<li><p><strong>end_date</strong> – The last day over which time a histogram file
+is desired</p></li>
+<li><p><strong>total_expense_file</strong> – The name and location which the histogram
+data is to be written</p></li>
+</ul>
+</dd>
+</dl>
+<p>This function reads the Daily_Expenses.csv file and transforms 
+its contents into a day by day breakdown for the total expendetures
+in each spending category.  The data is then written to a user
+defined csv file.  This file is necessary for creating a 
+pdf and cdf for monte carlo sampling.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="read_files.ProcessDailyExpenseFile.read_daily_expenses_csv">
+<code class="sig-name descname">read_daily_expenses_csv</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="reference internal" href="_modules/read_files.html#ProcessDailyExpenseFile.read_daily_expenses_csv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#read_files.ProcessDailyExpenseFile.read_daily_expenses_csv" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return df</dt>
+<dd class="field-odd"><p>A pandas dataframe containing the relevant information from 
 the daily_expenses.csv file</p>
 </dd>
 </dl>
 <p>This function reads relevant information from the daily_expenses.csv vile into
 memory so it can use it for the creation of the total_expenses.csv file.</p>
+</dd></dl>
+
 </dd></dl>
 
 </div>
@@ -534,8 +570,8 @@ memory so it can use it for the creation of the total_expenses.csv file.</p>
 <li><a class="reference internal" href="#">read_files</a><ul>
 <li><a class="reference internal" href="#readtextfilekeywords">ReadTextFileKeywords</a></li>
 <li><a class="reference internal" href="#readrunoptionsfile">ReadRunOptionsFile</a></li>
-<li><a class="reference internal" href="#read-csv-columns-by-headers">read_csv_columns_by_headers</a></li>
-<li><a class="reference internal" href="#read-daily-expenses-csv">read_daily_expenses_csv</a></li>
+<li><a class="reference internal" href="#readcsvfile">ReadCSVFile</a></li>
+<li><a class="reference internal" href="#processdailyexpensefile">ProcessDailyExpenseFile</a></li>
 </ul>
 </li>
 </ul>

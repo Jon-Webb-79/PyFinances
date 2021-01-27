@@ -7,7 +7,8 @@ import numpy as np
 from math import isclose
 sys.path.insert(0, os.path.abspath('../src'))
 from read_files import ReadTextFileKeywords, ReadRunOptionsFile
-from read_files import read_csv_columns_by_headers, read_daily_expenses_csv
+from read_files import ReadCSVFile, ProcessDailyExpenseFile
+#from read_files import group_dataframe_expenses
 # ================================================================================
 # ================================================================================
 # Date:    January 24, 2021
@@ -355,7 +356,8 @@ def test_read_csv_by_headers():
         file_name = r'..\data\test\test1.csv'
     headers = ['ID', 'Inventory', 'Weight_per', 'Number']
     dat = [np.int64, str, np.float64, np.int64]
-    df = read_csv_columns_by_headers(file_name, headers, dat)
+    obj = ReadCSVFile()
+    df = obj.read_csv_columns_by_headers(file_name, headers, dat)
     new_id = np.array([1, 2, 3, 4], dtype=int)
     inventory = np.array(['shoes', 't-shirt', 'coffee', 'books'], dtype=str)
     weight = np.array([1.5, 1.8, 2.1, 3.2], dtype=float)
@@ -375,7 +377,7 @@ def test_read_csv_by_headers():
 def test_read_daily_expenses_csv():
     """
 
-    THis function tests the read_daily_expense_csv() function to determine
+    This function tests the read_daily_expense_csv() function to determine
     if it correctly reads in the daily_expenses.csv file
     """
     plat = platform.system()
@@ -383,13 +385,41 @@ def test_read_daily_expenses_csv():
         file_name = '../data/test/daily_expenses_one.csv'
     else:
         file_name = r'..\data\test\daily_expenses_one.csv'
-    df = read_daily_expenses_csv(file_name)
+    obj = ProcessDailyExpenseFile(file_name)
+    df = obj.read_daily_expenses_csv()
     assert len(df) == 4349
-    headers = ['Date', 'Checking_Debit', 'Checking_Addition', 'Savings_Debit', 
-               'Savings_Addition', 'Expense_Type']
+    headers = ['Date', 'Checking_Debit', 'Checking_Addition',
+               'Savings_Debit', 'Savings_Addition', 'Expense_Type']
     df_headers = list(df.columns.values)
     for i in headers:
         assert i in df_headers
+# --------------------------------------------------------------------------------
+
+
+def test_grouped_dataframe_expense():
+    """
+
+    This function tests the ability of
+    ProcessDailyExpense.group_expenses_by_date to read the Daily_Expense.csv
+    file and transform its contents into another file containing a day by
+    day breakdown of each expense type.p
+
+    """
+    plat = platform.system()
+    if plat == 'Darwin':
+        file_name = '../data/test/daily_expenses_one.csv'
+        total_expense = '../data/test/total_expense.csv'
+    else:
+        file_name = r'..\data\test\daily_expenses_one.csv'
+        total_expense = r'../data/test/total_expense.csv'
+    obj = ProcessDailyExpenseFile(file_name)
+    start_date = '2015-03-01'
+    end_date = '2016-02-28'
+    obj.group_expenses_by_date(start_date, end_date, total_expense)
+    assert os.path.isfile(total_expense)
+
+    if os.path.isfile(total_expense):
+        os.remove(total_expense)
 # ================================================================================
 # ================================================================================
 # eof

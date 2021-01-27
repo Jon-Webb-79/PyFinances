@@ -3,7 +3,7 @@ import os
 import sys
 from calendar import monthrange
 import numpy as np
-from typing import List, Dict
+from typing import List, Dict, Tuple
 import pandas as pd
 # ================================================================================
 # ================================================================================
@@ -450,139 +450,235 @@ class ReadRunOptionsFile(ReadTextFileKeywords):
 # ================================================================================
 
 
-def read_csv_columns_by_headers(file_name: str, headers: List[str],
-                                data_type: List[type],
-                                skip: int = 0) -> pd.DataFrame:
+class ReadCSVFile:
     """
 
-    :param file_name: The file name to include path-link
-    :param headers: A list of the names of the headers that contain
-                    columns which will be read
-    :param data_type: A list containing the data type of each column.  Data
-                      types are limited to ``numpy.int64``, ``numpy.float64``,
-                      and ``str``
-    :param skip: The number of lines to be skipped before reading data
-    :return df: A pandas dataframe containing all relevant information
-
-    This function assumes the file has a comma (i.e. ,) delimiter, if
-    it does not, then it is not a true .csv file and should be transformed
-    to a text function and read by the xx function.  Assume we have a .csv
-    file titled ``test.csv`` with the following format.
-
-    .. list-table:: test.csv
-      :widths: 6 10 6 6
-      :header-rows: 1
-
-      * - ID,
-        - Inventory,
-        - Weight_per,
-        - Number
-      * - 1,
-        - Shoes,
-        - 1.5,
-        - 5
-      * - 2,
-        - t-shirt,
-        - 1.8,
-        - 3,
-      * - 3,
-        - coffee,
-        - 2.1,
-        - 15
-      * - 4,
-        - books,
-        - 3.2,
-        - 48
-
-    This file can be read via the following command
-
-    .. code-block:: python
-
-       > file_name = 'test.csv'
-       > headers = ['ID', 'Inventory', 'Weight_per', 'Number']
-       > dat = [int, str, float, int]
-       > df = read_csv_columns_by_headers(file_name, headers, dat)
-       > print(df)
-           ID Inventory Weight_per Number
-        0  1  shoes     1.5        5
-        1  2  t-shirt   1.8        3
-        2  3  coffee    2.1        15
-        3  4  books     3.2        40
-
-    This function can also use the `skip` attributed read data when the
-    headers are not on the first line.  For instance, assume the following csv file;
-
-    .. list-table:: test1.csv
-      :widths: 16 8 5 5
-      :header-rows: 0
-
-      * - This line is used to provide metadata for the csv file
-        -
-        -
-        -
-      * - This line is as well
-        -
-        -
-        -
-      * - ID,
-        - Inventory,
-        - Weight_per,
-        - Number
-      * - 1,
-        - Shoes,
-        - 1.5,
-        - 5
-      * - 2,
-        - t-shirt,
-        - 1.8,
-        - 3,
-      * - 3,
-        - coffee,
-        - 2.1,
-        - 15
-      * - 4,
-        - books,
-        - 3.2,
-        - 48
-
-    This file can be read via the following command
-
-    .. code-block:: python
-
-       > file_name = 'test1.csv'
-       > headers = ['ID', 'Inventory', 'Weight_per', 'Number']
-       > dat = [int, str, float, int]
-       > df = read_csv_columns_by_headers(file_name, headers, dat, skip=2)
-       > print(df)
-           ID Inventory Weight_per Number
-        0  1  shoes     1.5        5
-        1  2  t-shirt   1.8        3
-        2  3  coffee    2.1        15
-        3  4  books     3.2        40
+    This class contains functions that read csv files as relevant to
+    the PyFinances software suite.
     """
-    if not os.path.isfile(file_name):
-        sys.exit('{}{}{}'.format('FATAL ERROR: ', file_name, ' does not exist'))
-    dat = dict(zip(headers, data_type))
-    df = pd.read_csv(file_name, usecols=headers, dtype=dat, skiprows=skip)
-    return df 
-# 
+    @classmethod
+    def read_csv_columns_by_headers(cls, file_name: str, headers: List[str],
+                                    data_type: List[type],
+                                    skip: int = 0) -> pd.DataFrame:
+        """
+
+        :param file_name: The file name to include path-link
+        :param headers: A list of the names of the headers that contain
+                        columns which will be read
+        :param data_type: A list containing the data type of each column.  Data
+                          types are limited to ``numpy.int64``, ``numpy.float64``,
+                          and ``str``
+        :param skip: The number of lines to be skipped before reading data
+        :return df: A pandas dataframe containing all relevant information
+
+        This function assumes the file has a comma (i.e. ,) delimiter, if
+        it does not, then it is not a true .csv file and should be transformed
+        to a text function and read by the xx function.  Assume we have a .csv
+        file titled ``test.csv`` with the following format.
+
+        .. list-table:: test.csv
+          :widths: 6 10 6 6
+          :header-rows: 1
+
+          * - ID,
+            - Inventory,
+            - Weight_per,
+            - Number
+          * - 1,
+            - Shoes,
+            - 1.5,
+            - 5
+          * - 2,
+            - t-shirt,
+            - 1.8,
+            - 3,
+          * - 3,
+            - coffee,
+            - 2.1,
+            - 15
+          * - 4,
+            - books,
+            - 3.2,
+            - 48
+
+        This file can be read via the following command
+
+        .. code-block:: python
+
+           > file_name = 'test.csv'
+           > headers = ['ID', 'Inventory', 'Weight_per', 'Number']
+           > dat = [int, str, float, int]
+           > obj = ReadCSVFile()
+           > df = obj.read_csv_columns_by_headers(file_name, headers, dat)
+           > print(df)
+               ID Inventory Weight_per Number
+            0  1  shoes     1.5        5
+            1  2  t-shirt   1.8        3
+            2  3  coffee    2.1        15
+            3  4  books     3.2        40
+
+        This function can also use the `skip` attributed read data when the
+        headers are not on the first line.  For instance, assume the following csv file;
+
+        .. list-table:: test1.csv
+          :widths: 16 8 5 5
+          :header-rows: 0
+
+          * - This line is used to provide metadata for the csv file
+            -
+            -
+            -
+          * - This line is as well
+            -
+            -
+            -
+          * - ID,
+            - Inventory,
+            - Weight_per,
+            - Number
+          * - 1,
+            - Shoes,
+            - 1.5,
+            - 5
+          * - 2,
+            - t-shirt,
+            - 1.8,
+            - 3,
+          * - 3,
+            - coffee,
+            - 2.1,
+            - 15
+          * - 4,
+            - books,
+            - 3.2,
+            - 48
+
+        This file can be read via the following command
+
+        .. code-block:: python
+
+           > file_name = 'test1.csv'
+           > headers = ['ID', 'Inventory', 'Weight_per', 'Number']
+           > dat = [int, str, float, int]
+           > obj = ReadCSVFile()
+           > df = obj.read_csv_columns_by_headers(file_name, headers, dat, skip=2)
+           > print(df)
+               ID Inventory Weight_per Number
+            0  1  shoes     1.5        5
+            1  2  t-shirt   1.8        3
+            2  3  coffee    2.1        15
+            3  4  books     3.2        40
+        """
+        if not os.path.isfile(file_name):
+            sys.exit('{}{}{}'.format('FATAL ERROR: ', file_name, ' does not exist'))
+        dat = dict(zip(headers, data_type))
+        df = pd.read_csv(file_name, usecols=headers, dtype=dat, skiprows=skip)
+        return df 
 # ================================================================================
 
 
-def read_daily_expenses_csv(file_name: str) -> pd.DataFrame:
+class ProcessDailyExpenseFile(ReadCSVFile):
     """
 
-    :param file_name: The name and path-length of the daily_expenses.csv
+    :param file_name: The name and path-length of the Daily_Expenses.csv
                       file 
-    :return df: A pandas dataframe containing the relevant information from 
-                the daily_expenses.csv file 
 
-    This function reads relevant information from the daily_expenses.csv vile into
-    memory so it can use it for the creation of the total_expenses.csv file.
+    This class contains functions that process the Daily_Expenses.csv 
+    file in different ways.
     """
-    headers = ['Date', 'Checking_Debit', 'Checking_Addition', 'Savings_Debit', 
-              'Savings_Addition', 'Expense_Type']
-    dat_type = [str, np.float32, np.float32, np.float32, np.float32, str]
-    df = read_csv_columns_by_headers(file_name, headers, dat_type)
-    return df
+    def __init__(self, file_name: str):
+        self.file_name = file_name 
+# --------------------------------------------------------------------------------
+
+    def read_daily_expenses_csv(self) -> pd.DataFrame:
+        """
+
+        :return df: A pandas dataframe containing the relevant information from 
+                    the daily_expenses.csv file 
+
+        This function reads relevant information from the daily_expenses.csv vile into
+        memory so it can use it for the creation of the total_expenses.csv file.
+        """
+        headers = ['Date', 'Checking_Debit', 'Checking_Addition', 'Savings_Debit', 
+                  'Savings_Addition', 'Expense_Type']
+        dat_type = [str, np.float32, np.float32, np.float32, np.float32, str]
+        df = self.read_csv_columns_by_headers(self.file_name, headers, dat_type)
+        return df
+# --------------------------------------------------------------------------------
+
+
+    def group_expenses_by_date(self, start_date: str, end_date: str, 
+                               total_expense_file: str) -> None:
+        """
+
+        :param start_date: The initial day over which time a histogram
+                           file is desired.
+        :param end_date: The last day over which time a histogram file
+                         is desired
+        :param total_expense_file: The name and location which the histogram
+                                   data is to be written
+
+        This function reads the Daily_Expenses.csv file and transforms 
+        its contents into a day by day breakdown for the total expendetures
+        in each spending category.  The data is then written to a user
+        defined csv file.  This file is necessary for creating a 
+        pdf and cdf for monte carlo sampling.
+        """
+        df = self.read_daily_expenses_csv()
+        df['Date'] = pd.to_datetime(df['Date'], format='%Y-%m-%d')
+        groceries = self._group_expenses_by_date(start_date, end_date, df, 'Groceries')
+        misc = self._group_expenses_by_date(start_date, end_date, df, 'Misc')
+        gas = self._group_expenses_by_date(start_date, end_date, df, 'Gas')
+        restaurant = self._group_expenses_by_date(start_date, end_date, df, 
+                                                  'Restaurant')
+        bar = self._group_expenses_by_date(start_date, end_date, df, 'Bar')
+
+        planned, date = self._group_expenses_by_date(start_date, end_date, df, 
+                                                     'Planned Expense')
+        information = {'Date': date, 'Bar': bar[0], 
+                       'Groceries': groceries[0],
+                       'Restaurant': restaurant[0], 
+                       'Misc': misc[0],
+                       'Gas': gas[0], 
+                       'Planned': planned}
+        df = pd.DataFrame(data=information)
+        df = df.set_index("Date")
+        df = df[::-1]
+        df.to_csv(total_expense_file)
+# ================================================================================
+# Private-Like functions 
+
+    def _group_expenses_by_date(self, start_date: str, end_date: str, 
+                                df: pd.DataFrame, 
+                                expense: str) -> Tuple[List[float], 
+                                                       List[np.datetime64]]:
+        """
+
+        :param start_date: The start date in the format YYYY-MM-DD
+        :param end_date: The end date in the format YYYY-MM-DD
+        :param df: a pandas dataframe containing the expense history
+        :param expense: The expense_type for which a histogram data
+                        set is desired
+        :return array, date: A tuple containing a list of daily expenses
+                             and another list containing dates
+
+        This function determines the total amount of money spend in a
+        user defined `expense_type` category on each day over the user
+        defined time-frame.  This data can be used for the development
+        of a histogram in another function.
+        """
+        start_date = np.datetime64(start_date)
+        end_date = np.datetime64(end_date)
+        delta = np.timedelta64(1, 'D')
+        array = []
+        date = []
+        while start_date <= end_date:
+            new_df = df[(df['Date'] == start_date) & (df['Expense_Type'] == expense)]
+            sum_num = new_df.Checking_Debit.sum()
+            array.append(sum_num)
+            date.append(start_date)
+            start_date += delta
+        return array, date
+# ================================================================================
+# ================================================================================
 # eof

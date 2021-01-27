@@ -24,21 +24,17 @@ in the `RunOptions.txt` file.
 .. autoclass:: read_files.ReadRunOptionsFile
    :members:
 
-read_csv_columns_by_headers
-===========================
-This function is used to read csv files, which have structured and defined
-headers.  The data is read into a numpy dataframe, in order to make it easier
-and faster for a user to access the data read from the csv file.
+ReadCSVFile
+===========
+This class is used to read csv files as relevant to the PyFinances software suite.
 
-.. autofunction:: read_files.read_csv_columns_by_headers
+.. autoclass:: read_files.ReadCSVFile
+   :members:
 
-read_daily_expenses_csv
+ProcessDailyExpenseFile
 =======================
-This function is used to read the `Daily_Expenses.csv` file, which is necessary
-for the creation of the `Total_Expenses.csv` file.  The user only has to pass
-the name and location of the file, the function is pre-programmed to 
-understand the structure of the document.
+This class containes member functions that are used to read and process the 
+`Daily_Expenses.csv` file.
 
-
-.. autofunction:: read_files.read_daily_expenses_csv
-
+.. autoclass:: read_files.ProcessDailyExpenseFile
+   :members:
