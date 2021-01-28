@@ -9,7 +9,7 @@ sys.path.insert(0, os.path.abspath('../src'))
 from pre_processor import MakeDistribution
 from pre_processor import ProcessDailyExpenseFile
 from pre_processor import CreateCDF, hist_pre_processor
-from read_files import ReadCSVFile
+from pre_processor import ReadCSVFile, ReadMonteCarloFiles
 # ================================================================================
 # ================================================================================
 # Date:    January 26, 20211
@@ -324,6 +324,30 @@ def test_hist_pre_processor():
     os.remove(cdf_file + 'misccdf.csv')
     os.remove(cdf_file + 'groccdf.csv')
     os.remove(cdf_file + 'restcdf.csv')
+# ================================================================================
+# ================================================================================
+# Test functions from the ReadMonteCarloFiles class 
+
+
+def test_read_cdf_files():
+    """
+
+    This function tests the read_cdf_file function to see if it corerctly
+    reads a cdf file
+    """
+    plat = platform.system()
+    if plat == 'Darwin':
+        file_name = '../data/test/cdf_file.csv'
+    else:
+        file_name = r'..\data\test\cdf_file.csv'
+
+    read = ReadMonteCarloFiles()
+    df = read.read_cdf_file(file_name)
+    prob = [0.215, 0.321, 0.415, 0.550, 0.640, 0.720, 0.840, 0.950, 1.000]
+    cent = [8.75, 2.18, 8.95, 14.80, 17.89, 23.50, 32.50, 44.18, 51.20]
+    for i in range(len(prob)):
+        assert math.isclose(prob[i], df['probability'][i], rel_tol=1.0e-3)
+        assert math.isclose(cent[i], df['center'][i], rel_tol=1.0e-3)
 # ================================================================================
 # ================================================================================
 # eof

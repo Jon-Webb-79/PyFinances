@@ -49,3 +49,12 @@ if the users selects False for **Hist Run**, but the cdf files do not exist,
 the software will still run this function.
 
 .. autofunction:: pre_processor.hist_pre_processor
+
+Read Monte Carlo Files
+======================
+The ``ReadMonteCarloFiles`` class is embedded with member functions that read
+files necessary to execute the Monte Carlo program.  These include the 
+cdf files, Deductions file, Bills file, and planned expenses file.
+
+.. autoclass:: pre_processor.ReadMonteCarloFiles
+   :members:

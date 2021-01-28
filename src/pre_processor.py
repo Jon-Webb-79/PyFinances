@@ -58,7 +58,7 @@ class ProcessDailyExpenseFile(ReadCSVFile):
         """
         headers = ['Date', 'Bar', 'Groceries', 'Misc', 'Gas', 'Restaurant']
         dat_type = [str, np.float32, np.float32, np.float32, 
-                    np.float32, np.float32]
+                    zp.float32, np.float32]
         df = self.read_csv_columns_by_headers(total_file, headers, dat_type)
         return df
 # --------------------------------------------------------------------------------
@@ -180,7 +180,7 @@ class MakeDistribution:
             bin_val = [np.sum(k) for k in bins]
       #  print(list(self.data))
       #  print(bin_val)
-      #  print(edges)
+      #print(edges)
         return np.array(bin_val, dtype=np.float64), edges
 # ---------------------------------------------------------------------------------------------
 
@@ -308,6 +308,30 @@ def hist_pre_processor(start_date: str, end_date: str, nbins: int,
     rest.create_cdf_file(file_path + 'restcdf.csv', nbins)
     groc.create_cdf_file(file_path + 'groccdf.csv', nbins)
     gas.create_cdf_file(file_path + 'gascdf.csv', nbins)
+# ================================================================================
+# ================================================================================
+
+
+class ReadMonteCarloFiles(ReadCSVFile):
+    """
+
+    This class contains functions that read the PyFinances input files
+    """
+    def read_cdf_file(self, file_name: str):
+        """
+        
+        :param file_name: The namve of the cdf file to be read 
+
+        This function reads cdf files that contain the cumulative 
+        distribution functions for various spending categories.  The
+        file headers are **probability** and **center**, which represent
+        the probability of spending, and the spending amount that is 
+        commiserate with the probability.
+        """
+        headers = ['probability', 'center']
+        dat_type = [np.float32, np.float32]
+        df = self.read_csv_columns_by_headers(file_name, headers, dat_type)
+        return df
 # ================================================================================
 # ================================================================================
 # eof
