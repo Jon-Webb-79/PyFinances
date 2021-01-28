@@ -357,6 +357,7 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        </span>
 <span class="sd">        :param file_name: The namve of the cdf file to be read </span>
+<span class="sd">        :return df: A dataframe contain</span>
 
 <span class="sd">        This function reads cdf files that contain the cumulative </span>
 <span class="sd">        distribution functions for various spending categories.  The</span>
@@ -366,6 +367,22 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">headers</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;probability&#39;</span><span class="p">,</span> <span class="s1">&#39;center&#39;</span><span class="p">]</span>
         <span class="n">dat_type</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">]</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_csv_columns_by_headers</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="n">dat_type</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">df</span></div>
+<span class="c1"># --------------------------------------------------------------------------------</span>
+
+<div class="viewcode-block" id="ReadMonteCarloFiles.read_bills_file"><a class="viewcode-back" href="../pre_processors.html#pre_processor.ReadMonteCarloFiles.read_bills_file">[docs]</a>    <span class="k">def</span> <span class="nf">read_bills_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        :param file_nae: The name and location of the bills.csv file </span>
+
+<span class="sd">        This function reads the bills.csv file which contains the following</span>
+<span class="sd">        headers **Day**, **Checking_Addition**, **Checking_Debit**, </span>
+<span class="sd">        **Savings_Addition**, **Savings_Debit**, and **Description**.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">headers</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Day&#39;</span><span class="p">,</span> <span class="s1">&#39;Checking_Debit&#39;</span><span class="p">,</span> <span class="s1">&#39;Checking_Addition&#39;</span><span class="p">,</span> 
+                  <span class="s1">&#39;Savings_Debit&#39;</span><span class="p">,</span> <span class="s1">&#39;Savings_Addition&#39;</span><span class="p">,</span> <span class="s1">&#39;Description&#39;</span><span class="p">]</span>
+        <span class="n">dat_type</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span>
         <span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_csv_columns_by_headers</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="n">dat_type</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">df</span></div></div>
 <span class="c1"># ================================================================================</span>

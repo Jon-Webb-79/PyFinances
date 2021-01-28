@@ -348,6 +348,27 @@ def test_read_cdf_files():
     for i in range(len(prob)):
         assert math.isclose(prob[i], df['probability'][i], rel_tol=1.0e-3)
         assert math.isclose(cent[i], df['center'][i], rel_tol=1.0e-3)
+# --------------------------------------------------------------------------------
+
+
+def test_read_bills():
+    """
+
+    This function tests the ability of the read_bills_file()
+    function to correclty read the bills.csv file
+    """
+    plat = platform.system()
+    if plat == 'Darwin':
+        file_name = '../data/test/bills.csv'
+    else:
+        file_name = r'..\data\test\bills.csv'
+    read = ReadMonteCarloFiles()
+    df = read.read_bills_file(file_name)
+    day = np.array([3, 15, 28], np.dtype(int))
+    addition = np.array([35.0, 75.0, 131.0], np.dtype(np.float32))
+    for i in range(len(day)):
+        assert math.isclose(day[i], df['Day'][i])
+        assert math.isclose(addition[i], df['Checking_Debit'][i], rel_tol=1.0e-3)
 # ================================================================================
 # ================================================================================
 # eof

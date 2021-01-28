@@ -263,11 +263,27 @@ cdf files, Deductions file, Bills file, and planned expenses file.</p>
 <em class="property">class </em><code class="sig-prename descclassname">pre_processor.</code><code class="sig-name descname">ReadMonteCarloFiles</code><a class="reference internal" href="_modules/pre_processor.html#ReadMonteCarloFiles"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pre_processor.ReadMonteCarloFiles" title="Permalink to this definition">¶</a></dt>
 <dd><p>This class contains functions that read the PyFinances input files</p>
 <dl class="py method">
+<dt id="pre_processor.ReadMonteCarloFiles.read_bills_file">
+<code class="sig-name descname">read_bills_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file_name</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pre_processor.html#ReadMonteCarloFiles.read_bills_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pre_processor.ReadMonteCarloFiles.read_bills_file" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>file_nae</strong> – The name and location of the bills.csv file</p>
+</dd>
+</dl>
+<p>This function reads the bills.csv file which contains the following
+headers <strong>Day</strong>, <strong>Checking_Addition</strong>, <strong>Checking_Debit</strong>, 
+<strong>Savings_Addition</strong>, <strong>Savings_Debit</strong>, and <strong>Description</strong>.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt id="pre_processor.ReadMonteCarloFiles.read_cdf_file">
 <code class="sig-name descname">read_cdf_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file_name</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pre_processor.html#ReadMonteCarloFiles.read_cdf_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pre_processor.ReadMonteCarloFiles.read_cdf_file" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>file_name</strong> – The namve of the cdf file to be read</p>
+</dd>
+<dt class="field-even">Return df</dt>
+<dd class="field-even"><p>A dataframe contain</p>
 </dd>
 </dl>
 <p>This function reads cdf files that contain the cumulative 

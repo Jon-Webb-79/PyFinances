@@ -321,6 +321,7 @@ class ReadMonteCarloFiles(ReadCSVFile):
         """
         
         :param file_name: The namve of the cdf file to be read 
+        :return df: A dataframe contain
 
         This function reads cdf files that contain the cumulative 
         distribution functions for various spending categories.  The
@@ -330,6 +331,22 @@ class ReadMonteCarloFiles(ReadCSVFile):
         """
         headers = ['probability', 'center']
         dat_type = [np.float32, np.float32]
+        df = self.read_csv_columns_by_headers(file_name, headers, dat_type)
+        return df
+# --------------------------------------------------------------------------------
+
+    def read_bills_file(self, file_name: str):
+        """
+
+        :param file_nae: The name and location of the bills.csv file 
+
+        This function reads the bills.csv file which contains the following
+        headers **Day**, **Checking_Addition**, **Checking_Debit**, 
+        **Savings_Addition**, **Savings_Debit**, and **Description**.
+        """
+        headers = ['Day', 'Checking_Debit', 'Checking_Addition', 
+                  'Savings_Debit', 'Savings_Addition', 'Description']
+        dat_type = [int, np.float32, np.float32, np.float32, np.float32, str]
         df = self.read_csv_columns_by_headers(file_name, headers, dat_type)
         return df
 # ================================================================================
