@@ -404,10 +404,28 @@
         <span class="n">dat_type</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span>
         <span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_csv_columns_by_headers</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="n">dat_type</span><span class="p">)</span>
         <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">],</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">df</span></div>
+<span class="c1"># --------------------------------------------------------------------------------</span>
+
+<div class="viewcode-block" id="ReadMonteCarloFiles.read_deductions_file"><a class="viewcode-back" href="../pre_processors.html#pre_processor.ReadMonteCarloFiles.read_deductions_file">[docs]</a>    <span class="k">def</span> <span class="nf">read_deductions_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        :param file_name: The name and locations of the Deductions.csv </span>
+<span class="sd">                          file </span>
+<span class="sd">        :return df: A pandas dataframe containing the contents of the </span>
+<span class="sd">                    Deductions file.</span>
+
+<span class="sd">        This function reads the Deductions.csv file, which contains </span>
+<span class="sd">        all paycheck deductions.  It is assumed that these debits are</span>
+<span class="sd">        deduction from the check prior to distribution.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">headers</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Amount&#39;</span><span class="p">,</span> <span class="s1">&#39;Description&#39;</span><span class="p">]</span>
+        <span class="n">dat_type</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_csv_columns_by_headers</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="n">dat_type</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">df</span></div></div>
 <span class="c1"># ================================================================================</span>
 <span class="c1"># ================================================================================</span>
-<span class="c1"># eof</span>
+<span class="c1">#d eof</span>
 </pre></div>
 
             <div class="clearer"></div>

@@ -369,6 +369,24 @@ class ReadMonteCarloFiles(ReadCSVFile):
         df = self.read_csv_columns_by_headers(file_name, headers, dat_type)
         df['Date'] = pd.to_datetime(df['Date'], format='%Y-%m-%d')
         return df
+# --------------------------------------------------------------------------------
+
+    def read_deductions_file(self, file_name: str) -> pd.DataFrame:
+        """
+
+        :param file_name: The name and locations of the Deductions.csv 
+                          file 
+        :return df: A pandas dataframe containing the contents of the 
+                    Deductions file.
+
+        This function reads the Deductions.csv file, which contains 
+        all paycheck deductions.  It is assumed that these debits are
+        deduction from the check prior to distribution.
+        """
+        headers = ['Amount', 'Description']
+        dat_type = [np.float32, str]
+        df = self.read_csv_columns_by_headers(file_name, headers, dat_type)
+        return df
 # ================================================================================
 # ================================================================================
-# eof
+#d eof

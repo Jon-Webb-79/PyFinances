@@ -297,6 +297,24 @@ commiserate with the probability.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt id="pre_processor.ReadMonteCarloFiles.read_deductions_file">
+<code class="sig-name descname">read_deductions_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file_name</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="reference internal" href="_modules/pre_processor.html#ReadMonteCarloFiles.read_deductions_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pre_processor.ReadMonteCarloFiles.read_deductions_file" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>file_name</strong> – The name and locations of the Deductions.csv 
+file</p>
+</dd>
+<dt class="field-even">Return df</dt>
+<dd class="field-even"><p>A pandas dataframe containing the contents of the 
+Deductions file.</p>
+</dd>
+</dl>
+<p>This function reads the Deductions.csv file, which contains 
+all paycheck deductions.  It is assumed that these debits are
+deduction from the check prior to distribution.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt id="pre_processor.ReadMonteCarloFiles.read_planned_expenses">
 <code class="sig-name descname">read_planned_expenses</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file_name</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="reference internal" href="_modules/pre_processor.html#ReadMonteCarloFiles.read_planned_expenses"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pre_processor.ReadMonteCarloFiles.read_planned_expenses" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">

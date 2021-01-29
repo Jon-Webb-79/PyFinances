@@ -389,6 +389,22 @@ def test_read_planned_expenses():
         assert dt[i] == df['Date'][i]
         assert math.isclose(addition[i], df['Checking_Debit'][i],
                             rel_tol=1.0e-3)
+# --------------------------------------------------------------------------------
+
+
+def test_read_deductions():
+    plat = platform.system()
+    if plat == 'Darwin':
+        file_name = '../data/test/Deductions.csv'
+    else:
+        file_name = r'..\data\test\Deductions.csv'
+    read = ReadMonteCarloFiles()
+    df = read.read_deductions_file(file_name)
+    amount = np.array([144.50, 73.50, 164.0], np.dtype(np.float32))
+    description = ['401k', 'Medical Deductions', 'Federal Income Tax']
+    for i in range(len(amount)):
+        assert math.isclose(amount[i], df['Amount'][i], rel_tol=1.0e-3)
+        assert description[i] == df['Description'][i]
 # ================================================================================
 # ================================================================================
 # eof
