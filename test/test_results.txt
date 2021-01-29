@@ -2,39 +2,58 @@
 platform darwin -- Python 3.8.6, pytest-6.0.2, py-1.9.0, pluggy-0.13.1 -- /usr/local/opt/python@3.8/bin/python3.8
 cachedir: .pytest_cache
 rootdir: /Users/jonwebb/Desktop/Code_Dev/Python/PyFinances
-collecting ... collected 31 items
+collecting ... collected 32 items
 
 test_pre_processors.py::test_read_daily_expenses_csv PASSED              [  3%]
 test_pre_processors.py::test_grouped_dataframe_expense PASSED            [  6%]
 test_pre_processors.py::test_give_name_here PASSED                       [  9%]
 test_pre_processors.py::test_discrete_pdf_non_normed PASSED              [ 12%]
-test_pre_processors.py::test_continuous_pdf_normed PASSED                [ 16%]
-test_pre_processors.py::test_continuous_pdf_non_normed PASSED            [ 19%]
-test_pre_processors.py::test_discrete_cdf_non_normed PASSED              [ 22%]
+test_pre_processors.py::test_continuous_pdf_normed PASSED                [ 15%]
+test_pre_processors.py::test_continuous_pdf_non_normed PASSED            [ 18%]
+test_pre_processors.py::test_discrete_cdf_non_normed PASSED              [ 21%]
 test_pre_processors.py::test_discrete_cdf_normed PASSED                  [ 25%]
-test_pre_processors.py::test_continuous_cdf_non_normed PASSED            [ 29%]
-test_pre_processors.py::test_continuous_cdf_normed PASSED                [ 32%]
-test_pre_processors.py::test_create_cdf PASSED                           [ 35%]
-test_pre_processors.py::test_hist_pre_processor PASSED                   [ 38%]
-test_pre_processors.py::test_read_cdf_files PASSED                       [ 41%]
-test_pre_processors.py::test_read_bills PASSED                           [ 45%]
-test_pre_processors.py::test_read_planned_expenses PASSED                [ 48%]
-test_pre_processors.py::test_read_deductions PASSED                      [ 51%]
-test_read_files.py::test_file_not_found PASSED                           [ 54%]
-test_read_files.py::test_read_double_list PASSED                         [ 58%]
-test_read_files.py::test_read_float PASSED                               [ 61%]
-test_read_files.py::test_float_list PASSED                               [ 64%]
-test_read_files.py::test_read_integer PASSED                             [ 67%]
-test_read_files.py::test_read_integer_list PASSED                        [ 70%]
-test_read_files.py::test_read_sentence PASSED                            [ 74%]
-test_read_files.py::test_read_string PASSED                              [ 77%]
-test_read_files.py::test_read_string_list PASSED                         [ 80%]
-test_read_files.py::test_read_hist_true_info PASSED                      [ 83%]
+test_pre_processors.py::test_continuous_cdf_non_normed PASSED            [ 28%]
+test_pre_processors.py::test_continuous_cdf_normed PASSED                [ 31%]
+test_pre_processors.py::test_create_cdf PASSED                           [ 34%]
+test_pre_processors.py::test_hist_pre_processor PASSED                   [ 37%]
+test_pre_processors.py::test_read_cdf_files PASSED                       [ 40%]
+test_pre_processors.py::test_read_bills PASSED                           [ 43%]
+test_pre_processors.py::test_read_planned_expenses PASSED                [ 46%]
+test_pre_processors.py::test_read_deductions FAILED                      [ 50%]
+test_pre_processors.py::test_make_dates PASSED                           [ 53%]
+test_read_files.py::test_file_not_found PASSED                           [ 56%]
+test_read_files.py::test_read_double_list PASSED                         [ 59%]
+test_read_files.py::test_read_float PASSED                               [ 62%]
+test_read_files.py::test_float_list PASSED                               [ 65%]
+test_read_files.py::test_read_integer PASSED                             [ 68%]
+test_read_files.py::test_read_integer_list PASSED                        [ 71%]
+test_read_files.py::test_read_sentence PASSED                            [ 75%]
+test_read_files.py::test_read_string PASSED                              [ 78%]
+test_read_files.py::test_read_string_list PASSED                         [ 81%]
+test_read_files.py::test_read_hist_true_info PASSED                      [ 84%]
 test_read_files.py::test_read_no_hist_info PASSED                        [ 87%]
 test_read_files.py::test_read_false_hist_info PASSED                     [ 90%]
 test_read_files.py::test_read_bad_freq PASSED                            [ 93%]
 test_read_files.py::test_read_pay_date PASSED                            [ 96%]
 test_read_files.py::test_read_csv_by_headers PASSED                      [100%]
 
-============================== 31 passed in 7.43s ==============================
-Thu Jan 28 20:55:58 MST 2021
+=================================== FAILURES ===================================
+_____________________________ test_read_deductions _____________________________
+
+    def test_read_deductions():
+        plat = platform.system()
+        if plat == 'Darwin':
+            file_name = '../data/test/Deductions.csv'
+        else:
+            file_name = r'..\data\test\Deductions.csv'
+        read = ReadMonteCarloFiles()
+        df = read.read_deductions_file(file_name)
+        amount = np.array([144.50, 73.50, 164.0], np.dtype(np.float32))
+>       description  ['401k', 'Medical Deductions', 'Federal Income Tax']
+E       NameError: name 'description' is not defined
+
+test_pre_processors.py:404: NameError
+=========================== short test summary info ============================
+FAILED test_pre_processors.py::test_read_deductions - NameError: name 'descri...
+========================= 1 failed, 31 passed in 7.77s =========================
+Fri Jan 29 07:29:06 MST 2021

@@ -58,3 +58,11 @@ cdf files, Deductions file, Bills file, and planned expenses file.
 
 .. autoclass:: pre_processor.ReadMonteCarloFiles
    :members:
+
+Make Dates
+==========
+The following functions are used to produce dates that are either used to 
+iterate through the Monte Carlo code or are used to compare pay dates
+with the actual date.
+
+.. autofunction:: pre_processor.make_dates

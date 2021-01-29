@@ -389,4 +389,21 @@ class ReadMonteCarloFiles(ReadCSVFile):
         return df
 # ================================================================================
 # ================================================================================
-#d eof
+
+
+def make_dates(start_date: str, end_date: str) -> pd.DatetimeIndex:
+    """
+
+    :param start_date: The first date in a datetime index 
+    :param end_date: The last date in a datetime index 
+    :return dates: A datetime index 
+
+    This function creates a list of dates in one dat intervals starting from
+    the start_date to the end_date.  The list is returned as a pandas
+    datetime index.
+    """
+    dates = pd.date_range(start=start_date, end=end_date)
+    return dates
+# ================================================================================
+# ================================================================================
+# eof

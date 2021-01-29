@@ -334,6 +334,31 @@ following headers, <strong>Date</strong>, <strong>Checking_Debit</strong>, <stro
 </dd></dl>
 
 </div>
+<div class="section" id="make-dates">
+<h2>Make Dates<a class="headerlink" href="#make-dates" title="Permalink to this headline">¶</a></h2>
+<p>The following functions are used to produce dates that are either used to
+iterate through the Monte Carlo code or are used to compare pay dates
+with the actual date.</p>
+<dl class="py function">
+<dt id="pre_processor.make_dates">
+<code class="sig-prename descclassname">pre_processor.</code><code class="sig-name descname">make_dates</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">start_date</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">end_date</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> &#x2192; pandas.core.indexes.datetimes.DatetimeIndex<a class="reference internal" href="_modules/pre_processor.html#make_dates"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pre_processor.make_dates" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>start_date</strong> – The first date in a datetime index</p></li>
+<li><p><strong>end_date</strong> – The last date in a datetime index</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return dates</dt>
+<dd class="field-even"><p>A datetime index</p>
+</dd>
+</dl>
+<p>This function creates a list of dates in one dat intervals starting from
+the start_date to the end_date.  The list is returned as a pandas
+datetime index.</p>
+</dd></dl>
+
+</div>
 </div>
 
 
@@ -351,6 +376,7 @@ following headers, <strong>Date</strong>, <strong>Checking_Debit</strong>, <stro
 <li><a class="reference internal" href="#createcdf">CreateCDF</a></li>
 <li><a class="reference internal" href="#histogram-pre-processor">Histogram Pre-Processor</a></li>
 <li><a class="reference internal" href="#read-monte-carlo-files">Read Monte Carlo Files</a></li>
+<li><a class="reference internal" href="#make-dates">Make Dates</a></li>
 </ul>
 </li>
 </ul>
