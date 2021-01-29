@@ -133,8 +133,8 @@ density functions and cumulative density functions</p>
 <li><p><strong>norm</strong> – True if the data is to be normalized</p></li>
 </ul>
 </dd>
-<dt class="field-even">Return cum_bins, middle</dt>
-<dd class="field-even"><p>A tuple containing the probability of finding a
+<dt class="field-even">Return cum_bins</dt>
+<dd class="field-even"><p>middle: A tuple containing the probability of finding a
 value in a given bin as an array and the edges of
 each bin as an array</p>
 </dd>
@@ -264,10 +264,13 @@ cdf files, Deductions file, Bills file, and planned expenses file.</p>
 <dd><p>This class contains functions that read the PyFinances input files</p>
 <dl class="py method">
 <dt id="pre_processor.ReadMonteCarloFiles.read_bills_file">
-<code class="sig-name descname">read_bills_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file_name</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pre_processor.html#ReadMonteCarloFiles.read_bills_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pre_processor.ReadMonteCarloFiles.read_bills_file" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">read_bills_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file_name</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="reference internal" href="_modules/pre_processor.html#ReadMonteCarloFiles.read_bills_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pre_processor.ReadMonteCarloFiles.read_bills_file" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>file_nae</strong> – The name and location of the bills.csv file</p>
+</dd>
+<dt class="field-even">Return df</dt>
+<dd class="field-even"><p>A dataframe containing the bills information</p>
 </dd>
 </dl>
 <p>This function reads the bills.csv file which contains the following
@@ -277,13 +280,13 @@ headers <strong>Day</strong>, <strong>Checking_Addition</strong>, <strong>Checki
 
 <dl class="py method">
 <dt id="pre_processor.ReadMonteCarloFiles.read_cdf_file">
-<code class="sig-name descname">read_cdf_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file_name</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pre_processor.html#ReadMonteCarloFiles.read_cdf_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pre_processor.ReadMonteCarloFiles.read_cdf_file" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">read_cdf_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file_name</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="reference internal" href="_modules/pre_processor.html#ReadMonteCarloFiles.read_cdf_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pre_processor.ReadMonteCarloFiles.read_cdf_file" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>file_name</strong> – The namve of the cdf file to be read</p>
 </dd>
 <dt class="field-even">Return df</dt>
-<dd class="field-even"><p>A dataframe contain</p>
+<dd class="field-even"><p>A dataframe containing the cdf information</p>
 </dd>
 </dl>
 <p>This function reads cdf files that contain the cumulative 
@@ -291,6 +294,23 @@ distribution functions for various spending categories.  The
 file headers are <strong>probability</strong> and <strong>center</strong>, which represent
 the probability of spending, and the spending amount that is 
 commiserate with the probability.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pre_processor.ReadMonteCarloFiles.read_planned_expenses">
+<code class="sig-name descname">read_planned_expenses</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file_name</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="reference internal" href="_modules/pre_processor.html#ReadMonteCarloFiles.read_planned_expenses"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pre_processor.ReadMonteCarloFiles.read_planned_expenses" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>file_name</strong> – The name and location of the planned_expense.csv
+file</p>
+</dd>
+<dt class="field-even">Return df</dt>
+<dd class="field-even"><p>A dataframe containing the planned expenses information</p>
+</dd>
+</dl>
+<p>This function reads the planned_epenses.csv file, which contains the 
+following headers, <strong>Date</strong>, <strong>Checking_Debit</strong>, <strong>Checking_Addition</strong>, 
+<strong>Savings_Debit</strong>, <strong>Savings_Addition</strong>, and <strong>Description</strong>.</p>
 </dd></dl>
 
 </dd></dl>

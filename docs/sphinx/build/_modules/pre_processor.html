@@ -94,7 +94,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">headers</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">,</span> <span class="s1">&#39;Bar&#39;</span><span class="p">,</span> <span class="s1">&#39;Groceries&#39;</span><span class="p">,</span> <span class="s1">&#39;Misc&#39;</span><span class="p">,</span> <span class="s1">&#39;Gas&#39;</span><span class="p">,</span> <span class="s1">&#39;Restaurant&#39;</span><span class="p">]</span>
         <span class="n">dat_type</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> 
-                    <span class="n">zp</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">]</span>
+                    <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">]</span>
         <span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_csv_columns_by_headers</span><span class="p">(</span><span class="n">total_file</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="n">dat_type</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">df</span></div>
 <span class="c1"># --------------------------------------------------------------------------------</span>
@@ -253,9 +253,9 @@
 
 <span class="sd">        :param n_bins: The number of histogram bins</span>
 <span class="sd">        :param norm: True if the data is to be normalized</span>
-<span class="sd">        :return cum_bins, middle: A tuple containing the probability of finding a</span>
-<span class="sd">                                 value in a given bin as an array and the edges of</span>
-<span class="sd">                                 each bin as an array</span>
+<span class="sd">        :return cum_bins: middle: A tuple containing the probability of finding a</span>
+<span class="sd">                          value in a given bin as an array and the edges of</span>
+<span class="sd">                          each bin as an array</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">bins</span><span class="p">,</span> <span class="n">middle</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">continuous_pdf</span><span class="p">(</span><span class="n">n_bins</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">)</span>
         <span class="n">cum_bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">bins</span><span class="p">)</span>
@@ -353,11 +353,11 @@
 
 <span class="sd">    This class contains functions that read the PyFinances input files</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-<div class="viewcode-block" id="ReadMonteCarloFiles.read_cdf_file"><a class="viewcode-back" href="../pre_processors.html#pre_processor.ReadMonteCarloFiles.read_cdf_file">[docs]</a>    <span class="k">def</span> <span class="nf">read_cdf_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<div class="viewcode-block" id="ReadMonteCarloFiles.read_cdf_file"><a class="viewcode-back" href="../pre_processors.html#pre_processor.ReadMonteCarloFiles.read_cdf_file">[docs]</a>    <span class="k">def</span> <span class="nf">read_cdf_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        </span>
 <span class="sd">        :param file_name: The namve of the cdf file to be read </span>
-<span class="sd">        :return df: A dataframe contain</span>
+<span class="sd">        :return df: A dataframe containing the cdf information</span>
 
 <span class="sd">        This function reads cdf files that contain the cumulative </span>
 <span class="sd">        distribution functions for various spending categories.  The</span>
@@ -371,10 +371,11 @@
         <span class="k">return</span> <span class="n">df</span></div>
 <span class="c1"># --------------------------------------------------------------------------------</span>
 
-<div class="viewcode-block" id="ReadMonteCarloFiles.read_bills_file"><a class="viewcode-back" href="../pre_processors.html#pre_processor.ReadMonteCarloFiles.read_bills_file">[docs]</a>    <span class="k">def</span> <span class="nf">read_bills_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<div class="viewcode-block" id="ReadMonteCarloFiles.read_bills_file"><a class="viewcode-back" href="../pre_processors.html#pre_processor.ReadMonteCarloFiles.read_bills_file">[docs]</a>    <span class="k">def</span> <span class="nf">read_bills_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="sd">        :param file_nae: The name and location of the bills.csv file </span>
+<span class="sd">        :return df: A dataframe containing the bills information</span>
 
 <span class="sd">        This function reads the bills.csv file which contains the following</span>
 <span class="sd">        headers **Day**, **Checking_Addition**, **Checking_Debit**, </span>
@@ -384,6 +385,25 @@
                   <span class="s1">&#39;Savings_Debit&#39;</span><span class="p">,</span> <span class="s1">&#39;Savings_Addition&#39;</span><span class="p">,</span> <span class="s1">&#39;Description&#39;</span><span class="p">]</span>
         <span class="n">dat_type</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span>
         <span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_csv_columns_by_headers</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="n">dat_type</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">df</span></div>
+<span class="c1"># --------------------------------------------------------------------------------</span>
+
+<div class="viewcode-block" id="ReadMonteCarloFiles.read_planned_expenses"><a class="viewcode-back" href="../pre_processors.html#pre_processor.ReadMonteCarloFiles.read_planned_expenses">[docs]</a>    <span class="k">def</span> <span class="nf">read_planned_expenses</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        :param  file_name: The name and location of the planned_expense.csv</span>
+<span class="sd">                           file</span>
+<span class="sd">        :return df: A dataframe containing the planned expenses information </span>
+
+<span class="sd">        This function reads the planned_epenses.csv file, which contains the </span>
+<span class="sd">        following headers, **Date**, **Checking_Debit**, **Checking_Addition**, </span>
+<span class="sd">        **Savings_Debit**, **Savings_Addition**, and **Description**.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">headers</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">,</span> <span class="s1">&#39;Checking_Debit&#39;</span><span class="p">,</span> <span class="s1">&#39;Checking_Addition&#39;</span><span class="p">,</span> 
+                   <span class="s1">&#39;Savings_Debit&#39;</span><span class="p">,</span> <span class="s1">&#39;Savings_Addition&#39;</span><span class="p">,</span> <span class="s1">&#39;Description&#39;</span><span class="p">]</span>
+        <span class="n">dat_type</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_csv_columns_by_headers</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="n">dat_type</span><span class="p">)</span>
+        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">],</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">df</span></div></div>
 <span class="c1"># ================================================================================</span>
 <span class="c1"># ================================================================================</span>

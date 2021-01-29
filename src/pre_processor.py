@@ -58,7 +58,7 @@ class ProcessDailyExpenseFile(ReadCSVFile):
         """
         headers = ['Date', 'Bar', 'Groceries', 'Misc', 'Gas', 'Restaurant']
         dat_type = [str, np.float32, np.float32, np.float32, 
-                    zp.float32, np.float32]
+                    np.float32, np.float32]
         df = self.read_csv_columns_by_headers(total_file, headers, dat_type)
         return df
 # --------------------------------------------------------------------------------
@@ -217,9 +217,9 @@ class MakeDistribution:
 
         :param n_bins: The number of histogram bins
         :param norm: True if the data is to be normalized
-        :return cum_bins, middle: A tuple containing the probability of finding a
-                                 value in a given bin as an array and the edges of
-                                 each bin as an array
+        :return cum_bins: middle: A tuple containing the probability of finding a
+                          value in a given bin as an array and the edges of
+                          each bin as an array
         """
         bins, middle = self.continuous_pdf(n_bins, norm=norm)
         cum_bins = np.cumsum(bins)
@@ -317,11 +317,11 @@ class ReadMonteCarloFiles(ReadCSVFile):
 
     This class contains functions that read the PyFinances input files
     """
-    def read_cdf_file(self, file_name: str):
+    def read_cdf_file(self, file_name: str) -> pd.DataFrame:
         """
         
         :param file_name: The namve of the cdf file to be read 
-        :return df: A dataframe contain
+        :return df: A dataframe containing the cdf information
 
         This function reads cdf files that contain the cumulative 
         distribution functions for various spending categories.  The
@@ -335,10 +335,11 @@ class ReadMonteCarloFiles(ReadCSVFile):
         return df
 # --------------------------------------------------------------------------------
 
-    def read_bills_file(self, file_name: str):
+    def read_bills_file(self, file_name: str) -> pd.DataFrame:
         """
 
         :param file_nae: The name and location of the bills.csv file 
+        :return df: A dataframe containing the bills information
 
         This function reads the bills.csv file which contains the following
         headers **Day**, **Checking_Addition**, **Checking_Debit**, 
@@ -348,6 +349,25 @@ class ReadMonteCarloFiles(ReadCSVFile):
                   'Savings_Debit', 'Savings_Addition', 'Description']
         dat_type = [int, np.float32, np.float32, np.float32, np.float32, str]
         df = self.read_csv_columns_by_headers(file_name, headers, dat_type)
+        return df
+# --------------------------------------------------------------------------------
+
+    def read_planned_expenses(self, file_name: str) -> pd.DataFrame:
+        """
+
+        :param  file_name: The name and location of the planned_expense.csv
+                           file
+        :return df: A dataframe containing the planned expenses information 
+
+        This function reads the planned_epenses.csv file, which contains the 
+        following headers, **Date**, **Checking_Debit**, **Checking_Addition**, 
+        **Savings_Debit**, **Savings_Addition**, and **Description**.
+        """
+        headers = ['Date', 'Checking_Debit', 'Checking_Addition', 
+                   'Savings_Debit', 'Savings_Addition', 'Description']
+        dat_type = [str, np.float32, np.float32, np.float32, np.float32, str]
+        df = self.read_csv_columns_by_headers(file_name, headers, dat_type)
+        df['Date'] = pd.to_datetime(df['Date'], format='%Y-%m-%d')
         return df
 # ================================================================================
 # ================================================================================
