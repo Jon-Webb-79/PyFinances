@@ -406,4 +406,20 @@ def make_dates(start_date: str, end_date: str) -> pd.DatetimeIndex:
     return dates
 # ================================================================================
 # ================================================================================
+
+
+def make_pay_dates(first_pay_date: str, frequency: str, end_date: str):
+    if frequency.upper() == 'WEEKLY':
+        dates = pd.date_range(start=first_pay_date, end=end_date, freq='W-FRI')
+    elif frequency.upper() == 'BI-WEEKLY':
+        dates = pd.date_range(start=first_pay_date, end=end_date, freq = '2W-FRI')
+    elif frequency.upper() == 'MONTHLY':
+        dates = pay_dates(start=start_date, end=end_date, freq='M')
+    else:
+        # Figure out how to sample the 15th and the last day of each month between
+        # the start and end month
+        pass
+        return dates
+# ================================================================================
+# ================================================================================
 # eof

@@ -11,6 +11,7 @@ from pre_processor import MakeDistribution
 from pre_processor import ProcessDailyExpenseFile
 from pre_processor import CreateCDF, hist_pre_processor
 from pre_processor import ReadCSVFile, ReadMonteCarloFiles, make_dates
+from pre_processor import make_pay_dates
 # ================================================================================
 # ================================================================================
 # Date:    January 26, 20211
@@ -401,7 +402,7 @@ def test_read_deductions():
     read = ReadMonteCarloFiles()
     df = read.read_deductions_file(file_name)
     amount = np.array([144.50, 73.50, 164.0], np.dtype(np.float32))
-    description  ['401k', 'Medical Deductions', 'Federal Income Tax']
+    description = ['401k', 'Medical Deductions', 'Federal Income Tax']
     for i in range(len(amount)):
         assert math.isclose(amount[i], df['Amount'][i], rel_tol=1.0e-3)
         assert description[i] == df['Description'][i]
@@ -416,6 +417,16 @@ def test_make_dates():
     dates = make_dates(start_date, end_date)
     for i in range(len(dates)):
         assert dates[i] == results[i]
+# ================================================================================
+# ================================================================================
+
+
+def test_make_pay_dates():
+    start_date = '2021-01-01'
+    end_date = '2021-03-28'
+    frequency = 'weekly'
+    dates = make_pay_dates(start_date, frequency, end_date)
+    print(dates)
 # ================================================================================
 # ================================================================================
 # eof
