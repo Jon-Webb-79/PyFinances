@@ -178,9 +178,6 @@ class MakeDistribution:
             bin_val = [np.sum(k) / len(self.data) for k in bins]
         else:
             bin_val = [np.sum(k) for k in bins]
-      #  print(list(self.data))
-      #  print(bin_val)
-      #print(edges)
         return np.array(bin_val, dtype=np.float64), edges
 # ---------------------------------------------------------------------------------------------
 

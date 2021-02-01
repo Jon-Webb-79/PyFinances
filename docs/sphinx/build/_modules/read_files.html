@@ -456,7 +456,7 @@
 
 <span class="sd">        This function validates the user pay_frequency input</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">accepted</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;WEEKLY&#39;</span><span class="p">,</span> <span class="s1">&#39;MONTHLY&#39;</span><span class="p">,</span> <span class="s1">&#39;BI-MONTHLY&#39;</span><span class="p">,</span> <span class="s1">&#39;BI-WEEKLY&#39;</span><span class="p">]</span>
+        <span class="n">accepted</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;WEEKLY&#39;</span><span class="p">,</span> <span class="s1">&#39;MONTHLY&#39;</span><span class="p">,</span> <span class="s1">&#39;BI-WEEKLY&#39;</span><span class="p">]</span>
         <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;FATAL ERROR: Pay Frequency must be one of the following &quot;</span>
         <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{}{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">accepted</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">freq</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">accepted</span><span class="p">:</span>

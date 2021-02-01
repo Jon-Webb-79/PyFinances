@@ -420,7 +420,7 @@ class ReadRunOptionsFile(ReadTextFileKeywords):
 
         This function validates the user pay_frequency input
         """
-        accepted = ['WEEKLY', 'MONTHLY', 'BI-MONTHLY', 'BI-WEEKLY']
+        accepted = ['WEEKLY', 'MONTHLY', 'BI-WEEKLY']
         msg = "FATAL ERROR: Pay Frequency must be one of the following "
         message = '{}{}'.format(msg, accepted)
         if freq.upper() not in accepted:

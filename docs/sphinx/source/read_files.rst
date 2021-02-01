@@ -6,7 +6,7 @@ ASCII based text files, to include `.txt` files and `.csv` files.  All of
 the code described in this section is maintained in the `read_files.py` file.
 
 ReadTextFileKeywords
-=====================
+====================
 This class is used to read a text file by its keywords.  The member functions will
 open a file and search it for a user defined keyword.  if the keyword is found, 
 the function will read the text string to the right of the keyword into 
