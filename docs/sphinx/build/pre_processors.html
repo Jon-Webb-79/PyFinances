@@ -358,6 +358,28 @@ the start_date to the end_date.  The list is returned as a pandas
 datetime index.</p>
 </dd></dl>
 
+<dl class="py function">
+<dt id="pre_processor.make_pay_dates">
+<code class="sig-prename descclassname">pre_processor.</code><code class="sig-name descname">make_pay_dates</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">first_pay_date</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">frequency</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">end_date</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> &#x2192; pandas.core.indexes.datetimes.DatetimeIndex<a class="reference internal" href="_modules/pre_processor.html#make_pay_dates"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pre_processor.make_pay_dates" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>first_pay_date</strong> – The firs pay date in the formay YYYY-MM-DD</p></li>
+<li><p><strong>frquency</strong> – The frequency of paychecks, WEEKLY, BI-WEEKLY, or
+MONTHLY</p></li>
+<li><p><strong>end_date</strong> – The last date for pay allocation.  This day does not 
+have to fall on a pay date and instead represents the 
+last day for Monte Carlo iteration.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return dates</dt>
+<dd class="field-even"><p>A pandas series of pay dates</p>
+</dd>
+</dl>
+<p>This function produces a pandas data series of dates, where each date 
+represents a pay date.</p>
+</dd></dl>
+
 </div>
 </div>
 

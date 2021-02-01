@@ -408,18 +408,28 @@ def make_dates(start_date: str, end_date: str) -> pd.DatetimeIndex:
 # ================================================================================
 
 
-def make_pay_dates(first_pay_date: str, frequency: str, end_date: str):
+def make_pay_dates(first_pay_date: str, frequency: str, 
+                   end_date: str) -> pd.DatetimeIndex:
+    """
+
+    :param first_pay_date: The firs pay date in the formay YYYY-MM-DD
+    :param frquency: The frequency of paychecks, WEEKLY, BI-WEEKLY, or
+                     MONTHLY
+    :param end_date: The last date for pay allocation.  This day does not 
+                     have to fall on a pay date and instead represents the 
+                     last day for Monte Carlo iteration.
+    :return dates: A pandas series of pay dates
+
+    This function produces a pandas data series of dates, where each date 
+    represents a pay date.
+    """
     if frequency.upper() == 'WEEKLY':
         dates = pd.date_range(start=first_pay_date, end=end_date, freq='W-FRI')
     elif frequency.upper() == 'BI-WEEKLY':
         dates = pd.date_range(start=first_pay_date, end=end_date, freq = '2W-FRI')
-    elif frequency.upper() == 'MONTHLY':
-        dates = pay_dates(start=start_date, end=end_date, freq='M')
-    else:
-        # Figure out how to sample the 15th and the last day of each month between
-        # the start and end month
-        pass
-        return dates
+    else:    
+        dates = pd.date_range(start=first_pay_date, end=end_date, freq='M')
+    return dates
 # ================================================================================
 # ================================================================================
 # eof

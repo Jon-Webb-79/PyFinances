@@ -376,6 +376,11 @@ def test_read_bills():
 
 
 def test_read_planned_expenses():
+    """
+
+    Test to ensure that the read_planned_expenses function works
+    properly
+    """
     plat = platform.system()
     if plat == 'Darwin':
         file_name = '../data/test/planned.csv'
@@ -394,6 +399,10 @@ def test_read_planned_expenses():
 
 
 def test_read_deductions():
+    """
+
+    Tests to ensure that the read_dedctions function works properly
+    """
     plat = platform.system()
     if plat == 'Darwin':
         file_name = '../data/test/Deductions.csv'
@@ -411,6 +420,11 @@ def test_read_deductions():
 
 
 def test_make_dates():
+    """
+
+    Tests to ensure that the make_dates() function correctly creates
+    a pandas datetimeindex with the correct dates
+    """
     start_date = '2020-01-01'
     end_date = '2020-01-03'
     results = pd.date_range(start_date, end_date)
@@ -421,12 +435,53 @@ def test_make_dates():
 # ================================================================================
 
 
-def test_make_pay_dates():
+def test_make_pay_dates_weekly():
+    """
+
+    Tests test the make_pay_dates function to ensure that it properly
+    creates a pandas datatime index with the correct dates if the user
+    selects weekly as the pay frequency
+    """
     start_date = '2021-01-01'
-    end_date = '2021-03-28'
+    end_date = '2021-02-28'
     frequency = 'weekly'
     dates = make_pay_dates(start_date, frequency, end_date)
-    print(dates)
+    expected = pd.DatetimeIndex(['2021-01-01', '2021-01-08', '2021-01-15',
+                                 '2021-01-22', '2021-01-29', '2021-02-05',
+                                 '2021-02-12', '2021-02-19', '2021-02-26'])
+    for i in range(len(expected)):
+        assert dates[i] == expected[i]
+# ================================================================================
+# ================================================================================
+
+
+def test_make_pay_dates_biweekly():
+    """
+
+    This function tests the make_pay_dates function to ensure that it properly
+    creates a pandas datetime index with the correct dates if the user
+    select bi-weekly as the pay frequency
+    """
+    start_date = '2021-01-01'
+    end_date = '2021-02-28'
+    frequency = 'bi-weekly'
+    dates = make_pay_dates(start_date, frequency, end_date)
+    expected = pd.DatetimeIndex(['2021-01-01', '2021-01-15', '2021-01-29',
+                                 '2021-02-12', '2021-02-26'])
+    for i in range(len(expected)):
+        assert expected[i] == dates[i]
+# ================================================================================
+# ================================================================================
+
+
+def test_make_pay_dates_monthly():
+    start_date = '2021-01-01'
+    end_date = '2021-03-28'
+    frequency = 'monthly'
+    dates = make_pay_dates(start_date, frequency, end_date)
+    expected = pd.DatetimeIndex(['2021-01-31', '2021-02-28'])
+    for i in range(len(expected)):
+        assert expected[i] == dates[i]
 # ================================================================================
 # ================================================================================
 # eof

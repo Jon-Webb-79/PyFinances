@@ -66,3 +66,5 @@ iterate through the Monte Carlo code or are used to compare pay dates
 with the actual date.
 
 .. autofunction:: pre_processor.make_dates
+
+.. autofunction:: pre_processor.make_pay_dates

@@ -442,6 +442,32 @@
     <span class="k">return</span> <span class="n">dates</span></div>
 <span class="c1"># ================================================================================</span>
 <span class="c1"># ================================================================================</span>
+
+
+<div class="viewcode-block" id="make_pay_dates"><a class="viewcode-back" href="../pre_processors.html#pre_processor.make_pay_dates">[docs]</a><span class="k">def</span> <span class="nf">make_pay_dates</span><span class="p">(</span><span class="n">first_pay_date</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">frequency</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
+                   <span class="n">end_date</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DatetimeIndex</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    :param first_pay_date: The firs pay date in the formay YYYY-MM-DD</span>
+<span class="sd">    :param frquency: The frequency of paychecks, WEEKLY, BI-WEEKLY, or</span>
+<span class="sd">                     MONTHLY</span>
+<span class="sd">    :param end_date: The last date for pay allocation.  This day does not </span>
+<span class="sd">                     have to fall on a pay date and instead represents the </span>
+<span class="sd">                     last day for Monte Carlo iteration.</span>
+<span class="sd">    :return dates: A pandas series of pay dates</span>
+
+<span class="sd">    This function produces a pandas data series of dates, where each date </span>
+<span class="sd">    represents a pay date.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">frequency</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;WEEKLY&#39;</span><span class="p">:</span>
+        <span class="n">dates</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">first_pay_date</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">end_date</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;W-FRI&#39;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">frequency</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;BI-WEEKLY&#39;</span><span class="p">:</span>
+        <span class="n">dates</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">first_pay_date</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">end_date</span><span class="p">,</span> <span class="n">freq</span> <span class="o">=</span> <span class="s1">&#39;2W-FRI&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>    
+        <span class="n">dates</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">first_pay_date</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">end_date</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;M&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">dates</span></div>
+<span class="c1"># ================================================================================</span>
+<span class="c1"># ================================================================================</span>
 <span class="c1"># eof</span>
 </pre></div>
 
