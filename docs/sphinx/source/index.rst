@@ -13,8 +13,6 @@ Welcome to Core Utilities's documentation!
    Introduction
    read_files
    pre_processors
-   monte_carlo
-
 
 Indices and tables
 ==================

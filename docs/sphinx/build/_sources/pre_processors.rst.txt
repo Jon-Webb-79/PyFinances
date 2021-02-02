@@ -49,24 +49,3 @@ if the users selects False for **Hist Run**, but the cdf files do not exist,
 the software will still run this function.
 
 .. autofunction:: pre_processor.hist_pre_processor
-
-.. autofunction:: pre_processor.verify_hist_files
-
-Read Monte Carlo Files
-======================
-The ``ReadMonteCarloFiles`` class is embedded with member functions that read
-files necessary to execute the Monte Carlo program.  These include the 
-cdf files, Deductions file, Bills file, and planned expenses file.
-
-.. autoclass:: pre_processor.ReadMonteCarloFiles
-   :members:
-
-Make Dates
-==========
-The following functions are used to produce dates that are either used to 
-iterate through the Monte Carlo code or are used to compare pay dates
-with the actual date.
-
-.. autofunction:: pre_processor.make_dates
-
-.. autofunction:: pre_processor.make_pay_dates

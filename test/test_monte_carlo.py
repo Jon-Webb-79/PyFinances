@@ -39,15 +39,15 @@ __version__ = "1.0"
 # Insert Code here
 
 
-def test_give_name_here():
-    plat = platform.system()
-    if plat == 'Darwin':
-        file_name = '../data/test/deductions_one.csv'
-    else:
-        file_name = r'..\data\test\deductions_one.csv'
-    obj = MonteCarloExec()
-    pay = obj.determine_pay_allocation(135000.0, 'weekly', file_name)
-    assert isclose(1881.06, pay, rel_tol=1.0e-3)
+#def test_give_name_here():
+#    plat = platform.system()
+#    if plat == 'Darwin':
+#        file_name = '../data/test/deductions_one.csv'
+#    else:
+#        file_name = r'..\data\test\deductions_one.csv'
+#    obj = MonteCarloExec()
+#    pay = obj.determine_pay_allocation(135000.0, 'weekly', file_name)
+#    assert isclose(1881.06, pay, rel_tol=1.0e-3)
 # ================================================================================
 # ================================================================================
 # eof

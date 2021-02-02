@@ -15,7 +15,6 @@
     <script src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Monte Carlo Functions" href="monte_carlo.html" />
     <link rel="prev" title="read_files" href="read_files.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
@@ -24,9 +23,6 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="monte_carlo.html" title="Monte Carlo Functions"
-             accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="read_files.html" title="read_files"
              accesskey="P">previous</a> |</li>
@@ -253,149 +249,8 @@ if the users selects False for <strong>Hist Run</strong>, but the cdf files do n
 the software will still run this function.</p>
 <dl class="py function">
 <dt id="pre_processor.hist_pre_processor">
-<code class="sig-prename descclassname">pre_processor.</code><code class="sig-name descname">hist_pre_processor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">start_date</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">end_date</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">nbins</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">expense_file</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">total_file</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">file_path</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pre_processor.html#hist_pre_processor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pre_processor.hist_pre_processor" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pre_processor.</code><code class="sig-name descname">hist_pre_processor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">start_date</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">end_date</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">nbins</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">expense_file</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">total_file</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">file_path</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/pre_processor.html#hist_pre_processor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pre_processor.hist_pre_processor" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
-
-<dl class="py function">
-<dt id="pre_processor.verify_hist_files">
-<code class="sig-prename descclassname">pre_processor.</code><code class="sig-name descname">verify_hist_files</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file_location</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> &#x2192; bool<a class="reference internal" href="_modules/pre_processor.html#verify_hist_files"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pre_processor.verify_hist_files" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>file_location</strong> – The location of the cdf files</p>
-</dd>
-<dt class="field-even">Return exsit</dt>
-<dd class="field-even"><p>True if all files exist, False if they do not</p>
-</dd>
-</dl>
-</dd></dl>
-
-</div>
-<div class="section" id="read-monte-carlo-files">
-<h2>Read Monte Carlo Files<a class="headerlink" href="#read-monte-carlo-files" title="Permalink to this headline">¶</a></h2>
-<p>The <code class="docutils literal notranslate"><span class="pre">ReadMonteCarloFiles</span></code> class is embedded with member functions that read
-files necessary to execute the Monte Carlo program.  These include the
-cdf files, Deductions file, Bills file, and planned expenses file.</p>
-<dl class="py class">
-<dt id="pre_processor.ReadMonteCarloFiles">
-<em class="property">class </em><code class="sig-prename descclassname">pre_processor.</code><code class="sig-name descname">ReadMonteCarloFiles</code><a class="reference internal" href="_modules/pre_processor.html#ReadMonteCarloFiles"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pre_processor.ReadMonteCarloFiles" title="Permalink to this definition">¶</a></dt>
-<dd><p>This class contains functions that read the PyFinances input files</p>
-<dl class="py method">
-<dt id="pre_processor.ReadMonteCarloFiles.read_bills_file">
-<code class="sig-name descname">read_bills_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file_name</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="reference internal" href="_modules/pre_processor.html#ReadMonteCarloFiles.read_bills_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pre_processor.ReadMonteCarloFiles.read_bills_file" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>file_nae</strong> – The name and location of the bills.csv file</p>
-</dd>
-<dt class="field-even">Return df</dt>
-<dd class="field-even"><p>A dataframe containing the bills information</p>
-</dd>
-</dl>
-<p>This function reads the bills.csv file which contains the following
-headers <strong>Day</strong>, <strong>Checking_Addition</strong>, <strong>Checking_Debit</strong>, 
-<strong>Savings_Addition</strong>, <strong>Savings_Debit</strong>, and <strong>Description</strong>.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="pre_processor.ReadMonteCarloFiles.read_cdf_file">
-<code class="sig-name descname">read_cdf_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file_name</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="reference internal" href="_modules/pre_processor.html#ReadMonteCarloFiles.read_cdf_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pre_processor.ReadMonteCarloFiles.read_cdf_file" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>file_name</strong> – The namve of the cdf file to be read</p>
-</dd>
-<dt class="field-even">Return df</dt>
-<dd class="field-even"><p>A dataframe containing the cdf information</p>
-</dd>
-</dl>
-<p>This function reads cdf files that contain the cumulative 
-distribution functions for various spending categories.  The
-file headers are <strong>probability</strong> and <strong>center</strong>, which represent
-the probability of spending, and the spending amount that is 
-commiserate with the probability.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="pre_processor.ReadMonteCarloFiles.read_deductions_file">
-<code class="sig-name descname">read_deductions_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file_name</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="reference internal" href="_modules/pre_processor.html#ReadMonteCarloFiles.read_deductions_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pre_processor.ReadMonteCarloFiles.read_deductions_file" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>file_name</strong> – The name and locations of the Deductions.csv 
-file</p>
-</dd>
-<dt class="field-even">Return df</dt>
-<dd class="field-even"><p>A pandas dataframe containing the contents of the 
-Deductions file.</p>
-</dd>
-</dl>
-<p>This function reads the Deductions.csv file, which contains 
-all paycheck deductions.  It is assumed that these debits are
-deduction from the check prior to distribution.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="pre_processor.ReadMonteCarloFiles.read_planned_expenses">
-<code class="sig-name descname">read_planned_expenses</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file_name</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="reference internal" href="_modules/pre_processor.html#ReadMonteCarloFiles.read_planned_expenses"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pre_processor.ReadMonteCarloFiles.read_planned_expenses" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>file_name</strong> – The name and location of the planned_expense.csv
-file</p>
-</dd>
-<dt class="field-even">Return df</dt>
-<dd class="field-even"><p>A dataframe containing the planned expenses information</p>
-</dd>
-</dl>
-<p>This function reads the planned_epenses.csv file, which contains the 
-following headers, <strong>Date</strong>, <strong>Checking_Debit</strong>, <strong>Checking_Addition</strong>, 
-<strong>Savings_Debit</strong>, <strong>Savings_Addition</strong>, and <strong>Description</strong>.</p>
-</dd></dl>
-
-</dd></dl>
-
-</div>
-<div class="section" id="make-dates">
-<h2>Make Dates<a class="headerlink" href="#make-dates" title="Permalink to this headline">¶</a></h2>
-<p>The following functions are used to produce dates that are either used to
-iterate through the Monte Carlo code or are used to compare pay dates
-with the actual date.</p>
-<dl class="py function">
-<dt id="pre_processor.make_dates">
-<code class="sig-prename descclassname">pre_processor.</code><code class="sig-name descname">make_dates</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">start_date</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">end_date</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> &#x2192; pandas.core.indexes.datetimes.DatetimeIndex<a class="reference internal" href="_modules/pre_processor.html#make_dates"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pre_processor.make_dates" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>start_date</strong> – The first date in a datetime index</p></li>
-<li><p><strong>end_date</strong> – The last date in a datetime index</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return dates</dt>
-<dd class="field-even"><p>A datetime index</p>
-</dd>
-</dl>
-<p>This function creates a list of dates in one dat intervals starting from
-the start_date to the end_date.  The list is returned as a pandas
-datetime index.</p>
-</dd></dl>
-
-<dl class="py function">
-<dt id="pre_processor.make_pay_dates">
-<code class="sig-prename descclassname">pre_processor.</code><code class="sig-name descname">make_pay_dates</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">first_pay_date</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">frequency</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">end_date</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> &#x2192; pandas.core.indexes.datetimes.DatetimeIndex<a class="reference internal" href="_modules/pre_processor.html#make_pay_dates"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pre_processor.make_pay_dates" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>first_pay_date</strong> – The firs pay date in the formay YYYY-MM-DD</p></li>
-<li><p><strong>frquency</strong> – The frequency of paychecks, WEEKLY, BI-WEEKLY, or
-MONTHLY</p></li>
-<li><p><strong>end_date</strong> – The last date for pay allocation.  This day does not 
-have to fall on a pay date and instead represents the 
-last day for Monte Carlo iteration.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return dates</dt>
-<dd class="field-even"><p>A pandas series of pay dates</p>
-</dd>
-</dl>
-<p>This function produces a pandas data series of dates, where each date 
-represents a pay date.</p>
-</dd></dl>
 
 </div>
 </div>
@@ -414,8 +269,6 @@ represents a pay date.</p>
 <li><a class="reference internal" href="#makedistribution">MakeDistribution</a></li>
 <li><a class="reference internal" href="#createcdf">CreateCDF</a></li>
 <li><a class="reference internal" href="#histogram-pre-processor">Histogram Pre-Processor</a></li>
-<li><a class="reference internal" href="#read-monte-carlo-files">Read Monte Carlo Files</a></li>
-<li><a class="reference internal" href="#make-dates">Make Dates</a></li>
 </ul>
 </li>
 </ul>
@@ -423,9 +276,6 @@ represents a pay date.</p>
   <h4>Previous topic</h4>
   <p class="topless"><a href="read_files.html"
                         title="previous chapter">read_files</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="monte_carlo.html"
-                        title="next chapter">Monte Carlo Functions</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -453,9 +303,6 @@ represents a pay date.</p>
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              >index</a></li>
-        <li class="right" >
-          <a href="monte_carlo.html" title="Monte Carlo Functions"
-             >next</a> |</li>
         <li class="right" >
           <a href="read_files.html" title="read_files"
              >previous</a> |</li>

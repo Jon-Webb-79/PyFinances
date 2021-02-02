@@ -1,4 +1,4 @@
-# Import necessary packages here
+ # Import necessary packages here
 import sys 
 import os
 sys.path.insert(0, os.path.abspath('../src'))
@@ -36,21 +36,21 @@ def pyfinances(runoptionsfile: str) -> None:
         return
 
     # verify that cdf files exist.  If not, then create them
-    file_exist = verify_hist_files(hist_location)
-    if not file_exist:
-        hist_pre_processor(input_dict['hist_start'], input_dict['hist_end'], 
-                           input_dict['nbins'], 
-                           input_dict['daily_expense_file'], 
-                           input_dict['total_expense_file'], 
-                           hist_location)
-
-    # read cdf files
-    read = ReadMonteCarloFiles()
-    barcdf = read.read_cdf_file(hist_location + 'barcdf.csv')
-    gascdf = read.read_cdf_file(hist_location + 'gascdf.csv')
-    groccdf = read.read_cdf_file(hist_location + 'groccdf.csv')
-    misccdf = read.read_cdf_file(hist_location + 'misccdf.csv')
-    restcdf = read.read_cdf_file(hist_location + 'restcdf.csv')
+#    file_exist = verify_hist_files(hist_location)
+#    if not file_exist:
+#        hist_pre_processor(input_dict['hist_start'], input_dict['hist_end'], 
+#                           input_dict['nbins'], 
+#                           input_dict['daily_expense_file'], 
+#                           input_dict['total_expense_file'], 
+#                           hist_location)
+#
+#    # read cdf files
+#    read = ReadMonteCarloFiles()
+#    barcdf = read.read_cdf_file(hist_location + 'barcdf.csv')
+#    gascdf = read.read_cdf_file(hist_location + 'gascdf.csv')
+#    groccdf = read.read_cdf_file(hist_location + 'groccdf.csv')
+#    misccdf = read.read_cdf_file(hist_location + 'misccdf.csv')
+#    restcdf = read.read_cdf_file(hist_location + 'restcdf.csv')
 
     # Read Planned Expenses
 

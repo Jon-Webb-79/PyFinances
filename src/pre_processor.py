@@ -285,7 +285,7 @@ class CreateCDF(MakeDistribution, ReadCSVFile):
 
 def hist_pre_processor(start_date: str, end_date: str, nbins: int, 
                        expense_file: str, total_file: str, 
-                       file_path: str):
+                       file_path: str) -> None:
     # Create teh Total_Expenses.csv file 
     proc = ProcessDailyExpenseFile(expense_file)
     proc.group_expenses_by_date(start_date, end_date, total_file)

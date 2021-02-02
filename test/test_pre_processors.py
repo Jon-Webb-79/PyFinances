@@ -176,8 +176,9 @@ def test_continuous_pdf_non_normed():
     exp_prob = np.array([7.0, 48.0, 294.0, 861.0, 1401.0, 1339.0,
                          748.0, 255.0, 43.0, 4.0], dtype=np.float64)
     exp_middle = np.array([93.09589924, 99.12930792, 105.1627166, 111.19612528,
-                           117.22953397, 123.26294265, 129.29635133, 135.32976001,
-                           141.3631687,  147.39657738], dtype=np.float64)
+                           117.22953397, 123.26294265, 129.29635133,
+                           135.32976001, 141.3631687,  147.39657738],
+                          dtype=np.float64)
     for i, j in zip(exp_prob, prob):
         assert math.isclose(i, j, rel_tol=0.04)
     for i, j in zip(exp_middle, middle):
@@ -331,157 +332,157 @@ def test_hist_pre_processor():
 # Test functions from the ReadMonteCarloFiles class
 
 
-def test_read_cdf_files():
-    """
-
-    This function tests the read_cdf_file function to see if it corerctly
-    reads a cdf file
-    """
-    plat = platform.system()
-    if plat == 'Darwin':
-        file_name = '../data/test/cdf_file.csv'
-    else:
-        file_name = r'..\data\test\cdf_file.csv'
-
-    read = ReadMonteCarloFiles()
-    df = read.read_cdf_file(file_name)
-    prob = [0.215, 0.321, 0.415, 0.550, 0.640, 0.720, 0.840, 0.950, 1.000]
-    cent = [8.75, 2.18, 8.95, 14.80, 17.89, 23.50, 32.50, 44.18, 51.20]
-    for i in range(len(prob)):
-        assert math.isclose(prob[i], df['probability'][i], rel_tol=1.0e-3)
-        assert math.isclose(cent[i], df['center'][i], rel_tol=1.0e-3)
+#def test_read_cdf_files():
+#    """
+#
+#    This function tests the read_cdf_file function to see if it corerctly
+#    reads a cdf file
+#    """
+#    plat = platform.system()
+#    if plat == 'Darwin':
+#        file_name = '../data/test/cdf_file.csv'
+#    else:
+#        file_name = r'..\data\test\cdf_file.csv'
+#
+#    read = ReadMonteCarloFiles()
+#    df = read.read_cdf_file(file_name)
+#    prob = [0.215, 0.321, 0.415, 0.550, 0.640, 0.720, 0.840, 0.950, 1.000]
+#    cent = [8.75, 2.18, 8.95, 14.80, 17.89, 23.50, 32.50, 44.18, 51.20]
+#    for i in range(len(prob)):
+#        assert math.isclose(prob[i], df['probability'][i], rel_tol=1.0e-3)
+#        assert math.isclose(cent[i], df['center'][i], rel_tol=1.0e-3)
 # --------------------------------------------------------------------------------
 
 
-def test_read_bills():
-    """
-
-    This function tests the ability of the read_bills_file()
-    function to correclty read the bills.csv file
-    """
-    plat = platform.system()
-    if plat == 'Darwin':
-        file_name = '../data/test/bills.csv'
-    else:
-        file_name = r'..\data\test\bills.csv'
-    read = ReadMonteCarloFiles()
-    df = read.read_bills_file(file_name)
-    day = np.array([3, 15, 28], np.dtype(int))
-    addition = np.array([35.0, 75.0, 131.0], np.dtype(np.float32))
-    for i in range(len(day)):
-        assert math.isclose(day[i], df['Day'][i])
-        assert math.isclose(addition[i], df['Checking_Debit'][i],
-                            rel_tol=1.0e-3)
+#def test_read_bills():
+#    """
+#
+#    This function tests the ability of the read_bills_file()
+#    function to correclty read the bills.csv file
+#    """
+#    plat = platform.system()
+#    if plat == 'Darwin':
+#        file_name = '../data/test/bills.csv'
+#    else:
+#        file_name = r'..\data\test\bills.csv'
+#    read = ReadMonteCarloFiles()
+#    df = read.read_bills_file(file_name)
+#    day = np.array([3, 15, 28], np.dtype(int))
+#    addition = np.array([35.0, 75.0, 131.0], np.dtype(np.float32))
+#    for i in range(len(day)):
+#        assert math.isclose(day[i], df['Day'][i])
+#        assert math.isclose(addition[i], df['Checking_Debit'][i],
+#                            rel_tol=1.0e-3)
 # --------------------------------------------------------------------------------
 
 
-def test_read_planned_expenses():
-    """
-
-    Test to ensure that the read_planned_expenses function works
-    properly
-    """
-    plat = platform.system()
-    if plat == 'Darwin':
-        file_name = '../data/test/planned.csv'
-    else:
-        file_name = r'..\data\test\planned.csv'
-    read = ReadMonteCarloFiles()
-    df = read.read_planned_expenses(file_name)
-    dt = pd.Series(['2020-03-15', '2020-06-02', '2020-07-21'])
-    dt = pd.to_datetime(dt, format='%Y-%m-%d')
-    addition = np.array([35.0, 75.0, 131.0], np.dtype(np.float32))
-    for i in range(len(addition)):
-        assert dt[i] == df['Date'][i]
-        assert math.isclose(addition[i], df['Checking_Debit'][i],
-                            rel_tol=1.0e-3)
+#def test_read_planned_expenses():
+#    """
+#
+#    Test to ensure that the read_planned_expenses function works
+#    properly
+#    """
+#    plat = platform.system()
+#    if plat == 'Darwin':
+#        file_name = '../data/test/planned.csv'
+#    else:
+#        file_name = r'..\data\test\planned.csv'
+#    read = ReadMonteCarloFiles()
+#    df = read.read_planned_expenses(file_name)
+#    dt = pd.Series(['2020-03-15', '2020-06-02', '2020-07-21'])
+#    dt = pd.to_datetime(dt, format='%Y-%m-%d')
+#    addition = np.array([35.0, 75.0, 131.0], np.dtype(np.float32))
+#    for i in range(len(addition)):
+#        assert dt[i] == df['Date'][i]
+#        assert math.isclose(addition[i], df['Checking_Debit'][i],
+#                            rel_tol=1.0e-3)
 # --------------------------------------------------------------------------------
 
 
-def test_read_deductions():
-    """
-
-    Tests to ensure that the read_dedctions function works properly
-    """
-    plat = platform.system()
-    if plat == 'Darwin':
-        file_name = '../data/test/Deductions.csv'
-    else:
-        file_name = r'..\data\test\Deductions.csv'
-    read = ReadMonteCarloFiles()
-    df = read.read_deductions_file(file_name)
-    amount = np.array([144.50, 73.50, 164.0], np.dtype(np.float32))
-    description = ['401k', 'Medical Deductions', 'Federal Income Tax']
-    for i in range(len(amount)):
-        assert math.isclose(amount[i], df['Amount'][i], rel_tol=1.0e-3)
-        assert description[i] == df['Description'][i]
+#def test_read_deductions():
+#    """
+#
+#    Tests to ensure that the read_dedctions function works properly
+#    """
+#    plat = platform.system()
+#    if plat == 'Darwin':
+#        file_name = '../data/test/Deductions.csv'
+#    else:
+#        file_name = r'..\data\test\Deductions.csv'
+#    read = ReadMonteCarloFiles()
+#    df = read.read_deductions_file(file_name)
+#    amount = np.array([144.50, 73.50, 164.0], np.dtype(np.float32))
+#    description = ['401k', 'Medical Deductions', 'Federal Income Tax']
+#    for i in range(len(amount)):
+#        assert math.isclose(amount[i], df['Amount'][i], rel_tol=1.0e-3)
+#        assert description[i] == df['Description'][i]
 # ================================================================================
 # ================================================================================
 
 
-def test_make_dates():
-    """
-
-    Tests to ensure that the make_dates() function correctly creates
-    a pandas datetimeindex with the correct dates
-    """
-    start_date = '2020-01-01'
-    end_date = '2020-01-03'
-    results = pd.date_range(start_date, end_date)
-    dates = make_dates(start_date, end_date)
-    for i in range(len(dates)):
-        assert dates[i] == results[i]
+#def test_make_dates():
+#    """
+#
+#    Tests to ensure that the make_dates() function correctly creates
+#    a pandas datetimeindex with the correct dates
+#    """
+#    start_date = '2020-01-01'
+#    end_date = '2020-01-03'
+#    results = pd.date_range(start_date, end_date)
+#    dates = make_dates(start_date, end_date)
+#    for i in range(len(dates)):
+#        assert dates[i] == results[i]
 # ================================================================================
 # ================================================================================
 
 
-def test_make_pay_dates_weekly():
-    """
-
-    Tests test the make_pay_dates function to ensure that it properly
-    creates a pandas datatime index with the correct dates if the user
-    selects weekly as the pay frequency
-    """
-    start_date = '2021-01-01'
-    end_date = '2021-02-28'
-    frequency = 'weekly'
-    dates = make_pay_dates(start_date, frequency, end_date)
-    expected = pd.DatetimeIndex(['2021-01-01', '2021-01-08', '2021-01-15',
-                                 '2021-01-22', '2021-01-29', '2021-02-05',
-                                 '2021-02-12', '2021-02-19', '2021-02-26'])
-    for i in range(len(expected)):
-        assert dates[i] == expected[i]
+#def test_make_pay_dates_weekly():
+#    """
+#
+#    Tests test the make_pay_dates function to ensure that it properly
+#    creates a pandas datatime index with the correct dates if the user
+#    selects weekly as the pay frequency
+#    """
+#    start_date = '2021-01-01'
+#    end_date = '2021-02-28'
+#    frequency = 'weekly'
+#    dates = make_pay_dates(start_date, frequency, end_date)
+#    expected = pd.DatetimeIndex(['2021-01-01', '2021-01-08', '2021-01-15',
+#                                 '2021-01-22', '2021-01-29', '2021-02-05',
+#                                 '2021-02-12', '2021-02-19', '2021-02-26'])
+#    for i in range(len(expected)):
+#        assert dates[i] == expected[i]
 # ================================================================================
 # ================================================================================
 
 
-def test_make_pay_dates_biweekly():
-    """
-
-    This function tests the make_pay_dates function to ensure that it properly
-    creates a pandas datetime index with the correct dates if the user
-    select bi-weekly as the pay frequency
-    """
-    start_date = '2021-01-01'
-    end_date = '2021-02-28'
-    frequency = 'bi-weekly'
-    dates = make_pay_dates(start_date, frequency, end_date)
-    expected = pd.DatetimeIndex(['2021-01-01', '2021-01-15', '2021-01-29',
-                                 '2021-02-12', '2021-02-26'])
-    for i in range(len(expected)):
-        assert expected[i] == dates[i]
+#def test_make_pay_dates_biweekly():
+#    """
+#
+#    This function tests the make_pay_dates function to ensure that it properly
+#    creates a pandas datetime index with the correct dates if the user
+#    select bi-weekly as the pay frequency
+#    """
+#    start_date = '2021-01-01'
+#    end_date = '2021-02-28'
+#    frequency = 'bi-weekly'
+#    dates = make_pay_dates(start_date, frequency, end_date)
+#    expected = pd.DatetimeIndex(['2021-01-01', '2021-01-15', '2021-01-29',
+#                                 '2021-02-12', '2021-02-26'])
+#    for i in range(len(expected)):
+#        assert expected[i] == dates[i]
 # ================================================================================
 # ================================================================================
 
 
-def test_make_pay_dates_monthly():
-    start_date = '2021-01-01'
-    end_date = '2021-03-28'
-    frequency = 'monthly'
-    dates = make_pay_dates(start_date, frequency, end_date)
-    expected = pd.DatetimeIndex(['2021-01-31', '2021-02-28'])
-    for i in range(len(expected)):
-        assert expected[i] == dates[i]
+#def test_make_pay_dates_monthly():
+#    start_date = '2021-01-01'
+#    end_date = '2021-03-28'
+#    frequency = 'monthly'
+#    dates = make_pay_dates(start_date, frequency, end_date)
+#    expected = pd.DatetimeIndex(['2021-01-31', '2021-02-28'])
+#    for i in range(len(expected)):
+#        assert expected[i] == dates[i]
 # ================================================================================
 # ================================================================================
 # eof
