@@ -232,8 +232,8 @@ def test_read_hist_true_info():
     inp_dict = inp.read_file()
     assert inp_dict['run_hist'] == 'True'
     assert inp_dict['nbins'] == 60
-    assert inp_dict['hist_start'] == '03/01/2020'
-    assert inp_dict['hist_end'] == '02/28/2021'
+    assert inp_dict['hist_start'] == '2020-03-01'
+    assert inp_dict['hist_end'] == '2021-02-28'
     assert inp_dict['daily_expense_file'] == \
         '../data/test/expense_file_one.csv'
 # --------------------------------------------------------------------------------
@@ -253,18 +253,18 @@ def test_read_no_hist_info():
     inp_dict = inp.read_file()
     assert inp_dict['run_hist'] == 'False'
     assert inp_dict['nbins'] == 60
-    assert inp_dict['hist_start'] == '03/01/2020'
-    assert inp_dict['hist_end'] == '02/28/2021'
+    assert inp_dict['hist_start'] == '2020-03-01'
+    assert inp_dict['hist_end'] == '2021-02-28'
     assert inp_dict['daily_expense_file'] == \
         '../data/test/expense_file_one.csv'
     assert inp_dict['sample_size'] == 1000
-    assert inp_dict['start_date'] == '03/01/2021'
-    assert inp_dict['end_date'] == '02/28/2022'
+    assert inp_dict['start_date'] == '2021-03-01'
+    assert inp_dict['end_date'] == '2022-02-28'
     assert isclose(inp_dict['checking_start_value'], 54000.0, rel_tol=0.0001)
     assert isclose(inp_dict['savings_start_value'], 4800.0, rel_tol=0.0001)
     assert isclose(inp_dict['annual_salary'], 145000.0, rel_tol=0.0001)
     assert inp_dict['pay_frequency'] == 'Weekly'
-    assert inp_dict['first_pay_date'] == '03/05/2021'
+    assert inp_dict['first_pay_date'] == '2021-03-05'
     assert inp_dict['total_expense_file'] == '../data/test/total_expenses.csv'
     assert inp_dict['planned_expense_file'] == \
         '../data/test/planned_expenses.csv'
@@ -287,18 +287,18 @@ def test_read_false_hist_info():
     inp_dict = inp.read_file()
     assert inp_dict['run_hist'] == 'False'
     assert inp_dict['nbins'] == 60
-    assert inp_dict['hist_start'] == '03/01/2020'
-    assert inp_dict['hist_end'] == '02/28/2021'
+    assert inp_dict['hist_start'] == '2020-03-01'
+    assert inp_dict['hist_end'] == '2021-02-28'
     assert inp_dict['daily_expense_file'] == \
         '../data/test/expense_file_one.csv'
     assert inp_dict['sample_size'] == 1000
-    assert inp_dict['start_date'] == '03/01/2021'
-    assert inp_dict['end_date'] == '02/28/2022'
+    assert inp_dict['start_date'] == '2021-03-01'
+    assert inp_dict['end_date'] == '2022-02-28'
     assert isclose(inp_dict['checking_start_value'], 54000.0, rel_tol=0.0001)
     assert isclose(inp_dict['savings_start_value'], 4800.0, rel_tol=0.0001)
     assert isclose(inp_dict['annual_salary'], 145000.0, rel_tol=0.0001)
     assert inp_dict['pay_frequency'] == 'Weekly'
-    assert inp_dict['first_pay_date'] == '03/05/2021'
+    assert inp_dict['first_pay_date'] == '2021-03-05'
     assert inp_dict['total_expense_file'] == '../data/test/total_expenses.csv'
     assert inp_dict['planned_expense_file'] == \
         '../data/test/planned_expenses.csv'

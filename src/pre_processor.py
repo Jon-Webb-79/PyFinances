@@ -2,6 +2,7 @@
 from read_files import ReadCSVFile
 import numpy as np
 import pandas as pd
+import os
 from typing import Tuple, List
 # ================================================================================
 # ================================================================================ 
@@ -427,6 +428,23 @@ def make_pay_dates(first_pay_date: str, frequency: str,
     else:    
         dates = pd.date_range(start=first_pay_date, end=end_date, freq='M')
     return dates
+# ================================================================================
+# ================================================================================
+
+
+def verify_hist_files(file_location: str) -> bool:
+    """
+
+    :param file_location: The location of the cdf files 
+    :return exsit: True if all files exist, False if they do not
+    """
+    files = ['barcdf.csv', 'gascdf.csv', 'groccdf.csv', 'misccdf.csv', 
+            'restcdf.csv']
+    for i in files:
+        exists = os.path.isfile(file_location + i)
+        if not exists:
+            return False 
+    return True
 # ================================================================================
 # ================================================================================
 # eof

@@ -50,6 +50,8 @@ the software will still run this function.
 
 .. autofunction:: pre_processor.hist_pre_processor
 
+.. autofunction:: pre_processor.verify_hist_files
+
 Read Monte Carlo Files
 ======================
 The ``ReadMonteCarloFiles`` class is embedded with member functions that read

@@ -1,0 +1,16 @@
+Bins: 60
+Hist Start Date: 2019-03-01
+Hist End Date: 2020-02-28
+Daily Expense File: ../../Finances/Data/Daily_Expenses.csv
+Total Expense File: ../data/hist/Total_Expenses.csv
+Sample Size: 1000
+Start Date: 2021-03-01
+End Date: 2022-02-28
+Checking Start Value: 54000.0
+Savings Start Value: 4800.0
+Annual Salary: 145000.0
+Pay Frequency: Weekly
+First Pay Date: 2021-03-05
+Planned Expense File: ../data/input/planned_expenses.csv
+Bills File: ../data/input/bills.csv
+Deductions File: ../data/input/deductions.csv

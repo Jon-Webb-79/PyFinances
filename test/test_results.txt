@@ -41,5 +41,5 @@ test_read_files.py::test_read_bad_freq PASSED                            [ 94%]
 test_read_files.py::test_read_pay_date PASSED                            [ 97%]
 test_read_files.py::test_read_csv_by_headers PASSED                      [100%]
 
-============================== 36 passed in 7.52s ==============================
-Mon Feb  1 08:10:17 MST 2021
+============================== 36 passed in 8.75s ==============================
+Mon Feb  1 19:02:16 MST 2021

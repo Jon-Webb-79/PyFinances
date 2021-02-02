@@ -438,8 +438,8 @@ class ReadRunOptionsFile(ReadTextFileKeywords):
         This function validates the user first_pay_date entry and
         ensures that it matches the pay allocation dates.
         """
-        month = int(first_pay_date[0:2])
-        year = int(first_pay_date[6:10])
+        year = int(first_pay_date[0:4])
+        month = int(first_pay_date[5:7])
         dates = monthrange(year, month)
         acceptable_dates = [15, dates[1]]
         if pay_freq.upper() == 'MONTHLY' or pay_freq.upper() == 'BI-MONTHLY':

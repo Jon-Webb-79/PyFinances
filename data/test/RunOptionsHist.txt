@@ -1,6 +1,6 @@
 Run Histogram: True
 Bins: 60
-Hist Start Date: 03/01/2020
-Hist End Date: 02/28/2021
+Hist Start Date: 2020-03-01
+Hist End Date: 2021-02-28
 Daily Expense File: ../data/test/expense_file_one.csv
 Total Expense File: ../data/test/total_expense.csv
