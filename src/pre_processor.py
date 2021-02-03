@@ -518,6 +518,18 @@ class MCPreProcessor(ReadMonteCarloFiles, CreateDates):
         """
         df = self.read_planned_expenses(file_name)
         return df
+# --------------------------------------------------------------------------------
+
+    def read_cdf(self, files: str) -> List[pd.DataFrame]:
+        """
+
+        :param files: A list of filenames with the path lengths to each of the 
+                      cdf files
+        :return df_list: A list of dataframes, where each dataframe contains
+                         the contents of one of the cdf files.
+        """
+        df_list = [self.read_cdf_file(i) for i in files]
+        return df_list
 # ================================================================================
 
     def _verify_hist_files(self, files: List[str]) -> bool:

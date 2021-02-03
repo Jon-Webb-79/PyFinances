@@ -610,7 +610,26 @@ def test_read_mc_expenses():
         assert dt[i] == df['Date'][i]
         assert math.isclose(addition[i], df['Checking_Debit'][i],
                             rel_tol=1.0e-3)
+# --------------------------------------------------------------------------------
 
+
+def test_read_mc_cdf():
+    """
+
+    This function tests the read_cdf function to ensure it properly
+    reads in a a List of files and reads it into a List of dataframes.
+    """
+    plat = platform.system()
+    if plat == 'Darwin':
+        file_loc = '../data/test/'
+    else:
+        file_loc = r'..\data\test\ '
+    file_names = ['testgascdf.csv', 'testbarcdf.csv', 'testgroccdf.csv',
+                  'testmisccdf.csv', 'testrestcdf.csv']
+    files = [file_loc + i for i in file_names]
+    mc = MCPreProcessor()
+    df_list = mc.read_cdf(files)
+    assert len(df_list) == len(file_names)
 # ================================================================================
 # ================================================================================
 # eof

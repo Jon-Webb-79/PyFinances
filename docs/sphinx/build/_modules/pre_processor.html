@@ -554,6 +554,18 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_planned_expenses</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">df</span></div>
+<span class="c1"># --------------------------------------------------------------------------------</span>
+
+<div class="viewcode-block" id="MCPreProcessor.read_cdf"><a class="viewcode-back" href="../pre_processors.html#pre_processor.MCPreProcessor.read_cdf">[docs]</a>    <span class="k">def</span> <span class="nf">read_cdf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">files</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        :param files: A list of filenames with the path lengths to each of the </span>
+<span class="sd">                      cdf files</span>
+<span class="sd">        :return df_list: A list of dataframes, where each dataframe contains</span>
+<span class="sd">                         the contents of one of the cdf files.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">df_list</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">read_cdf_file</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">files</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">df_list</span></div>
 <span class="c1"># ================================================================================</span>
 
     <span class="k">def</span> <span class="nf">_verify_hist_files</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">files</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
