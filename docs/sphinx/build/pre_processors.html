@@ -399,6 +399,33 @@ Monte Carlo iteration.</p>
 <dd><p>This class integrates all data necessary to run the Monte Carlo
 portion of the PyFinances program</p>
 <dl class="py method">
+<dt id="pre_processor.MCPreProcessor.create_dates">
+<code class="sig-name descname">create_dates</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">start_date</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">end_date</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">first_pay_date</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">pay_frequency</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> &#x2192; Tuple<span class="p">[</span>pandas.core.indexes.datetimes.DatetimeIndex<span class="p">, </span>pandas.core.indexes.datetimes.DatetimeIndex<span class="p">]</span><a class="reference internal" href="_modules/pre_processor.html#MCPreProcessor.create_dates"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pre_processor.MCPreProcessor.create_dates" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>start_date</strong> – The first date for Monte Carlo iteration in the
+format YYYY-MM-DD.</p></li>
+<li><p><strong>end_date</strong> – The last date for Monte Carlo iteration in the 
+format YYYY-MM-DD.</p></li>
+<li><p><strong>first_pay_date</strong> – The date whena first paycheck is recieved 
+in the format YYYY-MM-DD.</p></li>
+<li><p><strong>pay_frequency</strong> – ‘WEEKLY’, ‘BI-WEEKLY’, or ‘MONTHLY’</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return iter_dates, pay_dates</dt>
+<dd class="field-even"><p>A tuple where the first element is a
+list of every date in the Monte Carlo 
+iteration, and the second element is
+a list of every pay date</p>
+</dd>
+</dl>
+<p>This function will provide the user with a list of all dates used in 
+the Monte Carlo iteration and a list of all pay dates in the Monte
+Carlo iteration.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt id="pre_processor.MCPreProcessor.validate_hist_files">
 <code class="sig-name descname">validate_hist_files</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">files</span><span class="p">:</span> <span class="n">List<span class="p">[</span>str<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">hist_func</span></em>, <em class="sig-param"><span class="n">input_dict</span><span class="p">:</span> <span class="n">Dict</span></em>, <em class="sig-param"><span class="n">hist_location</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/pre_processor.html#MCPreProcessor.validate_hist_files"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pre_processor.MCPreProcessor.validate_hist_files" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">

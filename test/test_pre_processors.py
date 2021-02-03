@@ -543,6 +543,28 @@ def test_validate_hist_files_does_not_exist():
     for i in files:
         os.remove(i)
     os.remove(file_loc + 'total_expenses.csv')
+# --------------------------------------------------------------------------------
+
+
+def test_make_mc_dates():
+    """
+
+    This function tests the create_dates() function to ensure it properly
+    produces pay_dates and iter_dates
+    """
+    start_date = '2021-01-01'
+    end_date = '2021-02-28'
+    frequency = 'bi-weekly'
+    mc = MCPreProcessor()
+    iter_dates, pay_dates = mc.create_dates(start_date, end_date,
+                                            start_date, frequency)
+    expected_pay = pd.DatetimeIndex(['2021-01-01', '2021-01-15', '2021-01-29',
+                                     '2021-02-12', '2021-02-26'])
+    results = pd.date_range(start_date, end_date)
+    for i in range(len(iter_dates)):
+        assert iter_dates[i] == results[i]
+    for i in range(len(pay_dates)):
+        assert pay_dates[i] == expected_pay[i]
 # ================================================================================
 # ================================================================================
 # eof

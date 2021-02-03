@@ -469,6 +469,32 @@ class MCPreProcessor(ReadMonteCarloFiles, CreateDates):
                       input_dict['daily_expense_file'], 
                       input_dict['total_expense_file'], 
                       hist_location)
+# --------------------------------------------------------------------------------
+
+    def create_dates(self, start_date: str, end_date: str, first_pay_date: str, 
+                     pay_frequency: str) -> Tuple[pd.DatetimeIndex, 
+                                                  pd.DatetimeIndex]:
+        """
+
+        :param start_date: The first date for Monte Carlo iteration in the
+                           format YYYY-MM-DD.
+        :param end_date: The last date for Monte Carlo iteration in the 
+                         format YYYY-MM-DD.
+        :param first_pay_date: The date whena first paycheck is recieved 
+                               in the format YYYY-MM-DD.
+        :param pay_frequency: 'WEEKLY', 'BI-WEEKLY', or 'MONTHLY'
+        :return iter_dates, pay_dates: A tuple where the first element is a
+                                       list of every date in the Monte Carlo 
+                                       iteration, and the second element is
+                                       a list of every pay date
+
+        This function will provide the user with a list of all dates used in 
+        the Monte Carlo iteration and a list of all pay dates in the Monte
+        Carlo iteration.
+        """
+        iter_dates = self.make_dates(start_date, end_date)
+        pay_dates = self.make_pay_dates(first_pay_date, pay_frequency, end_date)
+        return iter_dates, pay_dates
 # ================================================================================
 
     def _verify_hist_files(self, files: List[str]) -> bool:
@@ -487,21 +513,6 @@ class MCPreProcessor(ReadMonteCarloFiles, CreateDates):
             if not exists:
                 return False
         return True
-# ================================================================================
-# ================================================================================
-def verify_hist_files(file_location: str) -> bool:
-    """
-
-    :param file_location: The location of the cdf files 
-    :return exsit: True if all files exist, False if they do not
-    """
-    files = ['barcdf.csv', 'gascdf.csv', 'groccdf.csv', 'misccdf.csv', 
-            'restcdf.csv']
-    for i in files:
-        exists = os.path.isfile(file_location + i)
-        if not exists:
-            return False 
-    return True
 # ================================================================================
 # ================================================================================
 # eof

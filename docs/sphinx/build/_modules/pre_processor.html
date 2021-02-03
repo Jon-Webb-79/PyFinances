@@ -505,6 +505,32 @@
                       <span class="n">input_dict</span><span class="p">[</span><span class="s1">&#39;daily_expense_file&#39;</span><span class="p">],</span> 
                       <span class="n">input_dict</span><span class="p">[</span><span class="s1">&#39;total_expense_file&#39;</span><span class="p">],</span> 
                       <span class="n">hist_location</span><span class="p">)</span></div>
+<span class="c1"># --------------------------------------------------------------------------------</span>
+
+<div class="viewcode-block" id="MCPreProcessor.create_dates"><a class="viewcode-back" href="../pre_processors.html#pre_processor.MCPreProcessor.create_dates">[docs]</a>    <span class="k">def</span> <span class="nf">create_dates</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start_date</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">end_date</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">first_pay_date</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
+                     <span class="n">pay_frequency</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">DatetimeIndex</span><span class="p">,</span> 
+                                                  <span class="n">pd</span><span class="o">.</span><span class="n">DatetimeIndex</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        :param start_date: The first date for Monte Carlo iteration in the</span>
+<span class="sd">                           format YYYY-MM-DD.</span>
+<span class="sd">        :param end_date: The last date for Monte Carlo iteration in the </span>
+<span class="sd">                         format YYYY-MM-DD.</span>
+<span class="sd">        :param first_pay_date: The date whena first paycheck is recieved </span>
+<span class="sd">                               in the format YYYY-MM-DD.</span>
+<span class="sd">        :param pay_frequency: &#39;WEEKLY&#39;, &#39;BI-WEEKLY&#39;, or &#39;MONTHLY&#39;</span>
+<span class="sd">        :return iter_dates, pay_dates: A tuple where the first element is a</span>
+<span class="sd">                                       list of every date in the Monte Carlo </span>
+<span class="sd">                                       iteration, and the second element is</span>
+<span class="sd">                                       a list of every pay date</span>
+
+<span class="sd">        This function will provide the user with a list of all dates used in </span>
+<span class="sd">        the Monte Carlo iteration and a list of all pay dates in the Monte</span>
+<span class="sd">        Carlo iteration.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">iter_dates</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">make_dates</span><span class="p">(</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">)</span>
+        <span class="n">pay_dates</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">make_pay_dates</span><span class="p">(</span><span class="n">first_pay_date</span><span class="p">,</span> <span class="n">pay_frequency</span><span class="p">,</span> <span class="n">end_date</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">iter_dates</span><span class="p">,</span> <span class="n">pay_dates</span></div>
 <span class="c1"># ================================================================================</span>
 
     <span class="k">def</span> <span class="nf">_verify_hist_files</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">files</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
@@ -523,21 +549,6 @@
             <span class="k">if</span> <span class="ow">not</span> <span class="n">exists</span><span class="p">:</span>
                 <span class="k">return</span> <span class="kc">False</span>
         <span class="k">return</span> <span class="kc">True</span></div>
-<span class="c1"># ================================================================================</span>
-<span class="c1"># ================================================================================</span>
-<span class="k">def</span> <span class="nf">verify_hist_files</span><span class="p">(</span><span class="n">file_location</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-
-<span class="sd">    :param file_location: The location of the cdf files </span>
-<span class="sd">    :return exsit: True if all files exist, False if they do not</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">files</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;barcdf.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;gascdf.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;groccdf.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;misccdf.csv&#39;</span><span class="p">,</span> 
-            <span class="s1">&#39;restcdf.csv&#39;</span><span class="p">]</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
-        <span class="n">exists</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">file_location</span> <span class="o">+</span> <span class="n">i</span><span class="p">)</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">exists</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">False</span> 
-    <span class="k">return</span> <span class="kc">True</span>
 <span class="c1"># ================================================================================</span>
 <span class="c1"># ================================================================================</span>
 <span class="c1"># eof</span>
