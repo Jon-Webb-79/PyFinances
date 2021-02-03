@@ -569,6 +569,11 @@ def test_make_mc_dates():
 
 
 def test_read_mc_bills():
+    """
+
+    This function tests the read_bills() function to ensure it properly
+    reads in a file and transforms it into a pandas dataframe
+    """
     plat = platform.system()
     if plat == 'Darwin':
         file_name = '../data/test/bills.csv'
@@ -580,6 +585,29 @@ def test_read_mc_bills():
     addition = np.array([35.0, 75.0, 131.0], np.dtype(np.float32))
     for i in range(len(day)):
         assert math.isclose(day[i], df['Day'][i])
+        assert math.isclose(addition[i], df['Checking_Debit'][i],
+                            rel_tol=1.0e-3)
+# --------------------------------------------------------------------------------
+
+
+def test_read_mc_expenses():
+    """
+
+    This function tests the read_expenses function to ensure it properly
+    reads in a file and transforms it into a pandas dataframe
+    """
+    plat = platform.system()
+    if plat == 'Darwin':
+        file_name = '../data/test/planned.csv'
+    else:
+        file_name = r'..\data\test\planned.csv'
+    mc = MCPreProcessor()
+    df = mc.read_expenses(file_name)
+    dt = pd.Series(['2020-03-15', '2020-06-02', '2020-07-21'])
+    dt = pd.to_datetime(dt, format='%Y-%m-%d')
+    addition = np.array([35.0, 75.0, 131.0], np.dtype(np.float32))
+    for i in range(len(addition)):
+        assert dt[i] == df['Date'][i]
         assert math.isclose(addition[i], df['Checking_Debit'][i],
                             rel_tol=1.0e-3)
 

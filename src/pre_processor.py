@@ -506,6 +506,18 @@ class MCPreProcessor(ReadMonteCarloFiles, CreateDates):
         """
         df = self.read_bills_file(file_name)
         return df
+# --------------------------------------------------------------------------------
+
+    def read_expenses(self, file_name: str) -> pd.DataFrame:
+        """
+
+        :param file_name: The name and location of the planned_expenses.csv 
+                          file.
+        :return df: A pandas dataframe containing the contents of the 
+                    planned_expenses file
+        """
+        df = self.read_planned_expenses(file_name)
+        return df
 # ================================================================================
 
     def _verify_hist_files(self, files: List[str]) -> bool:

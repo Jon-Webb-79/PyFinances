@@ -542,6 +542,18 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_bills_file</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">df</span></div>
+<span class="c1"># --------------------------------------------------------------------------------</span>
+
+<div class="viewcode-block" id="MCPreProcessor.read_expenses"><a class="viewcode-back" href="../pre_processors.html#pre_processor.MCPreProcessor.read_expenses">[docs]</a>    <span class="k">def</span> <span class="nf">read_expenses</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        :param file_name: The name and location of the planned_expenses.csv </span>
+<span class="sd">                          file.</span>
+<span class="sd">        :return df: A pandas dataframe containing the contents of the </span>
+<span class="sd">                    planned_expenses file</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_planned_expenses</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">df</span></div>
 <span class="c1"># ================================================================================</span>
 
     <span class="k">def</span> <span class="nf">_verify_hist_files</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">files</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
