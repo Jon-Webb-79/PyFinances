@@ -17,7 +17,7 @@ sys.path.insert(0, os.path.abspath('../../../src'))
 
 # -- Project information -----------------------------------------------------
 
-project = 'Project_Name'
+project = 'PyFinances'
 copyright = '2021, Jonathan A. Webb'
 author = 'Jonathan A. Webb'
 

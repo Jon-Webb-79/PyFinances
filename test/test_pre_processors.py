@@ -11,6 +11,8 @@ from pre_processor import MakeDistribution
 from pre_processor import ProcessDailyExpenseFile
 from pre_processor import CreateCDF, hist_pre_processor
 from pre_processor import ReadCSVFile, ReadMonteCarloFiles, CreateDates
+from pre_processor import MCPreProcessor
+from read_files import ReadRunOptionsFile
 # ================================================================================
 # ================================================================================
 # Date:    January 26, 20211
@@ -429,6 +431,7 @@ def test_make_iteration_dates():
         assert it_dates[i] == results[i]
 # ================================================================================
 # ================================================================================
+# Test CreateDates class
 
 
 def test_make_pay_dates_weekly():
@@ -448,8 +451,7 @@ def test_make_pay_dates_weekly():
                                  '2021-02-12', '2021-02-19', '2021-02-26'])
     for i in range(len(expected)):
         assert pay_dates[i] == expected[i]
-# ================================================================================
-# ================================================================================
+# --------------------------------------------------------------------------------
 
 
 def test_make_pay_dates_biweekly():
@@ -468,8 +470,7 @@ def test_make_pay_dates_biweekly():
                                  '2021-02-12', '2021-02-26'])
     for i in range(len(expected)):
         assert expected[i] == pay_dates[i]
-# ================================================================================
-# ================================================================================
+# --------------------------------------------------------------------------------
 
 
 def test_make_pay_dates_monthly():
@@ -481,6 +482,67 @@ def test_make_pay_dates_monthly():
     expected = pd.DatetimeIndex(['2021-01-31', '2021-02-28'])
     for i in range(len(expected)):
         assert expected[i] == pay_dates[i]
+# ================================================================================
+# ================================================================================
+# Test MCPreProcessor class
+
+
+def test_validate_hist_files_exist():
+    """
+
+    This file verifies that that the validate_hist_files function correctly
+    identifies that the cdf files do exist
+    """
+    plat = platform.system()
+    if plat == 'Darwin':
+        file_loc = '../data/test/'
+    else:
+        file_loc = r'..\data\test\ '
+    file_names = ['testgascdf.csv', 'testbarcdf.csv', 'testgroccdf.csv',
+                  'testmisccdf.csv', 'testrestcdf.csv']
+    run_file = file_loc + 'RunOptionsTest.txt'
+    files = []
+    for i in file_names:
+        files.append(file_loc + i)
+    read = ReadRunOptionsFile(run_file)
+    input_dict = read.read_file()
+    mc = MCPreProcessor()
+    mc.validate_hist_files(files, hist_pre_processor, input_dict, file_loc)
+
+    for i in files:
+        assert os.path.isfile(i)
+# --------------------------------------------------------------------------------
+
+
+def test_validate_hist_files_does_not_exist():
+    """
+
+    This function determines whether or not the validate_hist_files
+    function can accurately determine that the cdf files do not exist
+    and replace them.
+    """
+    plat = platform.system()
+    if plat == 'Darwin':
+        file_loc = '../data/test/'
+    else:
+        file_loc = r'..\data\test\ '
+    file_names = ['gascdf.csv', 'barcdf.csv', 'groccdf.csv',
+                  'misccdf.csv', 'restcdf.csv']
+    run_file = file_loc + 'RunOptionsTest.txt'
+    files = []
+    for i in file_names:
+        files.append(file_loc + i)
+    read = ReadRunOptionsFile(run_file)
+    input_dict = read.read_file()
+    mc = MCPreProcessor()
+    mc.validate_hist_files(files, hist_pre_processor, input_dict, file_loc)
+
+    for i in files:
+        assert os.path.isfile(i)
+
+    for i in files:
+        os.remove(i)
+    os.remove(file_loc + 'total_expenses.csv')
 # ================================================================================
 # ================================================================================
 # eof

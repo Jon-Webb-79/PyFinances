@@ -700,64 +700,65 @@
 					ICsgdmFsaWRhdGVfaGlzdF9maWxlcygKXGYx
 					XGIgZmlsZV9sb2NhdGlvbgpcZjBcYjAgOiBz
 					dHIsIApcZjFcYiBoaXN0X3ByZV9wcm9jZXNz
-					b3JfZnVuYwpcZjBcYjAgOiBmdW5jKSAtPiBO
-					b25lOlwKICAgIApcZjJcaSBUaGlzIGZ1bmN0
-					aW9uIGNyZWF0ZSB0aGUgY2RmIGZpbGVzIGlm
-					IHRoZXkgZG8gbm90IGFscmVhZHkgZXhpc3QK
-					XGYwXGkwIFwKXAorIGNyZWF0ZV9kYXRlcygK
-					XGYxXGIgc3RhcnRfZGF0ZQpcZjBcYjAgOiBz
-					dHIsIApcZjFcYiBlbmRfZGF0ZQpcZjBcYjAg
-					OiBzdHIsIApcZjFcYiBmaXJzdF9wYXlfZGF0
-					ZQpcZjBcYjAgOiBzdHIsIApcZjFcYiBwYXlf
-					ZnJlcXVlbmN5ClxmMFxiMCA6IHN0cikgLSBU
-					dXBsZVtwZC5EYXRldGltZUluZGV4LCBwZC5E
-					YXRldGltZUluZGV4XTpcCiAgICAKXGYyXGkg
-					VGhpcyBmdW5jdGlvbiBjcmVhdGVzIGEgZGF0
-					ZXRpbWUgaW5kZXggZm9yIGVhY2ggZGF5IGl0
-					ZXJhdGVkIHRocm91Z2ggaW4gdGhlIE1vbnRl
-					IENhcmxvIHByb2dyYW1cCiAgICAgYW5kIGZv
-					ciBldmVyeSBwYXkgZGF0ZS4KXGYwXGkwIFwK
-					XAorIHJlYWRfYmlsbHMoClxmMVxiIGZpbGVf
-					bmFtZQpcZjBcYjAgOiBzdHIpIC0+IHBkLkRh
-					dGFGcmFtZTpcCiAgICAKXGYyXGkgVGhpcyBm
-					dW5jdGlvbiBjYWxscyByZWFkX2JpbGxzX2Zp
-					bGUgZnVuYwpcZjBcaTAgXApcCisgcmVhZF9l
-					eHBlbnNlcygKXGYxXGIgZmlsZV9uYW1lClxm
-					MFxiMCA6IHN0cikgLT4gcGQuRGF0YUZyYW1l
-					OlwKICAgIFRoaXMgZnVuY3Rpb24gY2FsbHMg
-					cmVhZF9wbGFubmVkX2V4cGVuc2VzIGZ1bmNc
-					ClwKKyBwYXlfYWxsb2NhdGlvbigKXGYxXGIg
-					ZmlsZV9uYW1lClxmMFxiMCA6IHN0ciwgClxm
-					MVxiIHNhbGFyeQpcZjBcYjAgOiBucC5mbG9h
-					dDMyLCAKXGYxXGIgcGF5X2ZyZXF1ZW5jeQpc
-					ZjBcYjAgOiBzdHIpIC0+IG5wLmZsb2F0MzI6
-					XAogICAgClxmMlxpIFRoaXMgZnVuY3Rpb24g
-					Y2FsbHMgdGhlIHJlYWRfZGVkdWN0aW9uc19m
-					aWxlIGZ1bmMgdG8gZGV0ZXJtaW5lIHdoYXQg
-					dGhlIGFjdHVhbCBcCiAgICBwYXkgaXMgYWZ0
-					ZXIgZGVkdWN0aW9ucyBhbmQgcGF5IHBlcmlv
-					ZCBzcGxpdHMgYXJlIGFjY291bnRlZCBmb3Iu
-					XApcCgpcZjBcaTAgKyByYW5kX2V4cGVuc2Vz
-					KApcZjFcYiBmaWxlcwpcZjBcYjAgOiBMaXN0
-					W3N0cl0pIC0+IExpc3RbcGQuRGF0YUZyYW1l
-					XTpcCiAgICAKXGYyXGkgVGhpcyBmdW5jdGlv
-					biB3aWxsIGdlbmVyYXRlIGEgbGlzdCBvZiBk
-					YXRhZnJhbWVzLCB3aGVyZSBlYWNoIGRhdGFm
-					cmFtZSBjb250YWluc1wKICAgIGNkZiBkYXRh
-					LgpcZjBcaTAgXApcCi0gX2RldGVybWluZV9h
-					bGxvYygKXGYxXGIgc2FsYXJ5ClxmMFxiMCA6
-					IG5wLmZsb2F0MzIsIApcZjFcYiBwYXlfZnJl
-					cXVlbmN5ClxmMFxiMCA6IHN0cikgLT4gbnAu
-					ZmxvYXQzMjpcCiAgICAKXGYyXGkgVGhpcyBm
-					dW5jdGlvbiBkZXRlcm1pbmVzIHRoZSBwYXkg
-					YWxsb2NhdGlvbiB3aGVuIHBheSBwZXJpb2Qg
-					c3BsaXRzXAogICAgYXJlIGFjY291bnRlZCBm
-					b3IuClxmMFxpMCBcClwKLSBfdmVyaWZ5X2hp
-					c3RfZmlsZXMoClxmMVxiIGZpbGVfbG9jYXRp
-					b24KXGYwXGIwIDogc3RyKSAtPiBib29sOlwK
-					ICAgIApcZjJcaSBUaGlzIGZ1bmN0aW9uIGRl
-					dGVybWluZXMgaWYgdGhlIGNkZiBmaWxlcyBl
-					eGlzdC59
+					b3JfZnVuYwpcZjBcYjAgOiBmdW5jLCAKXGYx
+					XGIgaW5wdXRfZGljdApcZjBcYjAgOiBEaWN0
+					KSAtPiBOb25lOlwKICAgIApcZjJcaSBUaGlz
+					IGZ1bmN0aW9uIGNyZWF0ZSB0aGUgY2RmIGZp
+					bGVzIGlmIHRoZXkgZG8gbm90IGFscmVhZHkg
+					ZXhpc3QKXGYwXGkwIFwKXAorIGNyZWF0ZV9k
+					YXRlcygKXGYxXGIgc3RhcnRfZGF0ZQpcZjBc
+					YjAgOiBzdHIsIApcZjFcYiBlbmRfZGF0ZQpc
+					ZjBcYjAgOiBzdHIsIApcZjFcYiBmaXJzdF9w
+					YXlfZGF0ZQpcZjBcYjAgOiBzdHIsIApcZjFc
+					YiBwYXlfZnJlcXVlbmN5ClxmMFxiMCA6IHN0
+					cikgLSBUdXBsZVtwZC5EYXRldGltZUluZGV4
+					LCBwZC5EYXRldGltZUluZGV4XTpcCiAgICAK
+					XGYyXGkgVGhpcyBmdW5jdGlvbiBjcmVhdGVz
+					IGEgZGF0ZXRpbWUgaW5kZXggZm9yIGVhY2gg
+					ZGF5IGl0ZXJhdGVkIHRocm91Z2ggaW4gdGhl
+					IE1vbnRlIENhcmxvIHByb2dyYW1cCiAgICAg
+					YW5kIGZvciBldmVyeSBwYXkgZGF0ZS4KXGYw
+					XGkwIFwKXAorIHJlYWRfYmlsbHMoClxmMVxi
+					IGZpbGVfbmFtZQpcZjBcYjAgOiBzdHIpIC0+
+					IHBkLkRhdGFGcmFtZTpcCiAgICAKXGYyXGkg
+					VGhpcyBmdW5jdGlvbiBjYWxscyByZWFkX2Jp
+					bGxzX2ZpbGUgZnVuYwpcZjBcaTAgXApcCisg
+					cmVhZF9leHBlbnNlcygKXGYxXGIgZmlsZV9u
+					YW1lClxmMFxiMCA6IHN0cikgLT4gcGQuRGF0
+					YUZyYW1lOlwKICAgIFRoaXMgZnVuY3Rpb24g
+					Y2FsbHMgcmVhZF9wbGFubmVkX2V4cGVuc2Vz
+					IGZ1bmNcClwKKyBwYXlfYWxsb2NhdGlvbigK
+					XGYxXGIgZmlsZV9uYW1lClxmMFxiMCA6IHN0
+					ciwgClxmMVxiIHNhbGFyeQpcZjBcYjAgOiBu
+					cC5mbG9hdDMyLCAKXGYxXGIgcGF5X2ZyZXF1
+					ZW5jeQpcZjBcYjAgOiBzdHIpIC0+IG5wLmZs
+					b2F0MzI6XAogICAgClxmMlxpIFRoaXMgZnVu
+					Y3Rpb24gY2FsbHMgdGhlIHJlYWRfZGVkdWN0
+					aW9uc19maWxlIGZ1bmMgdG8gZGV0ZXJtaW5l
+					IHdoYXQgdGhlIGFjdHVhbCBcCiAgICBwYXkg
+					aXMgYWZ0ZXIgZGVkdWN0aW9ucyBhbmQgcGF5
+					IHBlcmlvZCBzcGxpdHMgYXJlIGFjY291bnRl
+					ZCBmb3IuXApcCgpcZjBcaTAgKyByYW5kX2V4
+					cGVuc2VzKApcZjFcYiBmaWxlcwpcZjBcYjAg
+					OiBMaXN0W3N0cl0pIC0+IExpc3RbcGQuRGF0
+					YUZyYW1lXTpcCiAgICAKXGYyXGkgVGhpcyBm
+					dW5jdGlvbiB3aWxsIGdlbmVyYXRlIGEgbGlz
+					dCBvZiBkYXRhZnJhbWVzLCB3aGVyZSBlYWNo
+					IGRhdGFmcmFtZSBjb250YWluc1wKICAgIGNk
+					ZiBkYXRhLgpcZjBcaTAgXApcCi0gX2RldGVy
+					bWluZV9hbGxvYygKXGYxXGIgc2FsYXJ5Clxm
+					MFxiMCA6IG5wLmZsb2F0MzIsIApcZjFcYiBw
+					YXlfZnJlcXVlbmN5ClxmMFxiMCA6IHN0cikg
+					LT4gbnAuZmxvYXQzMjpcCiAgICAKXGYyXGkg
+					VGhpcyBmdW5jdGlvbiBkZXRlcm1pbmVzIHRo
+					ZSBwYXkgYWxsb2NhdGlvbiB3aGVuIHBheSBw
+					ZXJpb2Qgc3BsaXRzXAogICAgYXJlIGFjY291
+					bnRlZCBmb3IuClxmMFxpMCBcClwKLSBfdmVy
+					aWZ5X2hpc3RfZmlsZXMoClxmMVxiIGZpbGVf
+					bG9jYXRpb24KXGYwXGIwIDogc3RyKSAtPiBi
+					b29sOlwKICAgIApcZjJcaSBUaGlzIGZ1bmN0
+					aW9uIGRldGVybWluZXMgaWYgdGhlIGNkZiBm
+					aWxlcyBleGlzdC59
 					</data>
 					<key>attributedText3Data</key>
 					<data>
@@ -821,7 +822,7 @@
 					<key>fillType</key>
 					<integer>0</integer>
 					<key>frame</key>
-					<string>{{1062, 1468}, {745, 434}}</string>
+					<string>{{983, 1470}, {745, 434}}</string>
 					<key>hidden</key>
 					<false/>
 					<key>identifier</key>
@@ -937,7 +938,7 @@
 					<key>flipped</key>
 					<true/>
 					<key>frame</key>
-					<string>{{848, 1129}, {430, 339}}</string>
+					<string>{{848, 1129}, {351, 341}}</string>
 					<key>hidden</key>
 					<false/>
 					<key>identifier</key>
@@ -1047,7 +1048,7 @@
 					<key>flipped</key>
 					<true/>
 					<key>frame</key>
-					<string>{{1560, 840}, {-125, 628}}</string>
+					<string>{{1560, 840}, {-204, 630}}</string>
 					<key>hidden</key>
 					<false/>
 					<key>identifier</key>
@@ -1065,7 +1066,7 @@
 					<key>rotationAngle</key>
 					<integer>0</integer>
 					<key>rotationHandleRadius</key>
-					<real>130</real>
+					<real>190</real>
 					<key>scaleImage</key>
 					<true/>
 					<key>stroke1Color</key>

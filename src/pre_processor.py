@@ -3,7 +3,7 @@ from read_files import ReadCSVFile
 import numpy as np
 import pandas as pd
 import os
-from typing import Tuple, List
+from typing import Tuple, List, Dict
 # ================================================================================
 # ================================================================================ 
 # Date:    January 26, 20211
@@ -439,6 +439,56 @@ class CreateDates:
 # ================================================================================
 
 
+class MCPreProcessor(ReadMonteCarloFiles, CreateDates):
+    """
+
+    This class integrates all data necessary to run the Monte Carlo
+    portion of the PyFinances program
+    """
+    def validate_hist_files(self, files: List[str], hist_func, 
+                            input_dict: Dict, 
+                            hist_location: str) -> None:
+        """
+
+        :param files: A list of the file names and path-lenghts
+                      to the cdf files.
+        :param hist_func: The function that will create the cdf files 
+        :param input_dict: A dictionary containing the contents of the 
+                           RunOptions file.
+        :param hist_location: The location of the cdf files.
+
+        This function will determine if the cdf files exist at the specified
+        location.  If not, the function will execute the histogram pre
+        processor and create the files.
+        """
+        file_exists = self._verify_hist_files(files)
+        if not file_exists:
+            hist_func(input_dict['hist_start'], 
+                      input_dict['hist_end'], 
+                      input_dict['nbins'], 
+                      input_dict['daily_expense_file'], 
+                      input_dict['total_expense_file'], 
+                      hist_location)
+# ================================================================================
+
+    def _verify_hist_files(self, files: List[str]) -> bool:
+        """
+
+        :param files: A list of the file names and path-lengths to the 
+                      cdf files.
+
+        This function will test to see if all of the cdf files exist
+        at the locations were they are supposed to.  If all files 
+        exist the function will return True, if not it wll return
+        False.
+        """
+        for i in files:
+            exists = os.path.isfile(i)
+            if not exists:
+                return False
+        return True
+# ================================================================================
+# ================================================================================
 def verify_hist_files(file_location: str) -> bool:
     """
 

@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>pre_processor &#8212; Project_Name 0.1.0 documentation</title>
+    <title>pre_processor &#8212; PyFinances 0.1.0 documentation</title>
     <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -22,7 +22,7 @@
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Project_Name 0.1.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">PyFinances 0.1.0 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Module code</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">pre_processor</a></li> 
       </ul>
@@ -39,7 +39,7 @@
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">List</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span>
 <span class="c1"># ================================================================================</span>
 <span class="c1"># ================================================================================ </span>
 <span class="c1"># Date:    January 26, 20211</span>
@@ -351,7 +351,7 @@
 
 <span class="sd">    This class contains functions that read the PyFinances input files</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">read_cdf_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<div class="viewcode-block" id="ReadMonteCarloFiles.read_cdf_file"><a class="viewcode-back" href="../pre_processors.html#pre_processor.ReadMonteCarloFiles.read_cdf_file">[docs]</a>    <span class="k">def</span> <span class="nf">read_cdf_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        </span>
 <span class="sd">        :param file_name: The namve of the cdf file to be read </span>
@@ -366,10 +366,10 @@
         <span class="n">headers</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;probability&#39;</span><span class="p">,</span> <span class="s1">&#39;center&#39;</span><span class="p">]</span>
         <span class="n">dat_type</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">]</span>
         <span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_csv_columns_by_headers</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="n">dat_type</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">df</span>
+        <span class="k">return</span> <span class="n">df</span></div>
 <span class="c1"># --------------------------------------------------------------------------------</span>
 
-    <span class="k">def</span> <span class="nf">read_bills_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<div class="viewcode-block" id="ReadMonteCarloFiles.read_bills_file"><a class="viewcode-back" href="../pre_processors.html#pre_processor.ReadMonteCarloFiles.read_bills_file">[docs]</a>    <span class="k">def</span> <span class="nf">read_bills_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="sd">        :param file_nae: The name and location of the bills.csv file </span>
@@ -383,10 +383,10 @@
                   <span class="s1">&#39;Savings_Debit&#39;</span><span class="p">,</span> <span class="s1">&#39;Savings_Addition&#39;</span><span class="p">,</span> <span class="s1">&#39;Description&#39;</span><span class="p">]</span>
         <span class="n">dat_type</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span>
         <span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_csv_columns_by_headers</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="n">dat_type</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">df</span>
+        <span class="k">return</span> <span class="n">df</span></div>
 <span class="c1"># --------------------------------------------------------------------------------</span>
 
-    <span class="k">def</span> <span class="nf">read_planned_expenses</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<div class="viewcode-block" id="ReadMonteCarloFiles.read_planned_expenses"><a class="viewcode-back" href="../pre_processors.html#pre_processor.ReadMonteCarloFiles.read_planned_expenses">[docs]</a>    <span class="k">def</span> <span class="nf">read_planned_expenses</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="sd">        :param  file_name: The name and location of the planned_expense.csv</span>
@@ -402,10 +402,10 @@
         <span class="n">dat_type</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span>
         <span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_csv_columns_by_headers</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="n">dat_type</span><span class="p">)</span>
         <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">],</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">df</span>
+        <span class="k">return</span> <span class="n">df</span></div>
 <span class="c1"># --------------------------------------------------------------------------------</span>
 
-    <span class="k">def</span> <span class="nf">read_deductions_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<div class="viewcode-block" id="ReadMonteCarloFiles.read_deductions_file"><a class="viewcode-back" href="../pre_processors.html#pre_processor.ReadMonteCarloFiles.read_deductions_file">[docs]</a>    <span class="k">def</span> <span class="nf">read_deductions_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="sd">        :param file_name: The name and locations of the Deductions.csv </span>
@@ -420,7 +420,7 @@
         <span class="n">headers</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Amount&#39;</span><span class="p">,</span> <span class="s1">&#39;Description&#39;</span><span class="p">]</span>
         <span class="n">dat_type</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span>
         <span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_csv_columns_by_headers</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="n">dat_type</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">df</span></div>
+        <span class="k">return</span> <span class="n">df</span></div></div>
 <span class="c1"># ================================================================================</span>
 <span class="c1"># ================================================================================</span>
 
@@ -432,7 +432,7 @@
 <span class="sd">    pandas DatetimeIndex of dates to support Monte Carlo iteration and</span>
 <span class="sd">    pay date assessment.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="o">@</span> <span class="nb">classmethod</span>
+<div class="viewcode-block" id="CreateDates.make_dates"><a class="viewcode-back" href="../pre_processors.html#pre_processor.CreateDates.make_dates">[docs]</a>    <span class="o">@</span> <span class="nb">classmethod</span>
     <span class="k">def</span> <span class="nf">make_dates</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">start_date</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">end_date</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DatetimeIndex</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 
@@ -445,10 +445,10 @@
 <span class="sd">        datetime index.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">dates</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">end_date</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">dates</span>
+        <span class="k">return</span> <span class="n">dates</span></div>
 <span class="c1"># --------------------------------------------------------------------------------</span>
  
-    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="CreateDates.make_pay_dates"><a class="viewcode-back" href="../pre_processors.html#pre_processor.CreateDates.make_pay_dates">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">make_pay_dates</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">first_pay_date</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">frequency</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
                        <span class="n">end_date</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DatetimeIndex</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -470,11 +470,61 @@
             <span class="n">dates</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">first_pay_date</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">end_date</span><span class="p">,</span> <span class="n">freq</span> <span class="o">=</span> <span class="s1">&#39;2W-FRI&#39;</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>    
             <span class="n">dates</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">first_pay_date</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">end_date</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;M&#39;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">dates</span></div>
+        <span class="k">return</span> <span class="n">dates</span></div></div>
 <span class="c1"># ================================================================================</span>
 <span class="c1"># ================================================================================</span>
 
 
+<div class="viewcode-block" id="MCPreProcessor"><a class="viewcode-back" href="../pre_processors.html#pre_processor.MCPreProcessor">[docs]</a><span class="k">class</span> <span class="nc">MCPreProcessor</span><span class="p">(</span><span class="n">ReadMonteCarloFiles</span><span class="p">,</span> <span class="n">CreateDates</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    This class integrates all data necessary to run the Monte Carlo</span>
+<span class="sd">    portion of the PyFinances program</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="MCPreProcessor.validate_hist_files"><a class="viewcode-back" href="../pre_processors.html#pre_processor.MCPreProcessor.validate_hist_files">[docs]</a>    <span class="k">def</span> <span class="nf">validate_hist_files</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">files</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">hist_func</span><span class="p">,</span> 
+                            <span class="n">input_dict</span><span class="p">:</span> <span class="n">Dict</span><span class="p">,</span> 
+                            <span class="n">hist_location</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        :param files: A list of the file names and path-lenghts</span>
+<span class="sd">                      to the cdf files.</span>
+<span class="sd">        :param hist_func: The function that will create the cdf files </span>
+<span class="sd">        :param input_dict: A dictionary containing the contents of the </span>
+<span class="sd">                           RunOptions file.</span>
+<span class="sd">        :param hist_location: The location of the cdf files.</span>
+
+<span class="sd">        This function will determine if the cdf files exist at the specified</span>
+<span class="sd">        location.  If not, the function will execute the histogram pre</span>
+<span class="sd">        processor and create the files.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">file_exists</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_verify_hist_files</span><span class="p">(</span><span class="n">files</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">file_exists</span><span class="p">:</span>
+            <span class="n">hist_func</span><span class="p">(</span><span class="n">input_dict</span><span class="p">[</span><span class="s1">&#39;hist_start&#39;</span><span class="p">],</span> 
+                      <span class="n">input_dict</span><span class="p">[</span><span class="s1">&#39;hist_end&#39;</span><span class="p">],</span> 
+                      <span class="n">input_dict</span><span class="p">[</span><span class="s1">&#39;nbins&#39;</span><span class="p">],</span> 
+                      <span class="n">input_dict</span><span class="p">[</span><span class="s1">&#39;daily_expense_file&#39;</span><span class="p">],</span> 
+                      <span class="n">input_dict</span><span class="p">[</span><span class="s1">&#39;total_expense_file&#39;</span><span class="p">],</span> 
+                      <span class="n">hist_location</span><span class="p">)</span></div>
+<span class="c1"># ================================================================================</span>
+
+    <span class="k">def</span> <span class="nf">_verify_hist_files</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">files</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        :param files: A list of the file names and path-lengths to the </span>
+<span class="sd">                      cdf files.</span>
+
+<span class="sd">        This function will test to see if all of the cdf files exist</span>
+<span class="sd">        at the locations were they are supposed to.  If all files </span>
+<span class="sd">        exist the function will return True, if not it wll return</span>
+<span class="sd">        False.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
+            <span class="n">exists</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">exists</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="kc">True</span></div>
+<span class="c1"># ================================================================================</span>
+<span class="c1"># ================================================================================</span>
 <span class="k">def</span> <span class="nf">verify_hist_files</span><span class="p">(</span><span class="n">file_location</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 
@@ -519,7 +569,7 @@
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="General Index"
              >index</a></li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Project_Name 0.1.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">PyFinances 0.1.0 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="index.html" >Module code</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">pre_processor</a></li> 
       </ul>

@@ -33,7 +33,7 @@ case the calculated distributions can be normalized.
 CreateCDF
 =========
 The `CreateCDF` class inherits the `MakeDistribution` class to execute its
-functionality.  This class specifically reads in column data from the 
+
 `Total_Expenses.csv` file, that is transformed into a cdf and then
 written to a file.
 
@@ -56,6 +56,7 @@ The `ReadMonteCarloFiles` class contains functions that open and read key csv
 files with information necessary to run the PyFinances program.
 
 .. autoclass:: pre_processor.ReadMonteCarloFiles
+   :members:
 
 Create Dates
 ============
@@ -65,3 +66,13 @@ allows a user to create a date corresponding to every pay date based on
 their pay frequency and the first pay date.
 
 .. autoclass:: pre_processor.CreateDates
+   :members:
+
+Monte Carlo Pre-Processors
+==========================
+The `MCPreProcessor` class integrates all functions that are necessary
+to read and process data necessary for the execution of the PyFinances
+Monte Carlo iteration.
+
+.. autoclass:: pre_processor.MCPreProcessor
+   :members:
