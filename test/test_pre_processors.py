@@ -332,90 +332,90 @@ def test_hist_pre_processor():
 # Test functions from the ReadMonteCarloFiles class
 
 
-#def test_read_cdf_files():
-#    """
-#
-#    This function tests the read_cdf_file function to see if it corerctly
-#    reads a cdf file
-#    """
-#    plat = platform.system()
-#    if plat == 'Darwin':
-#        file_name = '../data/test/cdf_file.csv'
-#    else:
-#        file_name = r'..\data\test\cdf_file.csv'
-#
-#    read = ReadMonteCarloFiles()
-#    df = read.read_cdf_file(file_name)
-#    prob = [0.215, 0.321, 0.415, 0.550, 0.640, 0.720, 0.840, 0.950, 1.000]
-#    cent = [8.75, 2.18, 8.95, 14.80, 17.89, 23.50, 32.50, 44.18, 51.20]
-#    for i in range(len(prob)):
-#        assert math.isclose(prob[i], df['probability'][i], rel_tol=1.0e-3)
-#        assert math.isclose(cent[i], df['center'][i], rel_tol=1.0e-3)
+def test_read_cdf_files():
+    """
+
+    This function tests the read_cdf_file function to see if it corerctly
+    reads a cdf file
+    """
+    plat = platform.system()
+    if plat == 'Darwin':
+        file_name = '../data/test/cdf_file.csv'
+    else:
+        file_name = r'..\data\test\cdf_file.csv'
+
+    read = ReadMonteCarloFiles()
+    df = read.read_cdf_file(file_name)
+    prob = [0.215, 0.321, 0.415, 0.550, 0.640, 0.720, 0.840, 0.950, 1.000]
+    cent = [8.75, 2.18, 8.95, 14.80, 17.89, 23.50, 32.50, 44.18, 51.20]
+    for i in range(len(prob)):
+        assert math.isclose(prob[i], df['probability'][i], rel_tol=1.0e-3)
+        assert math.isclose(cent[i], df['center'][i], rel_tol=1.0e-3)
 # --------------------------------------------------------------------------------
 
 
-#def test_read_bills():
-#    """
-#
-#    This function tests the ability of the read_bills_file()
-#    function to correclty read the bills.csv file
-#    """
-#    plat = platform.system()
-#    if plat == 'Darwin':
-#        file_name = '../data/test/bills.csv'
-#    else:
-#        file_name = r'..\data\test\bills.csv'
-#    read = ReadMonteCarloFiles()
-#    df = read.read_bills_file(file_name)
-#    day = np.array([3, 15, 28], np.dtype(int))
-#    addition = np.array([35.0, 75.0, 131.0], np.dtype(np.float32))
-#    for i in range(len(day)):
-#        assert math.isclose(day[i], df['Day'][i])
-#        assert math.isclose(addition[i], df['Checking_Debit'][i],
-#                            rel_tol=1.0e-3)
+def test_read_bills():
+    """
+
+    This function tests the ability of the read_bills_file()
+    function to correclty read the bills.csv file
+    """
+    plat = platform.system()
+    if plat == 'Darwin':
+        file_name = '../data/test/bills.csv'
+    else:
+        file_name = r'..\data\test\bills.csv'
+    read = ReadMonteCarloFiles()
+    df = read.read_bills_file(file_name)
+    day = np.array([3, 15, 28], np.dtype(int))
+    addition = np.array([35.0, 75.0, 131.0], np.dtype(np.float32))
+    for i in range(len(day)):
+        assert math.isclose(day[i], df['Day'][i])
+        assert math.isclose(addition[i], df['Checking_Debit'][i],
+                            rel_tol=1.0e-3)
 # --------------------------------------------------------------------------------
 
 
-#def test_read_planned_expenses():
-#    """
-#
-#    Test to ensure that the read_planned_expenses function works
-#    properly
-#    """
-#    plat = platform.system()
-#    if plat == 'Darwin':
-#        file_name = '../data/test/planned.csv'
-#    else:
-#        file_name = r'..\data\test\planned.csv'
-#    read = ReadMonteCarloFiles()
-#    df = read.read_planned_expenses(file_name)
-#    dt = pd.Series(['2020-03-15', '2020-06-02', '2020-07-21'])
-#    dt = pd.to_datetime(dt, format='%Y-%m-%d')
-#    addition = np.array([35.0, 75.0, 131.0], np.dtype(np.float32))
-#    for i in range(len(addition)):
-#        assert dt[i] == df['Date'][i]
-#        assert math.isclose(addition[i], df['Checking_Debit'][i],
-#                            rel_tol=1.0e-3)
+def test_read_planned_expenses():
+    """
+
+    Test to ensure that the read_planned_expenses function works
+    properly
+    """
+    plat = platform.system()
+    if plat == 'Darwin':
+        file_name = '../data/test/planned.csv'
+    else:
+        file_name = r'..\data\test\planned.csv'
+    read = ReadMonteCarloFiles()
+    df = read.read_planned_expenses(file_name)
+    dt = pd.Series(['2020-03-15', '2020-06-02', '2020-07-21'])
+    dt = pd.to_datetime(dt, format='%Y-%m-%d')
+    addition = np.array([35.0, 75.0, 131.0], np.dtype(np.float32))
+    for i in range(len(addition)):
+        assert dt[i] == df['Date'][i]
+        assert math.isclose(addition[i], df['Checking_Debit'][i],
+                            rel_tol=1.0e-3)
 # --------------------------------------------------------------------------------
 
 
-#def test_read_deductions():
-#    """
-#
-#    Tests to ensure that the read_dedctions function works properly
-#    """
-#    plat = platform.system()
-#    if plat == 'Darwin':
-#        file_name = '../data/test/Deductions.csv'
-#    else:
-#        file_name = r'..\data\test\Deductions.csv'
-#    read = ReadMonteCarloFiles()
-#    df = read.read_deductions_file(file_name)
-#    amount = np.array([144.50, 73.50, 164.0], np.dtype(np.float32))
-#    description = ['401k', 'Medical Deductions', 'Federal Income Tax']
-#    for i in range(len(amount)):
-#        assert math.isclose(amount[i], df['Amount'][i], rel_tol=1.0e-3)
-#        assert description[i] == df['Description'][i]
+def test_read_deductions():
+    """
+
+    Tests to ensure that the read_dedctions function works properly
+    """
+    plat = platform.system()
+    if plat == 'Darwin':
+        file_name = '../data/test/Deductions.csv'
+    else:
+        file_name = r'..\data\test\Deductions.csv'
+    read = ReadMonteCarloFiles()
+    df = read.read_deductions_file(file_name)
+    amount = np.array([144.50, 73.50, 164.0], np.dtype(np.float32))
+    description = ['401k', 'Medical Deductions', 'Federal Income Tax']
+    for i in range(len(amount)):
+        assert math.isclose(amount[i], df['Amount'][i], rel_tol=1.0e-3)
+        assert description[i] == df['Description'][i]
 # ================================================================================
 # ================================================================================
 
