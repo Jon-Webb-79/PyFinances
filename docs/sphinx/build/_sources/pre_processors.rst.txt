@@ -49,3 +49,19 @@ if the users selects False for **Hist Run**, but the cdf files do not exist,
 the software will still run this function.
 
 .. autofunction:: pre_processor.hist_pre_processor
+
+Read Monte Carlo Files
+======================
+The `ReadMonteCarloFiles` class contains functions that open and read key csv
+files with information necessary to run the PyFinances program.
+
+.. autoclass:: pre_processor.ReadMonteCarloFiles
+
+Create Dates
+============
+The `CreatDates` class allows a user to create a pandas DatetimeIndex with 
+a date for every day in the Monte Carlo iteration.  In addition, the class
+allows a user to create a date corresponding to every pay date based on 
+their pay frequency and the first pay date.
+
+.. autoclass:: pre_processor.CreateDates

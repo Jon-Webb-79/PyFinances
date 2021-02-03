@@ -389,45 +389,52 @@ class ReadMonteCarloFiles(ReadCSVFile):
 # ================================================================================
 
 
-def make_dates(start_date: str, end_date: str) -> pd.DatetimeIndex:
+class CreateDates:
     """
 
-    :param start_date: The first date in a datetime index 
-    :param end_date: The last date in a datetime index 
-    :return dates: A datetime index 
-
-    This function creates a list of dates in one dat intervals starting from
-    the start_date to the end_date.  The list is returned as a pandas
-    datetime index.
+    This class contains member functions as classmethods that will produce a 
+    pandas DatetimeIndex of dates to support Monte Carlo iteration and
+    pay date assessment.
     """
-    dates = pd.date_range(start=start_date, end=end_date)
-    return dates
-# ================================================================================
-# ================================================================================
+    @ classmethod
+    def make_dates(cls, start_date: str, end_date: str) -> pd.DatetimeIndex:
+        """
 
+        :param start_date: The first date in a datetime index 
+        :param end_date: The last date in a datetime index 
+        :return dates: A datetime index 
 
-def make_pay_dates(first_pay_date: str, frequency: str, 
-                   end_date: str) -> pd.DatetimeIndex:
-    """
+        This function creates a list of dates in one dat intervals starting from
+        the start_date to the end_date.  The list is returned as a pandas
+        datetime index.
+        """
+        dates = pd.date_range(start=start_date, end=end_date)
+        return dates
+# --------------------------------------------------------------------------------
+ 
+    @classmethod
+    def make_pay_dates(cls, first_pay_date: str, frequency: str, 
+                       end_date: str) -> pd.DatetimeIndex:
+        """
 
-    :param first_pay_date: The firs pay date in the formay YYYY-MM-DD
-    :param frquency: The frequency of paychecks, WEEKLY, BI-WEEKLY, or
-                     MONTHLY
-    :param end_date: The last date for pay allocation.  This day does not 
-                     have to fall on a pay date and instead represents the 
-                     last day for Monte Carlo iteration.
-    :return dates: A pandas series of pay dates
+        :param first_pay_date: The firs pay date in the formay YYYY-MM-DD
+        :param frquency: The frequency of paychecks, WEEKLY, BI-WEEKLY, or
+                         MONTHLY
+        :param end_date: The last date for pay allocation.  This day does not 
+                         have to fall on a pay date and instead represents the 
+                         last day for Monte Carlo iteration.
+        :return dates: A pandas series of pay dates
 
-    This function produces a pandas data series of dates, where each date 
-    represents a pay date.
-    """
-    if frequency.upper() == 'WEEKLY':
-        dates = pd.date_range(start=first_pay_date, end=end_date, freq='W-FRI')
-    elif frequency.upper() == 'BI-WEEKLY':
-        dates = pd.date_range(start=first_pay_date, end=end_date, freq = '2W-FRI')
-    else:    
-        dates = pd.date_range(start=first_pay_date, end=end_date, freq='M')
-    return dates
+        This function produces a pandas data series of dates, where each date 
+        represents a pay date.
+        """
+        if frequency.upper() == 'WEEKLY':
+            dates = pd.date_range(start=first_pay_date, end=end_date, freq='W-FRI')
+        elif frequency.upper() == 'BI-WEEKLY':
+            dates = pd.date_range(start=first_pay_date, end=end_date, freq = '2W-FRI')
+        else:    
+            dates = pd.date_range(start=first_pay_date, end=end_date, freq='M')
+        return dates
 # ================================================================================
 # ================================================================================
 

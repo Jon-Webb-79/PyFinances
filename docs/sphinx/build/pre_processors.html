@@ -253,6 +253,32 @@ the software will still run this function.</p>
 <dd></dd></dl>
 
 </div>
+<div class="section" id="read-monte-carlo-files">
+<h2>Read Monte Carlo Files<a class="headerlink" href="#read-monte-carlo-files" title="Permalink to this headline">¶</a></h2>
+<p>The <cite>ReadMonteCarloFiles</cite> class contains functions that open and read key csv
+files with information necessary to run the PyFinances program.</p>
+<dl class="py class">
+<dt id="pre_processor.ReadMonteCarloFiles">
+<em class="property">class </em><code class="sig-prename descclassname">pre_processor.</code><code class="sig-name descname">ReadMonteCarloFiles</code><a class="reference internal" href="_modules/pre_processor.html#ReadMonteCarloFiles"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pre_processor.ReadMonteCarloFiles" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class contains functions that read the PyFinances input files</p>
+</dd></dl>
+
+</div>
+<div class="section" id="create-dates">
+<h2>Create Dates<a class="headerlink" href="#create-dates" title="Permalink to this headline">¶</a></h2>
+<p>The <cite>CreatDates</cite> class allows a user to create a pandas DatetimeIndex with
+a date for every day in the Monte Carlo iteration.  In addition, the class
+allows a user to create a date corresponding to every pay date based on
+their pay frequency and the first pay date.</p>
+<dl class="py class">
+<dt id="pre_processor.CreateDates">
+<em class="property">class </em><code class="sig-prename descclassname">pre_processor.</code><code class="sig-name descname">CreateDates</code><a class="reference internal" href="_modules/pre_processor.html#CreateDates"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pre_processor.CreateDates" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class contains member functions as classmethods that will produce a 
+pandas DatetimeIndex of dates to support Monte Carlo iteration and
+pay date assessment.</p>
+</dd></dl>
+
+</div>
 </div>
 
 
@@ -269,6 +295,8 @@ the software will still run this function.</p>
 <li><a class="reference internal" href="#makedistribution">MakeDistribution</a></li>
 <li><a class="reference internal" href="#createcdf">CreateCDF</a></li>
 <li><a class="reference internal" href="#histogram-pre-processor">Histogram Pre-Processor</a></li>
+<li><a class="reference internal" href="#read-monte-carlo-files">Read Monte Carlo Files</a></li>
+<li><a class="reference internal" href="#create-dates">Create Dates</a></li>
 </ul>
 </li>
 </ul>

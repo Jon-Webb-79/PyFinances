@@ -1495,7 +1495,7 @@
 					<key>flipped</key>
 					<true/>
 					<key>frame</key>
-					<string>{{1272, 1087}, {218, -295}}</string>
+					<string>{{1304, 1094}, {186, -302}}</string>
 					<key>hidden</key>
 					<false/>
 					<key>identifier</key>
@@ -1741,6 +1741,18 @@
 				</dict>
 				<dict>
 					<key>pointerCorner</key>
+					<integer>0</integer>
+					<key>pointerIdentifier</key>
+					<string>CBB435DB-D17D-49AE-9294-20F2C6200F7B</string>
+					<key>shapeEdge</key>
+					<integer>2</integer>
+					<key>shapeIdentifier</key>
+					<string>A969E72C-4CE4-46A8-AE55-71B2E7896734</string>
+					<key>shapeRatio</key>
+					<real>0.57446808510638303</real>
+				</dict>
+				<dict>
+					<key>pointerCorner</key>
 					<integer>8</integer>
 					<key>pointerIdentifier</key>
 					<string>C60400C6-87D4-4313-B415-9516078C97BE</string>
@@ -1842,7 +1854,7 @@
 			<key>scaleImage</key>
 			<true/>
 			<key>scrollCenterPoint</key>
-			<string>{999, 749}</string>
+			<string>{1000, 750}</string>
 			<key>stroke1Color</key>
 			<string></string>
 			<key>stroke1Enabled</key>
@@ -1896,7 +1908,7 @@
 			<key>userSetTitle</key>
 			<false/>
 			<key>zoomScaleIndex</key>
-			<integer>-2</integer>
+			<integer>1</integer>
 		</dict>
 	</array>
 	<key>image_ref_counts</key>
