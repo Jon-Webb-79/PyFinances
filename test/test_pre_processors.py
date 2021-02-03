@@ -565,6 +565,24 @@ def test_make_mc_dates():
         assert iter_dates[i] == results[i]
     for i in range(len(pay_dates)):
         assert pay_dates[i] == expected_pay[i]
+# --------------------------------------------------------------------------------
+
+
+def test_read_mc_bills():
+    plat = platform.system()
+    if plat == 'Darwin':
+        file_name = '../data/test/bills.csv'
+    else:
+        file_name = r'..\data\test\bills.csv'
+    mc = MCPreProcessor()
+    df = mc.read_bills(file_name)
+    day = np.array([3, 15, 28], np.dtype(int))
+    addition = np.array([35.0, 75.0, 131.0], np.dtype(np.float32))
+    for i in range(len(day)):
+        assert math.isclose(day[i], df['Day'][i])
+        assert math.isclose(addition[i], df['Checking_Debit'][i],
+                            rel_tol=1.0e-3)
+
 # ================================================================================
 # ================================================================================
 # eof

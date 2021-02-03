@@ -495,6 +495,17 @@ class MCPreProcessor(ReadMonteCarloFiles, CreateDates):
         iter_dates = self.make_dates(start_date, end_date)
         pay_dates = self.make_pay_dates(first_pay_date, pay_frequency, end_date)
         return iter_dates, pay_dates
+# --------------------------------------------------------------------------------
+
+    def read_bills(self, file_name: str) -> pd.DataFrame:
+        """
+
+        :param file_name: The name and location of the bills.csv file.
+        :return df: A pandas dataframe containing the contents of the bills
+                    file
+        """
+        df = self.read_bills_file(file_name)
+        return df
 # ================================================================================
 
     def _verify_hist_files(self, files: List[str]) -> bool:
