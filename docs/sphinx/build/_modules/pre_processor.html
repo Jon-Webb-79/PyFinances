@@ -106,9 +106,9 @@
         <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="sd">        :param start_date: The initial day over which time a histogram</span>
-<span class="sd">                           file is desired.</span>
+<span class="sd">                           file is desired.  Date in format YYYY-MM-DD</span>
 <span class="sd">        :param end_date: The last day over which time a histogram file</span>
-<span class="sd">                         is desired</span>
+<span class="sd">                         is desired. Date in fomrat YYYY-MM-DD</span>
 <span class="sd">        :param total_expense_file: The name and location which the histogram</span>
 <span class="sd">                                   data is to be written</span>
 
@@ -322,6 +322,26 @@
 <div class="viewcode-block" id="hist_pre_processor"><a class="viewcode-back" href="../pre_processors.html#pre_processor.hist_pre_processor">[docs]</a><span class="k">def</span> <span class="nf">hist_pre_processor</span><span class="p">(</span><span class="n">start_date</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">end_date</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">nbins</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> 
                        <span class="n">expense_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">total_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
                        <span class="n">file_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    :param start_date: The initial date used to develop cdf files.  Date</span>
+<span class="sd">                       in format YYYY-MM-DD</span>
+<span class="sd">    :param end_date: The last date used to develop cdf files.  Date </span>
+<span class="sd">                     in format YYYY-MM-DD</span>
+<span class="sd">    :param nbins: The number of histogram bins to use when developing </span>
+<span class="sd">                  cdf files </span>
+<span class="sd">    :param expense_file: The name and location of the expense file </span>
+<span class="sd">    :param total_file: The name and location where the total_expenses.csv</span>
+<span class="sd">                       file will be written.</span>
+<span class="sd">    :param file_path: The file path to the location where the cdf files </span>
+<span class="sd">                      will be written</span>
+<span class="sd">    :return None: </span>
+
+<span class="sd">    This function will read the daily_expenses.csv file, specifically the </span>
+<span class="sd">    data points between a used defined start and end date and use them </span>
+<span class="sd">    to produce cumulative distribution functions for each spending </span>
+<span class="sd">    category, which will then be written to a csv file.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Create teh Total_Expenses.csv file </span>
     <span class="n">proc</span> <span class="o">=</span> <span class="n">ProcessDailyExpenseFile</span><span class="p">(</span><span class="n">expense_file</span><span class="p">)</span>
     <span class="n">proc</span><span class="o">.</span><span class="n">group_expenses_by_date</span><span class="p">(</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">,</span> <span class="n">total_file</span><span class="p">)</span>

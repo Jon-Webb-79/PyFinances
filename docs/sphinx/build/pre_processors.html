@@ -68,9 +68,9 @@ file in different ways.</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>start_date</strong> – The initial day over which time a histogram
-file is desired.</p></li>
+file is desired.  Date in format YYYY-MM-DD</p></li>
 <li><p><strong>end_date</strong> – The last day over which time a histogram file
-is desired</p></li>
+is desired. Date in fomrat YYYY-MM-DD</p></li>
 <li><p><strong>total_expense_file</strong> – The name and location which the histogram
 data is to be written</p></li>
 </ul>
@@ -249,7 +249,30 @@ the software will still run this function.</p>
 <dl class="py function">
 <dt id="pre_processor.hist_pre_processor">
 <code class="sig-prename descclassname">pre_processor.</code><code class="sig-name descname">hist_pre_processor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">start_date</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">end_date</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">nbins</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">expense_file</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">total_file</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">file_path</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/pre_processor.html#hist_pre_processor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pre_processor.hist_pre_processor" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>start_date</strong> – The initial date used to develop cdf files.  Date
+in format YYYY-MM-DD</p></li>
+<li><p><strong>end_date</strong> – The last date used to develop cdf files.  Date 
+in format YYYY-MM-DD</p></li>
+<li><p><strong>nbins</strong> – The number of histogram bins to use when developing 
+cdf files</p></li>
+<li><p><strong>expense_file</strong> – The name and location of the expense file</p></li>
+<li><p><strong>total_file</strong> – The name and location where the total_expenses.csv
+file will be written.</p></li>
+<li><p><strong>file_path</strong> – The file path to the location where the cdf files 
+will be written</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return None</dt>
+<dd class="field-even"><p></p></dd>
+</dl>
+<p>This function will read the daily_expenses.csv file, specifically the 
+data points between a used defined start and end date and use them 
+to produce cumulative distribution functions for each spending 
+category, which will then be written to a csv file.</p>
+</dd></dl>
 
 </div>
 <div class="section" id="read-monte-carlo-files">
