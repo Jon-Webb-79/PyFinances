@@ -530,6 +530,28 @@ class MCPreProcessor(ReadMonteCarloFiles, CreateDates):
         """
         df_list = [self.read_cdf_file(i) for i in files]
         return df_list
+# --------------------------------------------------------------------------------
+
+    def pay_allocation(self, file_name: str, salary: np.float32, 
+                       pay_frequency: str) -> np.float32:
+        """
+
+        :param file_name: The name and location of the csv file containng the
+                          pay deductions 
+        :param salary: The annual salary before any pay deductions 
+        :param pay_frequency: The frequency of pay allocation, can be 
+                              WEEKLY, BI-WEEKLY, or MONTHLY
+        :return deducted_salary: The salary after it has been divided by the 
+                                 pay periods and all deductions have been made
+
+        This function determines the actual pay allocation per pay period 
+        after deductions have been made.
+        """
+        df = self.read_deductions_file(file_name)
+        deductions = df['Amount'].sum()
+        updated_salary = self._determine_alloc(salary, pay_frequency)
+        deducted_salary = updated_salary - deductions 
+        return deducted_salary
 # ================================================================================
 
     def _verify_hist_files(self, files: List[str]) -> bool:
@@ -548,6 +570,27 @@ class MCPreProcessor(ReadMonteCarloFiles, CreateDates):
             if not exists:
                 return False
         return True
+# --------------------------------------------------------------------------------
+
+    def _determine_alloc(self, salary: np.float32, 
+                         pay_frequency: str) -> np.float32:
+        """
+
+        :param salary: Annual salary before any dedcutions
+        :param pay_frequency: The frequency of pay allocation, can be WEEKLY, 
+                              BI-WEEKLY, or MONTHLY
+        :return updated_salary: The salary divided by the pay frequency
+
+        This function determines the pay allocation prior to deductions based
+        on the frequency of pay allocation
+        """
+        if pay_frequency.upper() == 'WEEKLY':
+            updated_salary = salary / 52.0
+        elif pay_frequency == 'BI-WEEKLY':
+            updated_salary = salary / 26.0
+        else:
+            updated_salary = salary / 12.0
+        return updated_salary
 # ================================================================================
 # ================================================================================
 # eof

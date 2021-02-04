@@ -426,6 +426,28 @@ Carlo iteration.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt id="pre_processor.MCPreProcessor.pay_allocation">
+<code class="sig-name descname">pay_allocation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file_name</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">salary</span><span class="p">:</span> <span class="n">numpy.float32</span></em>, <em class="sig-param"><span class="n">pay_frequency</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> &#x2192; numpy.float32<a class="reference internal" href="_modules/pre_processor.html#MCPreProcessor.pay_allocation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pre_processor.MCPreProcessor.pay_allocation" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>file_name</strong> – The name and location of the csv file containng the
+pay deductions</p></li>
+<li><p><strong>salary</strong> – The annual salary before any pay deductions</p></li>
+<li><p><strong>pay_frequency</strong> – The frequency of pay allocation, can be 
+WEEKLY, BI-WEEKLY, or MONTHLY</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return deducted_salary</dt>
+<dd class="field-even"><p>The salary after it has been divided by the 
+pay periods and all deductions have been made</p>
+</dd>
+</dl>
+<p>This function determines the actual pay allocation per pay period 
+after deductions have been made.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt id="pre_processor.MCPreProcessor.read_bills">
 <code class="sig-name descname">read_bills</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file_name</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="reference internal" href="_modules/pre_processor.html#MCPreProcessor.read_bills"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pre_processor.MCPreProcessor.read_bills" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">

@@ -566,6 +566,28 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">df_list</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">read_cdf_file</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">files</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">df_list</span></div>
+<span class="c1"># --------------------------------------------------------------------------------</span>
+
+<div class="viewcode-block" id="MCPreProcessor.pay_allocation"><a class="viewcode-back" href="../pre_processors.html#pre_processor.MCPreProcessor.pay_allocation">[docs]</a>    <span class="k">def</span> <span class="nf">pay_allocation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">salary</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> 
+                       <span class="n">pay_frequency</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        :param file_name: The name and location of the csv file containng the</span>
+<span class="sd">                          pay deductions </span>
+<span class="sd">        :param salary: The annual salary before any pay deductions </span>
+<span class="sd">        :param pay_frequency: The frequency of pay allocation, can be </span>
+<span class="sd">                              WEEKLY, BI-WEEKLY, or MONTHLY</span>
+<span class="sd">        :return deducted_salary: The salary after it has been divided by the </span>
+<span class="sd">                                 pay periods and all deductions have been made</span>
+
+<span class="sd">        This function determines the actual pay allocation per pay period </span>
+<span class="sd">        after deductions have been made.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_deductions_file</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span>
+        <span class="n">deductions</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Amount&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+        <span class="n">updated_salary</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_determine_alloc</span><span class="p">(</span><span class="n">salary</span><span class="p">,</span> <span class="n">pay_frequency</span><span class="p">)</span>
+        <span class="n">deducted_salary</span> <span class="o">=</span> <span class="n">updated_salary</span> <span class="o">-</span> <span class="n">deductions</span> 
+        <span class="k">return</span> <span class="n">deducted_salary</span></div>
 <span class="c1"># ================================================================================</span>
 
     <span class="k">def</span> <span class="nf">_verify_hist_files</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">files</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
@@ -583,7 +605,28 @@
             <span class="n">exists</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">exists</span><span class="p">:</span>
                 <span class="k">return</span> <span class="kc">False</span>
-        <span class="k">return</span> <span class="kc">True</span></div>
+        <span class="k">return</span> <span class="kc">True</span>
+<span class="c1"># --------------------------------------------------------------------------------</span>
+
+    <span class="k">def</span> <span class="nf">_determine_alloc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">salary</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> 
+                         <span class="n">pay_frequency</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        :param salary: Annual salary before any dedcutions</span>
+<span class="sd">        :param pay_frequency: The frequency of pay allocation, can be WEEKLY, </span>
+<span class="sd">                              BI-WEEKLY, or MONTHLY</span>
+<span class="sd">        :return updated_salary: The salary divided by the pay frequency</span>
+
+<span class="sd">        This function determines the pay allocation prior to deductions based</span>
+<span class="sd">        on the frequency of pay allocation</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">pay_frequency</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;WEEKLY&#39;</span><span class="p">:</span>
+            <span class="n">updated_salary</span> <span class="o">=</span> <span class="n">salary</span> <span class="o">/</span> <span class="mf">52.0</span>
+        <span class="k">elif</span> <span class="n">pay_frequency</span> <span class="o">==</span> <span class="s1">&#39;BI-WEEKLY&#39;</span><span class="p">:</span>
+            <span class="n">updated_salary</span> <span class="o">=</span> <span class="n">salary</span> <span class="o">/</span> <span class="mf">26.0</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">updated_salary</span> <span class="o">=</span> <span class="n">salary</span> <span class="o">/</span> <span class="mf">12.0</span>
+        <span class="k">return</span> <span class="n">updated_salary</span></div>
 <span class="c1"># ================================================================================</span>
 <span class="c1"># ================================================================================</span>
 <span class="c1"># eof</span>

@@ -630,6 +630,19 @@ def test_read_mc_cdf():
     mc = MCPreProcessor()
     df_list = mc.read_cdf(files)
     assert len(df_list) == len(file_names)
+# --------------------------------------------------------------------------------
+
+
+def test_pay_allocation():
+    plat = platform.system()
+    if plat == 'Darwin':
+        file_name = '../data/test/deductions_one.csv'
+    else:
+        file_name = r'..\data\test\deductions_one.csv'
+    mc = MCPreProcessor()
+    pay = mc.pay_allocation(file_name, 135000.0, 'weekly')
+    assert math,isclose(1881.06, pay, rel_tol=1.0e-3)
+
 # ================================================================================
 # ================================================================================
 # eof
