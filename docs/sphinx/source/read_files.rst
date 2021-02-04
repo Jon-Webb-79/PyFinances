@@ -4,7 +4,7 @@ read_files
 The functions and classes described in this section are used to read
 ASCII based text files, to include `.txt` files and `.csv` files.  All of
 the code described in this section is maintained in the `read_files.py` file.
-
+
 ReadTextFileKeywords
 ====================
 This class is used to read a text file by its keywords.  The member functions will
@@ -25,6 +25,13 @@ in the `RunOptions.txt` file.
 
 .. autoclass:: read_files.ReadRunOptionsFile
    :members:
+
+The `ReadRunOptions` class inherits the `ReadTextFileKeywords` class in the format
+shown below.
+
+.. image:: ReadRunOptions.png
+   :width: 400
+   :alt: The ReadRunOptions Component
 
 ReadCSVFile
 ===========

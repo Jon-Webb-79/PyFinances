@@ -50,6 +50,12 @@ the software will still run this function.
 
 .. autofunction:: pre_processor.hist_pre_processor
 
+The `hist_pre_processor` function integrates all functions into a component
+in the manner shown below.
+
+.. image:: his_pre_processor.png
+   :width: 600
+
 Read Monte Carlo Files
 ======================
 The `ReadMonteCarloFiles` class contains functions that open and read key csv
@@ -76,3 +82,9 @@ Monte Carlo iteration.
 
 .. autoclass:: pre_processor.MCPreProcessor
    :members:
+ 
+THe `MCPreProcessor` class integrates all functions into a component in the 
+manner shown below
+
+.. image:: mc_pre_processor.png
+   :width: 700
