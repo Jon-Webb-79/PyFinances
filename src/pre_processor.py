@@ -70,9 +70,9 @@ class ProcessDailyExpenseFile(ReadCSVFile):
         """
 
         :param start_date: The initial day over which time a histogram
-                           file is desired.
+                           file is desired.  Date in format YYYY-MM-DD
         :param end_date: The last day over which time a histogram file
-                         is desired
+                         is desired. Date in fomrat YYYY-MM-DD
         :param total_expense_file: The name and location which the histogram
                                    data is to be written
 
@@ -286,6 +286,26 @@ class CreateCDF(MakeDistribution, ReadCSVFile):
 def hist_pre_processor(start_date: str, end_date: str, nbins: int, 
                        expense_file: str, total_file: str, 
                        file_path: str) -> None:
+    """
+
+    :param start_date: The initial date used to develop cdf files.  Date
+                       in format YYYY-MM-DD
+    :param end_date: The last date used to develop cdf files.  Date 
+                     in format YYYY-MM-DD
+    :param nbins: The number of histogram bins to use when developing 
+                  cdf files 
+    :param expense_file: The name and location of the expense file 
+    :param total_file: The name and location where the total_expenses.csv
+                       file will be written.
+    :param file_path: The file path to the location where the cdf files 
+                      will be written
+    :return None: 
+
+    This function will read the daily_expenses.csv file, specifically the 
+    data points between a used defined start and end date and use them 
+    to produce cumulative distribution functions for each spending 
+    category, which will then be written to a csv file.
+    """
     # Create teh Total_Expenses.csv file 
     proc = ProcessDailyExpenseFile(expense_file)
     proc.group_expenses_by_date(start_date, end_date, total_file)
@@ -520,7 +540,7 @@ class MCPreProcessor(ReadMonteCarloFiles, CreateDates):
         return df
 # --------------------------------------------------------------------------------
 
-    def read_cdf(self, files: str) -> List[pd.DataFrame]:
+    def read_cdf(self, files: List[str]) -> List[pd.DataFrame]:
         """
 
         :param files: A list of filenames with the path lengths to each of the 
