@@ -23,7 +23,6 @@ def pyfinances(runoptionsfile: str) -> None:
     # Read the RunOptions file
     inp = ReadRunOptionsFile(runoptionsfile)
     input_dict = inp.read_file()
-    hist_location = '../data/hist/'
 # --------------------------------------------------------------------------------
 # Execute the histogram pre-processor
 
@@ -34,7 +33,7 @@ def pyfinances(runoptionsfile: str) -> None:
                            input_dict['nbins'], 
                            input_dict['daily_expense_file'], 
                            input_dict['total_expense_file'], 
-                           hist_location)
+                           input_dict['hist_location'])
         return
 # --------------------------------------------------------------------------------
 # Execute the Monte Carlo Pre-processor
@@ -42,10 +41,10 @@ def pyfinances(runoptionsfile: str) -> None:
     # verify that cdf files exist.  If not, then create them
     files = ['groccdf.csv', 'misccdf.csv', 'gascdf.csv', 
              'barcdf.csv', 'restcdf.csv']
-    files = [hist_location + i for i in files]
+    files = [input_dict['hist_location'] + i for i in files]
     mc_pre = MCPreProcessor()
     mc_pre.validate_hist_files(files, hist_pre_processor, 
-                               input_dict, hist_location)
+                               input_dict, input_dict['hist_location'])
     
     # read files 
     bills_df = mc_pre.read_bills(input_dict['bills_file'])

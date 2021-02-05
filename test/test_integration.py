@@ -46,13 +46,13 @@ def test_create_cdf_files():
     """
     plat = platform.system()
     if plat == 'Darwin':
-        file_name = '../data/test/RunOptionsHist.txt'
-        total_file = '../data/test/total_expense.csv'
+        file_name = '../data/test/RunOptionsTest.txt'
+        total_file = '../data/test/total_expenses.csv'
         file_loc = '../data/hist/'
     else:
-        file_name = r'..\data\test\RunOptionsHist.txt'
+        file_name = r'..\data\test\RunOptionsTest.txt'
         file_loc = r'..\data\hist\ '
-        total_file = r'..\data\test\total_expense.csv'
+        total_file = r'..\data\test\total_expenses.csv'
     pyfinances(file_name)
     files = ['barcdf.csv', 'gascdf.csv', 'groccdf.csv', 'misccdf.csv',
              'restcdf.csv']

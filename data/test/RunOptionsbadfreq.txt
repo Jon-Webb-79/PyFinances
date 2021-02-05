@@ -14,3 +14,4 @@ Bins: 60
 Hist Start Date: 2020-03-01
 Hist End Date: 2021-02-28
 Daily Expense File: ../data/test/expense_file_one.csv
+Histogram Location ../data/test/

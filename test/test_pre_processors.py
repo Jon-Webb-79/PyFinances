@@ -106,7 +106,7 @@ values = np.random.normal(mu, sigma, sample_size)
 dist = MakeDistribution(values)
 
 
-def test_give_name_here():
+def test_discrete_pdf():
     """
 
     This function tests the discrte_pdf function to ensure it returns
@@ -158,8 +158,9 @@ def test_continuous_pdf_normed():
                          0.2802, 0.2678, 0.1496, 0.051,
                          0.0086, 0.0008], dtype=np.float64)
     exp_middle = np.array([93.09589924, 99.12930792, 105.1627166, 111.19612528,
-                           117.22953397, 123.26294265, 129.29635133, 135.32976001,
-                           141.3631687,  147.39657738], dtype=np.float64)
+                           117.22953397, 123.26294265, 129.29635133,
+                           135.32976001, 141.3631687,
+                           147.39657738], dtype=np.float64)
     for i, j in zip(exp_prob, prob):
         assert math.isclose(i, j, rel_tol=0.04)
     for i, j in zip(exp_middle, middle):
@@ -642,7 +643,6 @@ def test_pay_allocation():
     mc = MCPreProcessor()
     pay = mc.pay_allocation(file_name, 135000.0, 'weekly')
     assert math,isclose(1881.06, pay, rel_tol=1.0e-3)
-
 # ================================================================================
 # ================================================================================
 # eof
