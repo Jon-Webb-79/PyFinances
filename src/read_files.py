@@ -363,7 +363,8 @@ class ReadRunOptionsFile(ReadTextFileKeywords):
                       'planned_expense_file': 'False',
                       'bills_file': 'False',
                       'deductions_file': 'False',
-                      'hist_location': 'NA'}
+                      'hist_location': 'NA', 
+                      'output_file': 'NA'}
 
         # - Read input for produce histogram files. If the uer enters
         #   True for Run Histogram, then the code will only exeucte
@@ -413,7 +414,9 @@ class ReadRunOptionsFile(ReadTextFileKeywords):
             self._validate_first_pay_date(input_dict['first_pay_date'], 
                                          input_dict['pay_frequency'])
             input_dict['hist_location'] = \
-            self.read_string('Histogram Location:')
+                self.read_string('Histogram Location:')
+            input_dict['output_file'] = \
+                self.read_string('Output File:')
         return input_dict
 # ================================================================================
 
