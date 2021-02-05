@@ -1,0 +1,8 @@
+Day,Checking_Debit,Checking_Addition,Savings_Debit,Savings_Addition,Description
+1,1230.0,0.0,0.0,0.0,Rent
+5,55.0,0.0,0.0,0.0,Adobe
+6,35.0,0.0,0.0,0.0,Gas
+6,28.0,0.0,0.0,0.0,Electricity
+15.0,75.0,0.0,0.0,75.0,Checking to Savings
+22,145.0,0.0,0.0,0.0,Cell Phone
+28,45.0,0.0,0.0,0.0,Internet

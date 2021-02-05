@@ -7,9 +7,9 @@ Annual Salary: 145000.0
 Pay Frequency: Weekly
 First Pay Date: 2021-03-05
 Total Expense File: ../data/test/total_expenses.csv
-Planned Expense File: ../data/test/planned_expenses.csv
-Bills File: ../data/test/bills.csv
-Deductions File: ../data/test/deductions.csv
+Planned Expense File: ../data/test/planned_expense_test.csv
+Bills File: ../data/test/bills_test.csv
+Deductions File: ../data/test/deductions_test.csv
 Bins: 60
 Hist Start Date: 2020-03-01
 Hist End Date: 2021-02-28

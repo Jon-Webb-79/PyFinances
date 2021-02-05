@@ -236,6 +236,8 @@ def test_read_hist_true_info():
     assert inp_dict['hist_end'] == '2021-02-28'
     assert inp_dict['daily_expense_file'] == \
         '../data/test/daily_expenses_one.csv'
+    assert inp_dict['hist_location'] == \
+        '../data/test/'
 # --------------------------------------------------------------------------------
 
 
@@ -256,7 +258,7 @@ def test_read_no_hist_info():
     assert inp_dict['hist_start'] == '2020-03-01'
     assert inp_dict['hist_end'] == '2021-02-28'
     assert inp_dict['daily_expense_file'] == \
-        '../data/test/daily_expenses_one.csv'
+        '../data/test/expense_file_one.csv'
     assert inp_dict['sample_size'] == 1000
     assert inp_dict['start_date'] == '2021-03-01'
     assert inp_dict['end_date'] == '2022-02-28'
@@ -270,6 +272,7 @@ def test_read_no_hist_info():
         '../data/test/planned_expenses.csv'
     assert inp_dict['bills_file'] == '../data/test/bills.csv'
     assert inp_dict['deductions_file'] == '../data/test/deductions.csv'
+    assert inp_dict['hist_location'] == '../data/test/'
 # --------------------------------------------------------------------------------
 
 
@@ -290,7 +293,7 @@ def test_read_false_hist_info():
     assert inp_dict['hist_start'] == '2020-03-01'
     assert inp_dict['hist_end'] == '2021-02-28'
     assert inp_dict['daily_expense_file'] == \
-        '../data/test/daily_expenses_one.csv'
+        '../data/test/expense_file_one.csv'
     assert inp_dict['sample_size'] == 1000
     assert inp_dict['start_date'] == '2021-03-01'
     assert inp_dict['end_date'] == '2022-02-28'
@@ -299,11 +302,14 @@ def test_read_false_hist_info():
     assert isclose(inp_dict['annual_salary'], 145000.0, rel_tol=0.0001)
     assert inp_dict['pay_frequency'] == 'Weekly'
     assert inp_dict['first_pay_date'] == '2021-03-05'
-    assert inp_dict['total_expense_file'] == '../data/test/total_expenses.csv'
+    assert inp_dict['total_expense_file'] == \
+        '../data/test/total_expenses.csv'
     assert inp_dict['planned_expense_file'] == \
         '../data/test/planned_expenses.csv'
     assert inp_dict['bills_file'] == '../data/test/bills.csv'
     assert inp_dict['deductions_file'] == '../data/test/deductions.csv'
+    assert inp_dict['hist_location'] == '../data/test/'
+# --------------------------------------------------------------------------------
 # --------------------------------------------------------------------------------
 
 

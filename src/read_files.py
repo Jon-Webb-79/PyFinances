@@ -362,7 +362,8 @@ class ReadRunOptionsFile(ReadTextFileKeywords):
                       'total_expense_file': 'False',
                       'planned_expense_file': 'False',
                       'bills_file': 'False',
-                      'deductions_file': 'False'}
+                      'deductions_file': 'False',
+                      'hist_location': 'NA'}
 
         # - Read input for produce histogram files. If the uer enters
         #   True for Run Histogram, then the code will only exeucte
@@ -380,6 +381,8 @@ class ReadRunOptionsFile(ReadTextFileKeywords):
                 self.read_string('Daily Expense File:')
             input_dict['total_expense_file'] = \
                     self.read_string('Total Expense File:')
+            input_dict['hist_location'] = \
+                    self.read_string('Histogram Location:')
         # Read input for monte classrlo process
         else:
             input_dict['nbins'] = self.read_integer('Bins:')
@@ -409,6 +412,8 @@ class ReadRunOptionsFile(ReadTextFileKeywords):
             self._validate_frequency(input_dict['pay_frequency'])
             self._validate_first_pay_date(input_dict['first_pay_date'], 
                                          input_dict['pay_frequency'])
+            input_dict['hist_location'] = \
+            self.read_string('Histogram Location:')
         return input_dict
 # ================================================================================
 
