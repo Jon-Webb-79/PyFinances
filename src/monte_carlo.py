@@ -57,6 +57,7 @@ class MCFunctions():
         """
 
         :param checking_account: The current value of the checking account.
+        :param savings_account: The current value of the savings account
         :param date: The iteration date.
         :return checking_account, savings_account: The value of the checking
                                                    and savgins accounts after
@@ -78,7 +79,24 @@ class MCFunctions():
     def deduct_expenses(self, checking_account: np.float32, 
                         savings_account: np.float32, 
                         date: pd.DatetimeIndex) -> np.float32:
-        pass
+        """
+
+        :param checking_account: The current value of the checking account.
+        :param savings_account: The current value of the savings account.
+        :param date: The iteration date.
+        :return checking_account, savings_account: The value of the checking
+                                                   and savings accounts after
+                                                   planned expenses are 
+                                                   deducted.
+        """
+        df = self.expenses_file[(self.expenses_file.Date == date)]
+        
+        checking = df['Checking_Addition'].sum() - df['Checking_Debit'].sum()
+        savings = df['Savings_Addition'].sum() - df['Savings_Debit'].sum()
+        # deduct bills
+        checking_account += checking
+        savings_account += savings
+        return checking_account, savings_account
 # ================================================================================ 
-# ================================================================================ 
+# ================================================================================
 # eof

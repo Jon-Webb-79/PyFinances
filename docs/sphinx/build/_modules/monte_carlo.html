@@ -93,6 +93,7 @@
         <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="sd">        :param checking_account: The current value of the checking account.</span>
+<span class="sd">        :param savings_account: The current value of the savings account</span>
 <span class="sd">        :param date: The iteration date.</span>
 <span class="sd">        :return checking_account, savings_account: The value of the checking</span>
 <span class="sd">                                                   and savgins accounts after</span>
@@ -111,12 +112,29 @@
         <span class="k">return</span> <span class="n">checking_account</span><span class="p">,</span> <span class="n">savings_account</span></div>
 <span class="c1"># --------------------------------------------------------------------------------</span>
 
-    <span class="k">def</span> <span class="nf">deduct_expenses</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">checking_account</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> 
+<div class="viewcode-block" id="MCFunctions.deduct_expenses"><a class="viewcode-back" href="../mc_funcs.html#monte_carlo.MCFunctions.deduct_expenses">[docs]</a>    <span class="k">def</span> <span class="nf">deduct_expenses</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">checking_account</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> 
                         <span class="n">savings_account</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> 
                         <span class="n">date</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DatetimeIndex</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">:</span>
-        <span class="k">pass</span></div>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        :param checking_account: The current value of the checking account.</span>
+<span class="sd">        :param savings_account: The current value of the savings account.</span>
+<span class="sd">        :param date: The iteration date.</span>
+<span class="sd">        :return checking_account, savings_account: The value of the checking</span>
+<span class="sd">                                                   and savings accounts after</span>
+<span class="sd">                                                   planned expenses are </span>
+<span class="sd">                                                   deducted.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">expenses_file</span><span class="p">[(</span><span class="bp">self</span><span class="o">.</span><span class="n">expenses_file</span><span class="o">.</span><span class="n">Date</span> <span class="o">==</span> <span class="n">date</span><span class="p">)]</span>
+        
+        <span class="n">checking</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Checking_Addition&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Checking_Debit&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+        <span class="n">savings</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Savings_Addition&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Savings_Debit&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+        <span class="c1"># deduct bills</span>
+        <span class="n">checking_account</span> <span class="o">+=</span> <span class="n">checking</span>
+        <span class="n">savings_account</span> <span class="o">+=</span> <span class="n">savings</span>
+        <span class="k">return</span> <span class="n">checking_account</span><span class="p">,</span> <span class="n">savings_account</span></div></div>
 <span class="c1"># ================================================================================ </span>
-<span class="c1"># ================================================================================ </span>
+<span class="c1"># ================================================================================</span>
 <span class="c1"># eof</span>
 </pre></div>
 

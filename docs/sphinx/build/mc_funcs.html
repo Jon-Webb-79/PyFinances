@@ -85,6 +85,7 @@ adding the pay allocation</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>checking_account</strong> – The current value of the checking account.</p></li>
+<li><p><strong>savings_account</strong> – The current value of the savings account</p></li>
 <li><p><strong>date</strong> – The iteration date.</p></li>
 </ul>
 </dd>
@@ -92,6 +93,26 @@ adding the pay allocation</p>
 <dd class="field-even"><p>The value of the checking
 and savgins accounts after
 bill deductions</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="monte_carlo.MCFunctions.deduct_expenses">
+<code class="sig-name descname">deduct_expenses</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">checking_account</span><span class="p">:</span> <span class="n">numpy.float32</span></em>, <em class="sig-param"><span class="n">savings_account</span><span class="p">:</span> <span class="n">numpy.float32</span></em>, <em class="sig-param"><span class="n">date</span><span class="p">:</span> <span class="n">pandas.core.indexes.datetimes.DatetimeIndex</span></em><span class="sig-paren">)</span> &#x2192; numpy.float32<a class="reference internal" href="_modules/monte_carlo.html#MCFunctions.deduct_expenses"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#monte_carlo.MCFunctions.deduct_expenses" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>checking_account</strong> – The current value of the checking account.</p></li>
+<li><p><strong>savings_account</strong> – The current value of the savings account.</p></li>
+<li><p><strong>date</strong> – The iteration date.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return checking_account, savings_account</dt>
+<dd class="field-even"><p>The value of the checking
+and savings accounts after
+planned expenses are 
+deducted.</p>
 </dd>
 </dl>
 </dd></dl>

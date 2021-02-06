@@ -173,5 +173,71 @@ def test_deduction_bills():
     assert isclose(30925.0, checking, rel_tol=1.0e-3)
     assert isclose(4075.0, savings, rel_tol=1.0e-3)
 # ================================================================================
+
+
+def test_deduct_planned_expenses():
+    """
+
+    This function tests the ability of the deduct_expense() function properly
+    realizes that it is a bills deduction day and does deduct a bill.
+    """
+    mc_pre = MCPreProcessor()
+    start_date = '2021-05-01'
+    end_date = '2022-02-28'
+    pay_frequency = 'weekly'
+    first_pay_date = '2021-03-05'
+    plat = platform.system()
+    if plat == 'Darwin':
+        bills_file = '../data/test/bills_test.csv'
+        expenses_file = '../data/test/planned_expense_test.csv'
+        deductions_file = '../data/test/deductions_test.csv'
+    else:
+        bills_file = r'..\data\test\bills_test.csv'
+        expenses_file = r'..\data\test\planned_expense_test.csv'
+        deductions_file = r'..\data\test\deductions_test.csv'
+
+    iter_dates, pay_dates = mc_pre.create_dates(start_date, end_date,
+                                                first_pay_date, pay_frequency)
+    bills_df = mc_pre.read_bills(bills_file)
+    expenses_df = mc_pre.read_expenses(expenses_file)
+    pay_alloc = mc_pre.pay_allocation(deductions_file, 145000.0, pay_frequency)
+    mcfunc = MCFunctions(pay_alloc, pay_dates, expenses_df, bills_df)
+    checking, savings = mcfunc.deduct_expenses(31000.0, 4000.0, iter_dates[13])
+    assert isclose(30055.0, checking, rel_tol=1.0e-3)
+    assert isclose(4000.0, savings, rel_tol=1.0e-3)
+# --------------------------------------------------------------------------------
+
+
+def test_no_deuct_planned_expenses():
+    """
+
+    This function tests the ability of the deduct_expense() function properly
+    realizes that it is a bills deduction day and does deduct a bill.
+    """
+    mc_pre = MCPreProcessor()
+    start_date = '2021-05-01'
+    end_date = '2022-02-28'
+    pay_frequency = 'weekly'
+    first_pay_date = '2021-03-05'
+    plat = platform.system()
+    if plat == 'Darwin':
+        bills_file = '../data/test/bills_test.csv'
+        expenses_file = '../data/test/planned_expense_test.csv'
+        deductions_file = '../data/test/deductions_test.csv'
+    else:
+        bills_file = r'..\data\test\bills_test.csv'
+        expenses_file = r'..\data\test\planned_expense_test.csv'
+        deductions_file = r'..\data\test\deductions_test.csv'
+
+    iter_dates, pay_dates = mc_pre.create_dates(start_date, end_date,
+                                                first_pay_date, pay_frequency)
+    bills_df = mc_pre.read_bills(bills_file)
+    expenses_df = mc_pre.read_expenses(expenses_file)
+    pay_alloc = mc_pre.pay_allocation(deductions_file, 145000.0, pay_frequency)
+    mcfunc = MCFunctions(pay_alloc, pay_dates, expenses_df, bills_df)
+    checking, savings = mcfunc.deduct_expenses(31000.0, 4000.0, iter_dates[14])
+    assert isclose(31000.0, checking, rel_tol=1.0e-3)
+    assert isclose(4000.0, savings, rel_tol=1.0e-3)
+# ================================================================================
 # ================================================================================
 # eof
