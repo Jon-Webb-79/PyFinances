@@ -54,7 +54,25 @@ class MCFunctions():
     def deduct_bills(self, checking_account: np.float32, 
                      savings_account: np.float32, 
                      date: pd.DatetimeIndex) -> np.float32:
-        pass
+        """
+
+        :param checking_account: The current value of the checking account.
+        :param date: The iteration date.
+        :return checking_account, savings_account: The value of the checking
+                                                   and savgins accounts after
+                                                   bill deductions
+        """
+        # Format dates to match days
+        new_date = str(date)
+        new_day = np.int64(new_date[8:10]) 
+        # Filter df to inly include entires on those days
+        df = self.bills_file[(self.bills_file.Day == new_day)]
+        checking = df['Checking_Addition'].sum() - df['Checking_Debit'].sum()
+        savings = df['Savings_Addition'].sum() - df['Savings_Debit'].sum()
+        # deduct bills
+        checking_account += checking
+        savings_account += savings
+        return checking_account, savings_account
 # --------------------------------------------------------------------------------
 
     def deduct_expenses(self, checking_account: np.float32, 

@@ -14,7 +14,8 @@
     <script src="_static/doctools.js"></script>
     <script src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Pre-Processors" href="pre_processors.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -22,6 +23,9 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="pre_processors.html" title="Pre-Processors"
+             accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">PyFinances 0.1.0 documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Monte Carlo Functions</a></li> 
       </ul>
@@ -74,6 +78,24 @@ adding the pay allocation</p>
 </dl>
 </dd></dl>
 
+<dl class="py method">
+<dt id="monte_carlo.MCFunctions.deduct_bills">
+<code class="sig-name descname">deduct_bills</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">checking_account</span><span class="p">:</span> <span class="n">numpy.float32</span></em>, <em class="sig-param"><span class="n">savings_account</span><span class="p">:</span> <span class="n">numpy.float32</span></em>, <em class="sig-param"><span class="n">date</span><span class="p">:</span> <span class="n">pandas.core.indexes.datetimes.DatetimeIndex</span></em><span class="sig-paren">)</span> &#x2192; numpy.float32<a class="reference internal" href="_modules/monte_carlo.html#MCFunctions.deduct_bills"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#monte_carlo.MCFunctions.deduct_bills" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>checking_account</strong> – The current value of the checking account.</p></li>
+<li><p><strong>date</strong> – The iteration date.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return checking_account, savings_account</dt>
+<dd class="field-even"><p>The value of the checking
+and savgins accounts after
+bill deductions</p>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 </div>
@@ -94,6 +116,9 @@ adding the pay allocation</p>
 </li>
 </ul>
 
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="pre_processors.html"
+                        title="previous chapter">Pre-Processors</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -121,6 +146,9 @@ adding the pay allocation</p>
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              >index</a></li>
+        <li class="right" >
+          <a href="pre_processors.html" title="Pre-Processors"
+             >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">PyFinances 0.1.0 documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Monte Carlo Functions</a></li> 
       </ul>
