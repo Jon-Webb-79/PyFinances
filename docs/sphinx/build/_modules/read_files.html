@@ -398,7 +398,9 @@
                       <span class="s1">&#39;total_expense_file&#39;</span><span class="p">:</span> <span class="s1">&#39;False&#39;</span><span class="p">,</span>
                       <span class="s1">&#39;planned_expense_file&#39;</span><span class="p">:</span> <span class="s1">&#39;False&#39;</span><span class="p">,</span>
                       <span class="s1">&#39;bills_file&#39;</span><span class="p">:</span> <span class="s1">&#39;False&#39;</span><span class="p">,</span>
-                      <span class="s1">&#39;deductions_file&#39;</span><span class="p">:</span> <span class="s1">&#39;False&#39;</span><span class="p">}</span>
+                      <span class="s1">&#39;deductions_file&#39;</span><span class="p">:</span> <span class="s1">&#39;False&#39;</span><span class="p">,</span>
+                      <span class="s1">&#39;hist_location&#39;</span><span class="p">:</span> <span class="s1">&#39;NA&#39;</span><span class="p">,</span> 
+                      <span class="s1">&#39;output_file&#39;</span><span class="p">:</span> <span class="s1">&#39;NA&#39;</span><span class="p">}</span>
 
         <span class="c1"># - Read input for produce histogram files. If the uer enters</span>
         <span class="c1">#   True for Run Histogram, then the code will only exeucte</span>
@@ -416,6 +418,8 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">read_string</span><span class="p">(</span><span class="s1">&#39;Daily Expense File:&#39;</span><span class="p">)</span>
             <span class="n">input_dict</span><span class="p">[</span><span class="s1">&#39;total_expense_file&#39;</span><span class="p">]</span> <span class="o">=</span> \
                     <span class="bp">self</span><span class="o">.</span><span class="n">read_string</span><span class="p">(</span><span class="s1">&#39;Total Expense File:&#39;</span><span class="p">)</span>
+            <span class="n">input_dict</span><span class="p">[</span><span class="s1">&#39;hist_location&#39;</span><span class="p">]</span> <span class="o">=</span> \
+                    <span class="bp">self</span><span class="o">.</span><span class="n">read_string</span><span class="p">(</span><span class="s1">&#39;Histogram Location:&#39;</span><span class="p">)</span>
         <span class="c1"># Read input for monte classrlo process</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">input_dict</span><span class="p">[</span><span class="s1">&#39;nbins&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_integer</span><span class="p">(</span><span class="s1">&#39;Bins:&#39;</span><span class="p">)</span>
@@ -445,6 +449,10 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_validate_frequency</span><span class="p">(</span><span class="n">input_dict</span><span class="p">[</span><span class="s1">&#39;pay_frequency&#39;</span><span class="p">])</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_validate_first_pay_date</span><span class="p">(</span><span class="n">input_dict</span><span class="p">[</span><span class="s1">&#39;first_pay_date&#39;</span><span class="p">],</span> 
                                          <span class="n">input_dict</span><span class="p">[</span><span class="s1">&#39;pay_frequency&#39;</span><span class="p">])</span>
+            <span class="n">input_dict</span><span class="p">[</span><span class="s1">&#39;hist_location&#39;</span><span class="p">]</span> <span class="o">=</span> \
+                <span class="bp">self</span><span class="o">.</span><span class="n">read_string</span><span class="p">(</span><span class="s1">&#39;Histogram Location:&#39;</span><span class="p">)</span>
+            <span class="n">input_dict</span><span class="p">[</span><span class="s1">&#39;output_file&#39;</span><span class="p">]</span> <span class="o">=</span> \
+                <span class="bp">self</span><span class="o">.</span><span class="n">read_string</span><span class="p">(</span><span class="s1">&#39;Output File:&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">input_dict</span></div>
 <span class="c1"># ================================================================================</span>
 

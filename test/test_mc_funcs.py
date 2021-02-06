@@ -1,16 +1,16 @@
 # Import necessary packages here
-import pytest
-from math import isclose
-import os
 import sys
+import os
 import platform
+from math import isclose
 sys.path.insert(0, os.path.abspath('../src'))
-from monte_carlo import MonteCarloExec
+
+from monte_carlo import MCFunctions
+from pre_processor import MCPreProcessor
 # ================================================================================
 # ================================================================================
-# Date:    January 1, 2021
-# Purpose: This file contains tests for all of the functions and classes in
-#          the monte_carlo.py file
+# Date:    February 5, 2021
+# Purpose: Describe the types of testing to occur in this file.
 # Instruction: This code can be run in hte following ways
 #              - pytest # runs all functions beginnning with the word test in
 #                         the directory
@@ -36,18 +36,40 @@ __copyright__ = "Copyright 2021, Jon Webb Inc."
 __version__ = "1.0"
 # ================================================================================
 # ================================================================================
-# Insert Code here
+# Test MCFunctions class
 
 
-# def test_give_name_here():
-#    plat = platform.system()
-#    if plat == 'Darwin':
-#        file_name = '../data/test/deductions_one.csv'
-#    else:
-#        file_name = r'..\data\test\deductions_one.csv'
-#    obj = MonteCarloExec()
-#    pay = obj.determine_pay_allocation(135000.0, 'weekly', file_name)
-#    assert isclose(1881.06, pay, rel_tol=1.0e-3)
+def test_add_paycheck():
+    """
+
+    This function tests the ability of the add_paycheck function to properly
+    determine if it is a pay date and add the pay allocation to the Checking
+    account
+    """
+    mc_pre = MCPreProcessor()
+    start_date = '2021-03-01'
+    end_date = '2022-02-28'
+    pay_frequency = 'weekly'
+    first_pay_date = '2021-03-05'
+    plat = platform.system()
+    if plat == 'Darwin':
+        bills_file = '../data/test/bills_test.csv'
+        expenses_file = '../data/test/planned_expense_test.csv'
+        deductions_file = '../data/test/deductions_test.csv'
+    else:
+        bills_file = r'..\data\test\bills_test.csv'
+        expenses_file = r'..\data\test\planned_expense_test.csv'
+        deductions_file = r'..\data\test\deductions_test.csv'
+
+    iter_dates, pay_dates = mc_pre.create_dates(start_date, end_date,
+                                                first_pay_date, pay_frequency)
+    bills_df = mc_pre.read_bills(bills_file)
+    expenses_df = mc_pre.read_expenses(expenses_file)
+    pay_alloc = mc_pre.pay_allocation(deductions_file, 145000.0, pay_frequency)
+
+    mcfunc = MCFunctions(pay_alloc, pay_dates, expenses_df, bills_df)
+    new_value = mcfunc.add_paycheck(31000.0, iter_dates[4])
+    assert isclose(new_value, 33073.37, rel_tol=1.0e-3)
 # ================================================================================
 # ================================================================================
 # eof

@@ -36,7 +36,7 @@
   <h1>Source code for monte_carlo</h1><div class="highlight"><pre>
 <span></span><span class="c1"># Import necessary packages here</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">pre_processor</span> <span class="kn">import</span> <span class="n">ReadMonteCarloFiles</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="c1"># ================================================================================</span>
 <span class="c1"># ================================================================================ </span>
 <span class="c1"># Date:    February 1, 2021</span>
@@ -52,53 +52,51 @@
 <span class="c1"># Insert Code here</span>
 
 
-<div class="viewcode-block" id="MonteCarloExec"><a class="viewcode-back" href="../monte_carlo.html#monte_carlo.MonteCarloExec">[docs]</a><span class="k">class</span> <span class="nc">MonteCarloExec</span><span class="p">(</span><span class="n">ReadMonteCarloFiles</span><span class="p">):</span>
+<div class="viewcode-block" id="MCFunctions"><a class="viewcode-back" href="../mc_funcs.html#monte_carlo.MCFunctions">[docs]</a><span class="k">class</span> <span class="nc">MCFunctions</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd"> </span>
+<span class="sd">    :param alloc_pay: The paycheck issued to the employee after all deductions.</span>
+<span class="sd">    :param pay_date: A pandas datetimeindex of al pay dates</span>
+<span class="sd">    :param expense_file: A pandas dataframe containing all planned expenses for</span>
+<span class="sd">                         the iteration period</span>
+<span class="sd">    :param bills_file: A pandas dataframe containing all bills to be paid and the</span>
+<span class="sd">                       day the bills will be paid.</span>
 
-<span class="sd">    This class contains functions that are used during the PyFinances</span>
-<span class="sd">    Monte Carlo iteration process</span>
+<span class="sd">    This class contains all non-Monte Carlo related functions used during the </span>
+<span class="sd">    date iteration for the PyFinances software suite</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-<div class="viewcode-block" id="MonteCarloExec.determine_pay_allocation"><a class="viewcode-back" href="../monte_carlo.html#monte_carlo.MonteCarloExec.determine_pay_allocation">[docs]</a>    <span class="k">def</span> <span class="nf">determine_pay_allocation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">salary</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">pay_frequency</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-                                 <span class="n">file_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alloc_pay</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">pay_dates</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DatetimeIndex</span><span class="p">,</span> 
+                 <span class="n">expenses_file</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">bills_file</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">alloc_pay</span> <span class="o">=</span> <span class="n">alloc_pay</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pay_dates</span> <span class="o">=</span> <span class="n">pay_dates</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">expenses_file</span> <span class="o">=</span> <span class="n">expenses_file</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bills_file</span> <span class="o">=</span> <span class="n">bills_file</span>
+<span class="c1"># --------------------------------------------------------------------------------</span>
+
+<div class="viewcode-block" id="MCFunctions.add_paycheck"><a class="viewcode-back" href="../mc_funcs.html#monte_carlo.MCFunctions.add_paycheck">[docs]</a>    <span class="k">def</span> <span class="nf">add_paycheck</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">checking_account</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> 
+                     <span class="n">date</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DatetimeIndex</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="sd">        :param salary: The annualy salary before any pay deductions</span>
-<span class="sd">        :param pay_frequency: The frequency of pay allocation, can be WEEKLY, </span>
-<span class="sd">                              BI-WEEKLY, or MONTHLY</span>
-<span class="sd">        :param file_name: THe name and location of the csv file containing the</span>
-<span class="sd">                          pay deduction information.</span>
-<span class="sd">        :return deducted_salary: The salary after it has been divided by the </span>
-<span class="sd">                                 pay periods and all deductions have been made</span>
-
-<span class="sd">        This function determines the actual pay allocation per pay period </span>
-<span class="sd">        after deductions have been made.</span>
+<span class="sd">        :param checking_account: The current value of the checking account.</span>
+<span class="sd">        :param date: The iteration date.</span>
+<span class="sd">        :return checking_account: The value of the checking account after </span>
+<span class="sd">                                  adding the pay allocation</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_deductions_file</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span>
-        <span class="n">deductions</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Amount&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-        <span class="n">updated_salary</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_determine_alloc</span><span class="p">(</span><span class="n">salary</span><span class="p">,</span> <span class="n">pay_frequency</span><span class="p">)</span>
-        <span class="n">deducted_salary</span> <span class="o">=</span> <span class="n">updated_salary</span> <span class="o">-</span> <span class="n">deductions</span> 
-        <span class="k">return</span> <span class="n">deducted_salary</span></div>
-<span class="c1"># ================================================================================</span>
-<span class="c1"># Private-Like functions </span>
+        <span class="k">if</span> <span class="n">date</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">pay_dates</span><span class="p">:</span>
+            <span class="n">checking_account</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">alloc_pay</span> 
+        <span class="k">return</span> <span class="n">checking_account</span></div>
+<span class="c1"># --------------------------------------------------------------------------------</span>
 
-    <span class="k">def</span> <span class="nf">_determine_alloc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">salary</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">pay_frequency</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">deduct_bills</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">checking_account</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> 
+                     <span class="n">savings_account</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> 
+                     <span class="n">date</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DatetimeIndex</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">:</span>
+        <span class="k">pass</span>
+<span class="c1"># --------------------------------------------------------------------------------</span>
 
-<span class="sd">        :param salary: Annual salary before any dedcutions</span>
-<span class="sd">        :param pay_frequency: The frequency of pay allocation, can be WEEKLY, </span>
-<span class="sd">                              BI-WEEKLY, or MONTHLY</span>
-<span class="sd">        :return updated_salary: The salary divided by the pay frequency</span>
-
-<span class="sd">        This function determines the pay allocation prior to deductions based</span>
-<span class="sd">        on the frequency of pay allocation</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">pay_frequency</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;WEEKLY&#39;</span><span class="p">:</span>
-            <span class="n">updated_salary</span> <span class="o">=</span> <span class="n">salary</span> <span class="o">/</span> <span class="mf">52.0</span>
-        <span class="k">elif</span> <span class="n">pay_frequency</span> <span class="o">==</span> <span class="s1">&#39;BI-WEEKLY&#39;</span><span class="p">:</span>
-            <span class="n">updated_salary</span> <span class="o">=</span> <span class="n">salary</span> <span class="o">/</span> <span class="mf">26.0</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">updated_salary</span> <span class="o">=</span> <span class="n">salary</span> <span class="o">/</span> <span class="mf">12.0</span>
-        <span class="k">return</span> <span class="n">updated_salary</span></div>
+    <span class="k">def</span> <span class="nf">deduct_expenses</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">checking_account</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> 
+                        <span class="n">savings_account</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> 
+                        <span class="n">date</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DatetimeIndex</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">:</span>
+        <span class="k">pass</span></div>
 <span class="c1"># ================================================================================ </span>
 <span class="c1"># ================================================================================ </span>
 <span class="c1"># eof</span>

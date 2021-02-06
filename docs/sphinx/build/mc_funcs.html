@@ -1,0 +1,133 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Monte Carlo Functions &#8212; PyFinances 0.1.0 documentation</title>
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="index.html">PyFinances 0.1.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Monte Carlo Functions</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="monte-carlo-functions">
+<h1>Monte Carlo Functions<a class="headerlink" href="#monte-carlo-functions" title="Permalink to this headline">¶</a></h1>
+<p>The following classes and functions are used in the Monte Carlo and Date
+Iteration portion of the PyFinances software suite</p>
+<div class="section" id="mcfunctions">
+<h2>MCFunctions<a class="headerlink" href="#mcfunctions" title="Permalink to this headline">¶</a></h2>
+<p>The <cite>MCFuncs</cite> class contains all non Monte-Carlo functions that are used
+in the date iteration.</p>
+<dl class="py class">
+<dt id="monte_carlo.MCFunctions">
+<em class="property">class </em><code class="sig-prename descclassname">monte_carlo.</code><code class="sig-name descname">MCFunctions</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">alloc_pay</span><span class="p">:</span> <span class="n">numpy.float32</span></em>, <em class="sig-param"><span class="n">pay_dates</span><span class="p">:</span> <span class="n">pandas.core.indexes.datetimes.DatetimeIndex</span></em>, <em class="sig-param"><span class="n">expenses_file</span><span class="p">:</span> <span class="n">pandas.core.frame.DataFrame</span></em>, <em class="sig-param"><span class="n">bills_file</span><span class="p">:</span> <span class="n">pandas.core.frame.DataFrame</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/monte_carlo.html#MCFunctions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#monte_carlo.MCFunctions" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>alloc_pay</strong> – The paycheck issued to the employee after all deductions.</p></li>
+<li><p><strong>pay_date</strong> – A pandas datetimeindex of al pay dates</p></li>
+<li><p><strong>expense_file</strong> – A pandas dataframe containing all planned expenses for
+the iteration period</p></li>
+<li><p><strong>bills_file</strong> – A pandas dataframe containing all bills to be paid and the
+day the bills will be paid.</p></li>
+</ul>
+</dd>
+</dl>
+<p>This class contains all non-Monte Carlo related functions used during the 
+date iteration for the PyFinances software suite</p>
+<dl class="py method">
+<dt id="monte_carlo.MCFunctions.add_paycheck">
+<code class="sig-name descname">add_paycheck</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">checking_account</span><span class="p">:</span> <span class="n">numpy.float32</span></em>, <em class="sig-param"><span class="n">date</span><span class="p">:</span> <span class="n">pandas.core.indexes.datetimes.DatetimeIndex</span></em><span class="sig-paren">)</span> &#x2192; numpy.float32<a class="reference internal" href="_modules/monte_carlo.html#MCFunctions.add_paycheck"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#monte_carlo.MCFunctions.add_paycheck" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>checking_account</strong> – The current value of the checking account.</p></li>
+<li><p><strong>date</strong> – The iteration date.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return checking_account</dt>
+<dd class="field-even"><p>The value of the checking account after 
+adding the pay allocation</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Monte Carlo Functions</a><ul>
+<li><a class="reference internal" href="#mcfunctions">MCFunctions</a></li>
+</ul>
+</li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/mc_funcs.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="index.html">PyFinances 0.1.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Monte Carlo Functions</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Jonathan A. Webb.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.2.1.
+    </div>
+  </body>
+</html>

@@ -1,6 +1,6 @@
 # Import necessary packages here
 import numpy as np
-from pre_processor import ReadMonteCarloFiles
+import pandas as pd
 # ================================================================================
 # ================================================================================ 
 # Date:    February 1, 2021
@@ -16,53 +16,51 @@ __version__ = "1.0"
 # Insert Code here
 
 
-class MonteCarloExec(ReadMonteCarloFiles):
+class MCFunctions():
     """
+ 
+    :param alloc_pay: The paycheck issued to the employee after all deductions.
+    :param pay_date: A pandas datetimeindex of al pay dates
+    :param expense_file: A pandas dataframe containing all planned expenses for
+                         the iteration period
+    :param bills_file: A pandas dataframe containing all bills to be paid and the
+                       day the bills will be paid.
 
-    This class contains functions that are used during the PyFinances
-    Monte Carlo iteration process
+    This class contains all non-Monte Carlo related functions used during the 
+    date iteration for the PyFinances software suite
     """
-    def determine_pay_allocation(self, salary: np.float32, pay_frequency: str,
-                                 file_name: str):
+    def __init__(self, alloc_pay: np.float32, pay_dates: pd.DatetimeIndex, 
+                 expenses_file: pd.DataFrame, bills_file: pd.DataFrame):
+        self.alloc_pay = alloc_pay
+        self.pay_dates = pay_dates
+        self.expenses_file = expenses_file
+        self.bills_file = bills_file
+# --------------------------------------------------------------------------------
+
+    def add_paycheck(self, checking_account: np.float32, 
+                     date: pd.DatetimeIndex) -> np.float32:
         """
 
-        :param salary: The annualy salary before any pay deductions
-        :param pay_frequency: The frequency of pay allocation, can be WEEKLY, 
-                              BI-WEEKLY, or MONTHLY
-        :param file_name: THe name and location of the csv file containing the
-                          pay deduction information.
-        :return deducted_salary: The salary after it has been divided by the 
-                                 pay periods and all deductions have been made
-
-        This function determines the actual pay allocation per pay period 
-        after deductions have been made.
+        :param checking_account: The current value of the checking account.
+        :param date: The iteration date.
+        :return checking_account: The value of the checking account after 
+                                  adding the pay allocation
         """
-        df = self.read_deductions_file(file_name)
-        deductions = df['Amount'].sum()
-        updated_salary = self._determine_alloc(salary, pay_frequency)
-        deducted_salary = updated_salary - deductions 
-        return deducted_salary
-# ================================================================================
-# Private-Like functions 
+        if date in self.pay_dates:
+            checking_account += self.alloc_pay 
+        return checking_account
+# --------------------------------------------------------------------------------
 
-    def _determine_alloc(self, salary: np.float32, pay_frequency: str):
-        """
+    def deduct_bills(self, checking_account: np.float32, 
+                     savings_account: np.float32, 
+                     date: pd.DatetimeIndex) -> np.float32:
+        pass
+# --------------------------------------------------------------------------------
 
-        :param salary: Annual salary before any dedcutions
-        :param pay_frequency: The frequency of pay allocation, can be WEEKLY, 
-                              BI-WEEKLY, or MONTHLY
-        :return updated_salary: The salary divided by the pay frequency
-
-        This function determines the pay allocation prior to deductions based
-        on the frequency of pay allocation
-        """
-        if pay_frequency.upper() == 'WEEKLY':
-            updated_salary = salary / 52.0
-        elif pay_frequency == 'BI-WEEKLY':
-            updated_salary = salary / 26.0
-        else:
-            updated_salary = salary / 12.0
-        return updated_salary
+    def deduct_expenses(self, checking_account: np.float32, 
+                        savings_account: np.float32, 
+                        date: pd.DatetimeIndex) -> np.float32:
+        pass
 # ================================================================================ 
 # ================================================================================ 
 # eof
