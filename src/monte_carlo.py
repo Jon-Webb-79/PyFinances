@@ -1,6 +1,7 @@
 # Import necessary packages here
 import numpy as np
 import pandas as pd
+from typing import List
 # ================================================================================
 # ================================================================================ 
 # Date:    February 1, 2021
@@ -98,5 +99,55 @@ class MCFunctions():
         savings_account += savings
         return checking_account, savings_account
 # ================================================================================ 
+# ================================================================================
+
+
+class MCEngine:
+    """
+
+    This class is used to produce a random sample of daily spending using a
+    discrete sampling methodology
+    """
+    def __init__(self, cdf_files: List[str], sample_size: np.int32):
+        self.cdf_files = cdf_files
+        self.sample_size = sample_size
+# --------------------------------------------------------------------------------
+
+    def average_spending_estimate(self) -> np.float32:
+        """
+
+        :return avg, sigma: The average estimate for daily spending and the 
+                            standard deviation for the estimate
+        """
+        samples = [self._daily_spending_estimate() for i in range(self.sample_size)]
+        avg = np.average(samples)
+        std = np.std(samples)
+        return avg, std 
+# ================================================================================
+# Private-like functions here
+
+    def _daily_spending_estimate(self) -> np.float:
+        """
+
+        :retun sum: The summation of the random spending average_spending_estimate
+        """
+        sample = [self._random_sample(i) for i in self.cdf_files]
+        return np.sum(sample)
+# --------------------------------------------------------------------------------
+
+    def _random_sample(self, cdf: pd.DataFrame) -> np.float32:
+        """
+
+        :param cdf: A pandas dataframe containing a center and probability
+                    column
+        :return rand_val: A random value sampled from the dataframe
+        """
+        prob = np.array(list(cdf.probability), dtype=np.float32)
+        r = np.random.random_sample()
+        first_val = prob[prob >= r][0]
+        indice = np.argwhere(prob == first_val)[0][0]
+        sample = cdf.center[indice]
+        return sample
+# ================================================================================
 # ================================================================================
 # eof

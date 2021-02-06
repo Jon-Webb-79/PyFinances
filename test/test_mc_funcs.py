@@ -1,11 +1,12 @@
 # Import necessary packages here
 import sys
+import numpy as np
 import os
 import platform
 from math import isclose
 sys.path.insert(0, os.path.abspath('../src'))
 
-from monte_carlo import MCFunctions
+from monte_carlo import MCFunctions, MCEngine
 from pre_processor import MCPreProcessor
 # ================================================================================
 # ================================================================================
@@ -238,6 +239,26 @@ def test_no_deuct_planned_expenses():
     checking, savings = mcfunc.deduct_expenses(31000.0, 4000.0, iter_dates[14])
     assert isclose(31000.0, checking, rel_tol=1.0e-3)
     assert isclose(4000.0, savings, rel_tol=1.0e-3)
+# ================================================================================
+# ================================================================================
+
+
+def test_average_spending_estimate():
+    plat = platform.system()
+    if plat == 'Darwin':
+        cdf_loc = '../data/test/'
+    else:
+        cdf_loc = r'..\data\test\ '.replace(" ", "")
+    files = ['testbarcdf.csv', 'testgascdf.csv', 'testgroccdf.csv',
+             'testmisccdf.csv', 'testrestcdf.csv']
+    cdf_files = [cdf_loc + i for i in files]
+    mc_pre = MCPreProcessor()
+    cdf_df_list = mc_pre.read_cdf(cdf_files)
+    np.random.seed(100)
+    mc = MCEngine(cdf_df_list, 100)
+    avg, std = mc.average_spending_estimate()
+    assert isclose(88.79, avg, rel_tol=1.0e-3)
+    assert isclose(96.41, std, rel_tol=1.0e-3)
 # ================================================================================
 # ================================================================================
 # eof

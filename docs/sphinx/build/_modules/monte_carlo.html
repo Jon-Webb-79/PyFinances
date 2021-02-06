@@ -37,6 +37,7 @@
 <span></span><span class="c1"># Import necessary packages here</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
 <span class="c1"># ================================================================================</span>
 <span class="c1"># ================================================================================ </span>
 <span class="c1"># Date:    February 1, 2021</span>
@@ -134,6 +135,56 @@
         <span class="n">savings_account</span> <span class="o">+=</span> <span class="n">savings</span>
         <span class="k">return</span> <span class="n">checking_account</span><span class="p">,</span> <span class="n">savings_account</span></div></div>
 <span class="c1"># ================================================================================ </span>
+<span class="c1"># ================================================================================</span>
+
+
+<span class="k">class</span> <span class="nc">MCEngine</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    This class is used to produce a random sample of daily spending using a</span>
+<span class="sd">    discrete sampling methodology</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cdf_files</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">sample_size</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cdf_files</span> <span class="o">=</span> <span class="n">cdf_files</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sample_size</span> <span class="o">=</span> <span class="n">sample_size</span>
+<span class="c1"># --------------------------------------------------------------------------------</span>
+
+    <span class="k">def</span> <span class="nf">average_spending_estimate</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        :return avg, sigma: The average estimate for daily spending and the </span>
+<span class="sd">                            standard deviation for the estimate</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">samples</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_daily_spending_estimate</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sample_size</span><span class="p">)]</span>
+        <span class="n">avg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">samples</span><span class="p">)</span>
+        <span class="n">std</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">samples</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">avg</span><span class="p">,</span> <span class="n">std</span> 
+<span class="c1"># ================================================================================</span>
+<span class="c1"># Private-like functions here</span>
+
+    <span class="k">def</span> <span class="nf">_daily_spending_estimate</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">float</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        :retun sum: The summation of the random spending average_spending_estimate</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">sample</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_random_sample</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">cdf_files</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span>
+<span class="c1"># --------------------------------------------------------------------------------</span>
+
+    <span class="k">def</span> <span class="nf">_random_sample</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cdf</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        :param cdf: A pandas dataframe containing a center and probability</span>
+<span class="sd">                    column</span>
+<span class="sd">        :return rand_val: A random value sampled from the dataframe</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">prob</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">cdf</span><span class="o">.</span><span class="n">probability</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random_sample</span><span class="p">()</span>
+        <span class="n">first_val</span> <span class="o">=</span> <span class="n">prob</span><span class="p">[</span><span class="n">prob</span> <span class="o">&gt;=</span> <span class="n">r</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">indice</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argwhere</span><span class="p">(</span><span class="n">prob</span> <span class="o">==</span> <span class="n">first_val</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">sample</span> <span class="o">=</span> <span class="n">cdf</span><span class="o">.</span><span class="n">center</span><span class="p">[</span><span class="n">indice</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">sample</span>
+<span class="c1"># ================================================================================</span>
 <span class="c1"># ================================================================================</span>
 <span class="c1"># eof</span>
 </pre></div>
