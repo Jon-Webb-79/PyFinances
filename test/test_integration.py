@@ -2,6 +2,7 @@
 import os
 import sys
 import platform
+import pandas as pd
 sys.path.insert(0, os.path.abspath('../src'))
 
 from pyfinances import pyfinances
@@ -76,10 +77,14 @@ def test_no_cdf_files_exist():
         file_name = '../data/test/RunOptionsTest.txt'
         total_file = '../data/test/total_expenses.csv'
         file_loc = '../data/hist/'
+        csv_file = '../data/test/estimate.csv'
+        png_file = '../data/test/estimate.png'
     else:
         file_name = r'..\data\test\RunOptionsTest.txt'
         file_loc = r'..\data\hist\ '
         total_file = r'..\data\test\total_expenses.csv'
+        csv_file = r'..\data\test\estimate.csv'
+        png_fil = r'..\data\test\estimate.png'
     files = ['barcdf.csv', 'gascdf.csv', 'groccdf.csv', 'misccdf.csv',
              'restcdf.csv']
 
@@ -93,6 +98,8 @@ def test_no_cdf_files_exist():
 
     for i in files:
         os.remove(file_loc + i)
+    os.remove(csv_file)
+    os.remove(png_file)
 # ================================================================================
 # ================================================================================
 # eof

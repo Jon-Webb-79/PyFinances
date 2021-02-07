@@ -150,4 +150,41 @@ class MCEngine:
         return sample
 # ================================================================================
 # ================================================================================
+
+
+def mcfunc(mcfunction, mcengine, dates: pd.DatetimeIndex, checking: np.float32, 
+           savings: np.float32) -> pd.DataFrame:
+    """
+
+    :param mcfunction: An instantiated object of the MCFunction class 
+    :param mcengine: An Instantiated object of the MCEngine class
+    :param dates: A list of dates in the format YYYY-MM-DD
+    :param checking: The initial value of the checking account
+    :param savings: The initial value of the savings account
+    :return df: A datrame containing the day by day estimations for 
+                the value of the checing and savings accounts with 
+                statistica; uncertainties
+    """
+    checking_act = []
+    savings_act = []
+    upper = []
+    lower = []
+    for i in dates:
+        print(i)
+        checking = mcfunction.add_paycheck(checking, i)
+        checking, savings = mcfunction.deduct_bills(checking, savings, i)
+        checking, savings = mcfunction.deduct_expenses(checking, savings, i)
+        avg, sigma = mcengine.average_spending_estimate()
+        checking -= avg
+        checking_act.append(checking - avg)
+        savings_act.append(savings)
+        upper.append(checking + 2 * sigma)
+        lower.append(checking - 2 * sigma)
+    # Create dataframe and csv file
+    outp = {'Date': dates, 'Checking_Mean': checking_act, 'Upper': upper, 
+            'Lower': lower, 'Savings': savings_act}
+    df = pd.DataFrame.from_dict(outp)
+    return df
+# ================================================================================
+# ================================================================================
 # eof

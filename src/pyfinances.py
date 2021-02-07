@@ -1,9 +1,13 @@
  # Import necessary packages here
 import sys 
 import os
+import numpy as np
+import pandas as pd
 sys.path.insert(0, os.path.abspath('../src'))
 from read_files import ReadRunOptionsFile
 from pre_processor import hist_pre_processor, MCPreProcessor
+from monte_carlo import MCFunctions, MCEngine, mcfunc
+from plot_data import plot_func
 # ================================================================================
 # ================================================================================ 
 # Date:    January 27, 2021
@@ -52,18 +56,27 @@ def pyfinances(runoptionsfile: str) -> None:
     cdf_list = mc_pre.read_cdf(files)
 
     # Determine Pay Allocation
-    pay_aloc = mc_pre.pay_allocation(input_dict['deductions_file'], 
-                                    input_dict['annual_salary'], 
-                                    input_dict['pay_frequency'])
+    pay_alloc = mc_pre.pay_allocation(input_dict['deductions_file'], 
+                                     input_dict['annual_salary'], 
+                                     input_dict['pay_frequency'])
 
     # Determine iteration Dates 
     iter_dates, pay_dates = mc_pre.create_dates(input_dict['start_date'], 
                                                 input_dict['end_date'], 
                                                 input_dict['first_pay_date'], 
                                                 input_dict['pay_frequency'])
-    # Monte Carlo pre-processor goes here
-
-    # Monte Carlo engine goes here
+# ================================================================================
+# Monte Carlo execution
+    np.random.seed(100)
+    mc_func = MCFunctions(pay_alloc, pay_dates, expenses_df, bills_df)    
+    mce = MCEngine(cdf_list, input_dict['sample_size'])
+    final_df = mcfunc(mc_func, mce, iter_dates, 
+                      input_dict['checking_start_value'], 
+                      input_dict['savings_start_value'])
+    csv_file = input_dict['output_file'] + 'estimate.csv'
+    plot_file = input_dict['output_file'] + 'estimate.png'
+    final_df.to_csv(csv_file, index=False)
+    plot_func(final_df, plot_file)
 # ================================================================================
 # ================================================================================
 
