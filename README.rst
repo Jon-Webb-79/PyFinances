@@ -114,11 +114,11 @@ keywords in this version of the `RunOptions.txt` file have the following meaning
 - **Hist Start Date:** The start date for the development of PDFs and CDFs. This date must exist within the `Daily_Expenses.csv` file.
 - **Hist End Date:** The end date for the development of PDFs and CDFs.  This date must exist within the `Daily_Expenses.csv` file.
 - **Daily Expense File:** The location and name of the daily expense file.  In this example I have named it the `Daily_Expenses.csv` file.
-- **Total Expense File** The name and location of the csv file that will contain the day by day cumulative spending for each category.  This file
-                         will be created by the program.  In this example I gave the file the name `total_expenses.csv`
-- **Histogram Location** The location where histogram files will be created.  These files contain cumulative distribution data that will be 
-                         used to generate random samples for spending.  In this case, I hae manually created a directory titled 
-                         histograms in the data directory to store the csv files.
+- **Total Expense File:** The name and location of the csv file that will contain the day by day cumulative spending for each category.  This file
+ will be created by the program.  In this example I gave the file the name `total_expenses.csv`
+- **Histogram Location:** The location where histogram files will be created.  These files contain cumulative distribution data that will be 
+used to generate random samples for spending.  In this case, I hae manually created a directory titled 
+histograms in the data directory to store the csv files.
 
   Once you have developed Histogram files, then you must reconfigure the `RunOptions.txt` file to execute the Monte Carlo
   calculations with the histogram files.  In order to do this you can reconfigure the file to look like the example 
@@ -169,9 +169,9 @@ The file above has the same keywords as the first example, with addtion of the f
 - **Hist End Date:** THe end date for the development of PDFs and CDFs.  This date must exist within the `Daily_Expenses.csv` file.
 - **Daily Expense File:** The location and name of the daily expense file.  In this example I have named it the `Daily_Expenses.csv` file.
 - **Histogram Location:** The location where histogram files will be created.  These files contain cumulative distribution data that will be 
-                          used to generate random samples for spending.  In this case, I hae manually created a directory titled 
-                          histograms in the data directory to store the csv files.
-- **Output File** This is the location where all output files will be stored.
+ used to generate random samples for spending.  In this case, I hae manually created a directory titled 
+ istograms in the data directory to store the csv files.
+- **Output File:** This is the location where all output files will be stored.
 
 
 Planned Expense File
