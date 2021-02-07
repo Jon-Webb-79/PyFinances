@@ -24,6 +24,6 @@ setup(
             "Programming Language :: Python :: 3",
             "Programming Languate :: Python :: 3.9", 
             "Operating System :: MacOS",
-        ]
+        ],
         zip_safe=False
 )
