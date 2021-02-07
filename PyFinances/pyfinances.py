@@ -3,7 +3,7 @@ import sys
 import os
 import numpy as np
 import pandas as pd
-sys.path.insert(0, os.path.abspath('../src'))
+sys.path.insert(0, os.path.abspath('../PyFinances'))
 from read_files import ReadRunOptionsFile
 from pre_processor import hist_pre_processor, MCPreProcessor
 from monte_carlo import MCFunctions, MCEngine, mcfunc

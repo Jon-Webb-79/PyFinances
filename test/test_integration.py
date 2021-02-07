@@ -3,7 +3,7 @@ import os
 import sys
 import platform
 import pandas as pd
-sys.path.insert(0, os.path.abspath('../src'))
+sys.path.insert(0, os.path.abspath('../PyFinances'))
 
 from pyfinances import pyfinances
 # ================================================================================

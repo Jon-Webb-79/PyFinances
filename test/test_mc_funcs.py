@@ -4,7 +4,7 @@ import numpy as np
 import os
 import platform
 from math import isclose
-sys.path.insert(0, os.path.abspath('../src'))
+sys.path.insert(0, os.path.abspath('../PyFinances'))
 
 from monte_carlo import MCFunctions, MCEngine
 from pre_processor import MCPreProcessor
