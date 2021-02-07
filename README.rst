@@ -98,7 +98,9 @@ histogram files, the RunOptions.txt might look something like the example below.
    Bins: 60
    Hist Start Date: 03/01/2020
    Hist End Date: 02/28/2021
-   Daily Expense File ../data/Daily_Expense.csv
+   Daily Expense File: ../data/Daily_Expense.csv
+   Total Expense File: ../data/total_expenses.csv
+   Histogram Location: ../data/histograms 
 
 In the example shown above, the term `Run Histogram:` is a key word.  The PyFinances software
 will open the `RunOptions.txt` file and look for this keyword.  If it finds the keyword, it
@@ -110,8 +112,13 @@ keywords in this version of the `RunOptions.txt` file have the following meaning
 - **Run Histogram:** `True` if the code is to develop histograms or `False` if the code will complete a Monte Carlo calculation.
 - **Bins:** The number of bins to be used in the probability and cumulative distribution functions that are sampled for the Monte Carlo calculation.
 - **Hist Start Date:** The start date for the development of PDFs and CDFs. This date must exist within the `Daily_Expenses.csv` file.
-- **Hist End Date:** THe end date for the development of PDFs and CDFs.  This date must exist within the `Daily_Expenses.csv` file.
+- **Hist End Date:** The end date for the development of PDFs and CDFs.  This date must exist within the `Daily_Expenses.csv` file.
 - **Daily Expense File:** The location and name of the daily expense file.  In this example I have named it the `Daily_Expenses.csv` file.
+- **Total Expense File** The name and location of the csv file that will contain the day by day cumulative spending for each category.  This file
+                         will be created by the program.  In this example I gave the file the name `total_expenses.csv`
+- **Histogram Location** The location where histogram files will be created.  These files contain cumulative distribution data that will be 
+                         used to generate random samples for spending.  In this case, I hae manually created a directory titled 
+                         histograms in the data directory to store the csv files.
 
   Once you have developed Histogram files, then you must reconfigure the `RunOptions.txt` file to execute the Monte Carlo
   calculations with the histogram files.  In order to do this you can reconfigure the file to look like the example 
@@ -135,7 +142,9 @@ keywords in this version of the `RunOptions.txt` file have the following meaning
    Bins: 60
    Hist Start Date: 03/01/2020
    Hist End Date: 02/28/2021
-   Daily Expense File ../data/Daily_Expense.csv
+   Daily Expense File: ../data/Daily_Expense.csv
+   Histogram Location: ../data/histograms
+   Output File: ../data/output
 
 The file above has the same keywords as the first example, with addtion of the following key wordsz
 
@@ -159,6 +168,11 @@ The file above has the same keywords as the first example, with addtion of the f
 - **Hist Start Date:** The start date for the development of PDFs and CDFs. This date must exist within the `Daily_Expenses.csv` file.
 - **Hist End Date:** THe end date for the development of PDFs and CDFs.  This date must exist within the `Daily_Expenses.csv` file.
 - **Daily Expense File:** The location and name of the daily expense file.  In this example I have named it the `Daily_Expenses.csv` file.
+- **Histogram Location:** The location where histogram files will be created.  These files contain cumulative distribution data that will be 
+                          used to generate random samples for spending.  In this case, I hae manually created a directory titled 
+                          histograms in the data directory to store the csv files.
+- **Output File** This is the location where all output files will be stored.
+
 
 Planned Expense File
 ====================
@@ -255,4 +269,19 @@ format.
    
    * - 1840.0
      - Federal Income Taxes
+
+Running the Code
+================
+The PyFinances software can be run py using the following function
+
+.. code-block:: python
+
+   > from PyFinances.pyfinances import pyfinances
+   > run_file = 'input_files/RunOptions.txt'
+   > pyfinances(run_file)
+
+The software will produce a csv file with a date dependent estimation of the finances 
+titled estimates.csv in the location listed in the RunOptions.txt file.  In addition
+the software will also produce a plot titled estimates.png in the location listed in
+the RunOptions file.
 
