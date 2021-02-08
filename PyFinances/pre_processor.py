@@ -1,8 +1,10 @@
 # Import necessary packages here
+import sys
+import os
+sys.path.insert(0, os.path.abspath('../PyFinances'))
 from read_files import ReadCSVFile
 import numpy as np
 import pandas as pd
-import os
 from typing import Tuple, List, Dict
 # ================================================================================
 # ================================================================================ 
