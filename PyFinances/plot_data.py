@@ -13,7 +13,7 @@ import matplotlib.dates as mdates
 # Source Code Metadata
 __author__ = "Jonathan A. Webb"
 __copyright__ = "Copyright 2021, Jon Webb Inc."
-__version__ = "1.0"
+__version__ = "0.1.0"
 # ================================================================================ 
 # ================================================================================ 
 # Insert Code here

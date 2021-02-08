@@ -1,18 +1,18 @@
 # Import necessary packages here
+import os
+import sys
 import pytest
 import math
-import sys
-import os
 import numpy as np
 import platform
 import pandas as pd
-sys.path.insert(0, os.path.abspath('../PyFinances'))
-from pre_processor import MakeDistribution
-from pre_processor import ProcessDailyExpenseFile
-from pre_processor import CreateCDF, hist_pre_processor
-from pre_processor import ReadCSVFile, ReadMonteCarloFiles, CreateDates
-from pre_processor import MCPreProcessor
-from read_files import ReadRunOptionsFile
+sys.path.insert(1, os.path.abspath('PyFinances'))
+from PyFinances.pre_processor import MakeDistribution
+from PyFinances.pre_processor import ProcessDailyExpenseFile
+from PyFinances.pre_processor import CreateCDF, hist_pre_processor
+from PyFinances.pre_processor import ReadCSVFile, ReadMonteCarloFiles, CreateDates
+from PyFinances.pre_processor import MCPreProcessor
+from PyFinances.read_files import ReadRunOptionsFile
 # ================================================================================
 # ================================================================================
 # Date:    January 26, 20211

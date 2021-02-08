@@ -6,12 +6,12 @@ from typing import List
 # ================================================================================ 
 # Date:    February 1, 2021
 # Purpose: This file contains all functions and classes necessary to run
-#          the Monte Carlo portion of the PyFinances software suite
+#          the Monte Carlo portion of the PyFinances software suit
 
 # Source Code Metadata
 __author__ = "Jonathan A. Webb"
 __copyright__ = "Copyright 2021, Jon Webb Inc."
-__version__ = "1.0"
+__version__ = "0.1.0"
 # ================================================================================ 
 # ================================================================================ 
 # Insert Code here

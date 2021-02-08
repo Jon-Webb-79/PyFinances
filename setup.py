@@ -21,9 +21,11 @@ setup(
         license=license,
         packages=find_packages(),
         classifiers=[
+            "Development Status :: 1 - Planning",
+            "License :: OSI Approved :: BSD License"
             "Programming Language :: Python :: 3",
             "Programming Languate :: Python :: 3.9", 
             "Operating System :: MacOS",
         ],
-        zip_safe=False
+        zip_safe=False,
 )

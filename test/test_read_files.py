@@ -5,9 +5,9 @@ import os
 import platform
 import numpy as np
 from math import isclose
-sys.path.insert(0, os.path.abspath('../PyFinances'))
-from read_files import ReadTextFileKeywords, ReadRunOptionsFile
-from read_files import ReadCSVFile
+sys.path.insert(1, os.path.abspath('PyFinances'))
+from PyFinances.read_files import ReadTextFileKeywords, ReadRunOptionsFile
+from PyFinances.read_files import ReadCSVFile
 # ================================================================================
 # ================================================================================
 # Date:    January 24, 2021

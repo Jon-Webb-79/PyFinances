@@ -1,10 +1,11 @@
 # Import necessary packages here
-import sys
 import os
-sys.path.insert(0, os.path.abspath('../PyFinances'))
-from read_files import ReadCSVFile
+import sys
+sys.path.insert(1, os.path.abspath('PyFinances'))
+from PyFinances.read_files import ReadCSVFile
 import numpy as np
 import pandas as pd
+import os
 from typing import Tuple, List, Dict
 # ================================================================================
 # ================================================================================ 
@@ -15,7 +16,7 @@ from typing import Tuple, List, Dict
 # Source Code Metadata
 __author__ = "Jonathan A. Webb"
 __copyright__ = "Copyright 2021, Jon Webb Inc."
-__version__ = "1.0"
+__version__ = "0.1.0"
 # ================================================================================ 
 # ================================================================================ 
 # Insert Code here

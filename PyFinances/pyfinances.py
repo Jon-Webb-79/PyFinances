@@ -1,13 +1,13 @@
  # Import necessary packages here
 import sys 
 import os
+sys.path.insert(1, os.path.abspath('PyFinances'))
 import numpy as np
 import pandas as pd
-sys.path.insert(0, os.path.abspath('../PyFinances'))
-from read_files import ReadRunOptionsFile
-from pre_processor import hist_pre_processor, MCPreProcessor
-from monte_carlo import MCFunctions, MCEngine, mcfunc
-from plot_data import plot_func
+from PyFinances.read_files import ReadRunOptionsFile
+from PyFinances.pre_processor import hist_pre_processor, MCPreProcessor
+from PyFinances.monte_carlo import MCFunctions, MCEngine, mcfunc
+from PyFinances.plot_data import plot_func
 # ================================================================================
 # ================================================================================ 
 # Date:    January 27, 2021
@@ -17,7 +17,7 @@ from plot_data import plot_func
 # Source Code Metadata
 __author__ = "Jonathan A. Webb"
 __copyright__ = "Copyright 2021, Jon Webb Inc."
-__version__ = "1.0"
+__version__ = "0.1.0"
 # ================================================================================ 
 # ================================================================================ 
 # Insert Code here
@@ -79,10 +79,4 @@ def pyfinances(runoptionsfile: str) -> None:
     plot_func(final_df, plot_file)
 # ================================================================================
 # ================================================================================
-
-
-if __name__ == "__main__":
-    # file = '../data/input/RunOptions.txt'
-    file = '../data/RunOptions.txt'
-    pyfinances(file)
 # eof
